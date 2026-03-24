@@ -1407,6 +1407,7 @@ async function uploadToCloudinary(file, folder = "general") {
     method: "POST", body: fd
   });
   const d = await r.json();
+  if(d.error){ console.error("Cloudinary error:", d.error.message); throw new Error(d.error.message); }
   return d.secure_url || null;
 }
 
@@ -2522,27 +2523,34 @@ function closeLightbox(){
 
 async function triggerProgressPhotoUpload(week, angle){
   const inp = document.createElement("input");
-  inp.type = "file"; inp.accept = "image/*"; inp.capture = "environment";
+  inp.type = "file"; inp.accept = "image/*";
+  // No capture attribute — lets user choose camera OR library on iOS
   inp.onchange = async()=>{
     const file = inp.files[0]; if(!file) return;
-    showToast(`☁ Uploading W${week} ${angle}...`, 5000);
+    showToast(`☁ Uploading W${week} ${angle}...`, 8000);
     try{
       const url = await uploadToCloudinary(file, `progress/${week}`);
       if(url){
         if(!PROGRESS_PHOTOS[week]) PROGRESS_PHOTOS[week] = {};
         PROGRESS_PHOTOS[week][angle] = url;
         lsSet("af6_progress_photos", PROGRESS_PHOTOS);
+        // Save to Supabase
         if(sb.uid){
           try{
             const tbl = await sb.from("progress_photos");
-            await tbl.insert({user_id:sb.uid, week, photo_url:url, exercise_key:angle});
-          }catch(e){}
+            await tbl.insert({user_id:sb.uid, week:parseInt(week), photo_url:url, exercise_key:angle});
+          }catch(e){ console.warn("Supabase photo save:", e); }
         }
         renderPhotoWeekStrip();
         renderProgressPhotosGrid();
         showToast(`✅ W${week} ${angle} saved!`);
+      } else {
+        showToast("Upload failed — no URL returned");
       }
-    }catch(e){ showToast("Upload failed. Try again."); }
+    }catch(e){
+      console.error("Photo upload error:", e);
+      showToast("Upload failed: " + e.message);
+    }
   };
   inp.click();
 }
