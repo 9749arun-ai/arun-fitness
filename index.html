@@ -43,40 +43,6 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
 </head>
 <body class="select-none">
 
-<!-- AUTH SCREEN -->
-<div id="auth-screen" class="fixed inset-0 z-[1000] flex flex-col items-center justify-center px-6" style="background:radial-gradient(ellipse at 50% 30%,rgba(200,255,0,0.07),transparent 70%),#0a0c12;display:none!important">
-  <div style="animation:fadeUp 0.6s ease both;width:100%;max-width:360px">
-    <div class="text-center mb-8">
-      <h1 class="font-headline text-5xl font-black uppercase text-lime" style="letter-spacing:-2px;font-style:italic">ARUN</h1>
-      <p class="text-sub text-xs uppercase tracking-widest mt-1 font-bold">8 Week Shred · Cloud Sync</p>
-    </div>
-
-    <!-- Tab toggle -->
-    <div class="flex rounded-2xl p-1 mb-5" style="background:#13151f;border:1px solid rgba(255,255,255,0.06)">
-      <button id="tab-signin" onclick="authToggleTab('signin')" class="flex-1 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all" style="background:#c8ff00;color:#0a0c12">Sign In</button>
-      <button id="tab-signup" onclick="authToggleTab('signup')" class="flex-1 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all" style="background:transparent;color:#6870a0">Sign Up</button>
-    </div>
-
-    <!-- Sign In -->
-    <div id="auth-signin">
-      <input id="si-email" type="email" placeholder="Email" class="w-full rounded-2xl px-4 py-4 text-sm text-txt font-medium mb-3" style="background:#13151f;border:1px solid rgba(255,255,255,0.08)" onkeydown="if(event.key==='Enter')document.getElementById('si-pass').focus()"/>
-      <input id="si-pass" type="password" placeholder="Password" class="w-full rounded-2xl px-4 py-4 text-sm text-txt font-medium mb-4" style="background:#13151f;border:1px solid rgba(255,255,255,0.08)" onkeydown="if(event.key==='Enter')authSignIn()"/>
-      <button onclick="authSignIn()" id="si-btn" class="w-full py-4 rounded-2xl font-black uppercase text-sm tracking-wider lime-glow" style="background:#c8ff00;color:#0a0c12">Sign In</button>
-      <p id="si-err" class="text-red text-xs text-center mt-3" style="display:none"></p>
-    </div>
-
-    <!-- Sign Up -->
-    <div id="auth-signup" style="display:none">
-      <input id="su-email" type="email" placeholder="Email" class="w-full rounded-2xl px-4 py-4 text-sm text-txt font-medium mb-3" style="background:#13151f;border:1px solid rgba(255,255,255,0.08)" onkeydown="if(event.key==='Enter')document.getElementById('su-pass').focus()"/>
-      <input id="su-pass" type="password" placeholder="Password (min 6 chars)" class="w-full rounded-2xl px-4 py-4 text-sm text-txt font-medium mb-3" style="background:#13151f;border:1px solid rgba(255,255,255,0.08)" onkeydown="if(event.key==='Enter')authSignUp()"/>
-      <button onclick="authSignUp()" id="su-btn" class="w-full py-4 rounded-2xl font-black uppercase text-sm tracking-wider lime-glow" style="background:#c8ff00;color:#0a0c12">Create Account</button>
-      <p id="su-err" class="text-red text-xs text-center mt-3" style="display:none"></p>
-    </div>
-
-    <p class="text-dim text-[9px] text-center mt-6 uppercase tracking-wider">Your data syncs across all devices</p>
-  </div>
-</div>
-
 <!-- SPLASH SCREEN -->
 <div id="splash" class="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-navy" style="background:radial-gradient(ellipse at 50% 40%,rgba(200,255,0,0.08),transparent 70%),#0a0c12">
   <div style="animation:fadeUp 0.8s ease 0.2s both">
@@ -456,7 +422,7 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
 </div>
 
 <!-- ═══ KNOWLEDGE TAB ═══════════════════════════════════════════════════════ -->
-<div class="tab px-4 space-y-4 pb-4" id="tab-knowledge">
+<div class="tab px-4 pb-4" id="tab-knowledge">
 
   <!-- Hero -->
   <div class="rounded-3xl p-6 text-center" style="background:linear-gradient(135deg,rgba(200,255,0,0.1),rgba(77,121,255,0.08));border:1px solid rgba(200,255,0,0.15)">
@@ -475,81 +441,74 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
     <button onclick="showKnow('stories')" id="kt-stories" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)">🏆 Stories</button>
   </div>
 
+  <!-- Hero -->
+  <div class="rounded-3xl p-6 text-center mt-4 mb-4" style="background:linear-gradient(135deg,rgba(200,255,0,0.1),rgba(77,121,255,0.08));border:1px solid rgba(200,255,0,0.15)">
+    <div class="text-4xl mb-2">🧠</div>
+    <h2 class="font-headline text-2xl font-black uppercase text-lime" style="font-style:italic">Knowledge Hub</h2>
+    <p class="text-sub text-xs mt-1 font-bold">Science-backed. No fluff.</p>
+  </div>
+
+  <!-- Section tabs -->
+  <div class="flex gap-2 overflow-x-auto hide-scroll pb-1 mb-4">
+    <button onclick="showKnow('anatomy')" id="kt-anatomy" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#c8ff00;color:#0a0c12">💪 Anatomy</button>
+    <button onclick="showKnow('protein')" id="kt-protein" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)">🥩 Protein</button>
+    <button onclick="showKnow('fatloss')" id="kt-fatloss" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)">🔥 Fat Loss</button>
+    <button onclick="showKnow('sleep')" id="kt-sleep" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)">😴 Sleep</button>
+    <button onclick="showKnow('supps')" id="kt-supps" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)">💊 Supps</button>
+    <button onclick="showKnow('stories')" id="kt-stories" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)">🏆 Stories</button>
+  </div>
+
   <!-- ANATOMY -->
   <div id="know-anatomy" class="space-y-3">
     <h3 class="font-headline text-base font-black uppercase text-lime" style="font-style:italic">Muscle Group Map</h3>
-    <!-- SVG Body Diagram -->
     <div class="rounded-2xl p-4" style="background:#13151f;border:1px solid rgba(255,255,255,0.06)">
-      <svg viewBox="0 0 220 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:220px;display:block;margin:0 auto">
-        <!-- Head -->
+      <svg viewBox="0 0 220 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:200px;display:block;margin:0 auto">
         <ellipse cx="110" cy="30" rx="22" ry="26" fill="#1e2130" stroke="#353860" stroke-width="1.5"/>
-        <!-- Neck -->
         <rect x="102" y="54" width="16" height="14" rx="4" fill="#1e2130" stroke="#353860" stroke-width="1"/>
-        <!-- Chest/Torso -->
-        <rect x="72" y="68" width="76" height="70" rx="10" fill="#1e2130" stroke="#4d79ff" stroke-width="1.5" id="svg-chest"/>
-        <!-- Chest label -->
-        <text x="110" y="87" text-anchor="middle" fill="#4d79ff" font-size="8" font-weight="800" font-family="Space Grotesk">CHEST</text>
-        <!-- Shoulders -->
-        <ellipse cx="66" cy="80" rx="18" ry="14" fill="#1e2130" stroke="#9966ff" stroke-width="1.5"/>
-        <text x="66" y="84" text-anchor="middle" fill="#9966ff" font-size="6" font-weight="800" font-family="Space Grotesk">DELT</text>
-        <ellipse cx="154" cy="80" rx="18" ry="14" fill="#1e2130" stroke="#9966ff" stroke-width="1.5"/>
-        <text x="154" y="84" text-anchor="middle" fill="#9966ff" font-size="6" font-weight="800" font-family="Space Grotesk">DELT</text>
-        <!-- Abs -->
-        <rect x="88" y="138" width="44" height="52" rx="6" fill="#1e2130" stroke="#c8ff00" stroke-width="1.5"/>
-        <line x1="110" y1="138" x2="110" y2="190" stroke="#c8ff00" stroke-width="0.8" opacity="0.4"/>
-        <line x1="88" y1="155" x2="132" y2="155" stroke="#c8ff00" stroke-width="0.8" opacity="0.4"/>
-        <line x1="88" y1="172" x2="132" y2="172" stroke="#c8ff00" stroke-width="0.8" opacity="0.4"/>
-        <text x="110" y="168" text-anchor="middle" fill="#c8ff00" font-size="7" font-weight="800" font-family="Space Grotesk">ABS</text>
-        <!-- Arms -->
-        <rect x="46" y="95" width="20" height="55" rx="8" fill="#1e2130" stroke="#4d79ff" stroke-width="1.5"/>
-        <text x="56" y="126" text-anchor="middle" fill="#4d79ff" font-size="6" font-weight="800" font-family="Space Grotesk" transform="rotate(-5,56,126)">TRI</text>
-        <rect x="154" y="95" width="20" height="55" rx="8" fill="#1e2130" stroke="#4d79ff" stroke-width="1.5"/>
-        <text x="164" y="126" text-anchor="middle" fill="#4d79ff" font-size="6" font-weight="800" font-family="Space Grotesk" transform="rotate(5,164,126)">TRI</text>
-        <!-- Forearms -->
-        <rect x="48" y="152" width="16" height="40" rx="6" fill="#1e2130" stroke="#353860" stroke-width="1"/>
-        <rect x="156" y="152" width="16" height="40" rx="6" fill="#1e2130" stroke="#353860" stroke-width="1"/>
-        <!-- Bicep highlight -->
-        <ellipse cx="52" cy="108" rx="7" ry="12" fill="rgba(0,184,255,0.15)" stroke="#00b8ff" stroke-width="1"/>
-        <text x="52" y="112" text-anchor="middle" fill="#00b8ff" font-size="5.5" font-weight="800" font-family="Space Grotesk">BIC</text>
-        <ellipse cx="168" cy="108" rx="7" ry="12" fill="rgba(0,184,255,0.15)" stroke="#00b8ff" stroke-width="1"/>
-        <text x="168" y="112" text-anchor="middle" fill="#00b8ff" font-size="5.5" font-weight="800" font-family="Space Grotesk">BIC</text>
-        <!-- Quads -->
-        <rect x="83" y="194" width="34" height="75" rx="10" fill="#1e2130" stroke="#00e5a0" stroke-width="1.5"/>
-        <rect x="103" y="194" width="34" height="75" rx="10" fill="#1e2130" stroke="#00e5a0" stroke-width="1.5"/>
-        <text x="92" y="238" text-anchor="middle" fill="#00e5a0" font-size="7" font-weight="800" font-family="Space Grotesk" transform="rotate(-5,92,238)">QUAD</text>
-        <text x="128" y="238" text-anchor="middle" fill="#00e5a0" font-size="7" font-weight="800" font-family="Space Grotesk" transform="rotate(5,128,238)">QUAD</text>
-        <!-- Glutes hint -->
-        <text x="110" y="205" text-anchor="middle" fill="#ff5c9d" font-size="7" font-weight="800" font-family="Space Grotesk">GLUTES</text>
-        <!-- Calves -->
-        <rect x="84" y="272" width="28" height="52" rx="8" fill="#1e2130" stroke="#ff6535" stroke-width="1.5"/>
-        <rect x="108" y="272" width="28" height="52" rx="8" fill="#1e2130" stroke="#ff6535" stroke-width="1.5"/>
-        <text x="92" y="302" text-anchor="middle" fill="#ff6535" font-size="7" font-weight="800" font-family="Space Grotesk">CALF</text>
-        <text x="122" y="302" text-anchor="middle" fill="#ff6535" font-size="7" font-weight="800" font-family="Space Grotesk">CALF</text>
-        <!-- Back label (behind) -->
-        <text x="110" y="108" text-anchor="middle" fill="#00c4bf" font-size="7" font-weight="800" font-family="Space Grotesk" opacity="0.6">BACK↗</text>
+        <rect x="72" y="68" width="76" height="68" rx="10" fill="#1e2130" stroke="#4d79ff" stroke-width="1.5"/>
+        <text x="110" y="90" text-anchor="middle" fill="#4d79ff" font-size="9" font-weight="800" font-family="Space Grotesk">CHEST</text>
+        <ellipse cx="65" cy="80" rx="18" ry="14" fill="#1e2130" stroke="#9966ff" stroke-width="1.5"/>
+        <text x="65" y="84" text-anchor="middle" fill="#9966ff" font-size="6.5" font-weight="800" font-family="Space Grotesk">DELT</text>
+        <ellipse cx="155" cy="80" rx="18" ry="14" fill="#1e2130" stroke="#9966ff" stroke-width="1.5"/>
+        <text x="155" y="84" text-anchor="middle" fill="#9966ff" font-size="6.5" font-weight="800" font-family="Space Grotesk">DELT</text>
+        <text x="110" y="115" text-anchor="middle" fill="#00c4bf" font-size="7" font-weight="800" font-family="Space Grotesk" opacity="0.7">BACK↗</text>
+        <rect x="88" y="136" width="44" height="52" rx="6" fill="#1e2130" stroke="#c8ff00" stroke-width="1.5"/>
+        <line x1="110" y1="136" x2="110" y2="188" stroke="#c8ff00" stroke-width="0.8" opacity="0.4"/>
+        <line x1="88" y1="153" x2="132" y2="153" stroke="#c8ff00" stroke-width="0.8" opacity="0.4"/>
+        <line x1="88" y1="170" x2="132" y2="170" stroke="#c8ff00" stroke-width="0.8" opacity="0.4"/>
+        <text x="110" y="165" text-anchor="middle" fill="#c8ff00" font-size="8" font-weight="800" font-family="Space Grotesk">ABS</text>
+        <rect x="46" y="94" width="20" height="54" rx="8" fill="#1e2130" stroke="#4d79ff" stroke-width="1.5"/>
+        <text x="56" y="124" text-anchor="middle" fill="#4d79ff" font-size="6" font-weight="800" font-family="Space Grotesk">TRI</text>
+        <rect x="154" y="94" width="20" height="54" rx="8" fill="#1e2130" stroke="#4d79ff" stroke-width="1.5"/>
+        <text x="164" y="124" text-anchor="middle" fill="#4d79ff" font-size="6" font-weight="800" font-family="Space Grotesk">TRI</text>
+        <ellipse cx="52" cy="106" rx="7" ry="11" fill="rgba(0,184,255,0.2)" stroke="#00b8ff" stroke-width="1"/>
+        <text x="52" y="110" text-anchor="middle" fill="#00b8ff" font-size="5.5" font-weight="800" font-family="Space Grotesk">BIC</text>
+        <ellipse cx="168" cy="106" rx="7" ry="11" fill="rgba(0,184,255,0.2)" stroke="#00b8ff" stroke-width="1"/>
+        <text x="168" y="110" text-anchor="middle" fill="#00b8ff" font-size="5.5" font-weight="800" font-family="Space Grotesk">BIC</text>
+        <rect x="48" y="150" width="16" height="38" rx="6" fill="#1e2130" stroke="#353860" stroke-width="1"/>
+        <rect x="156" y="150" width="16" height="38" rx="6" fill="#1e2130" stroke="#353860" stroke-width="1"/>
+        <text x="110" y="203" text-anchor="middle" fill="#ff5c9d" font-size="7.5" font-weight="800" font-family="Space Grotesk">GLUTES</text>
+        <rect x="82" y="192" width="34" height="72" rx="10" fill="#1e2130" stroke="#00e5a0" stroke-width="1.5"/>
+        <rect x="104" y="192" width="34" height="72" rx="10" fill="#1e2130" stroke="#00e5a0" stroke-width="1.5"/>
+        <text x="92" y="235" text-anchor="middle" fill="#00e5a0" font-size="7" font-weight="800" font-family="Space Grotesk">QUAD</text>
+        <text x="122" y="235" text-anchor="middle" fill="#00e5a0" font-size="7" font-weight="800" font-family="Space Grotesk">QUAD</text>
+        <rect x="83" y="268" width="28" height="50" rx="8" fill="#1e2130" stroke="#ff6535" stroke-width="1.5"/>
+        <rect x="109" y="268" width="28" height="50" rx="8" fill="#1e2130" stroke="#ff6535" stroke-width="1.5"/>
+        <text x="92" y="297" text-anchor="middle" fill="#ff6535" font-size="7" font-weight="800" font-family="Space Grotesk">CALF</text>
+        <text x="123" y="297" text-anchor="middle" fill="#ff6535" font-size="7" font-weight="800" font-family="Space Grotesk">CALF</text>
       </svg>
     </div>
-    <!-- Muscle cards -->
     <div class="grid grid-cols-2 gap-2">
-      ${[
-        {name:"Chest",col:"#4d79ff",emoji:"💪",trains:"Push Day",tip:"Full stretch at bottom of press"},
-        {name:"Back",col:"#00c4bf",emoji:"🦾",trains:"Pull Day",tip:"Pull elbows, not hands"},
-        {name:"Shoulders",col:"#9966ff",emoji:"🏋️",trains:"Push + Pull",tip:"Lateral raises for width"},
-        {name:"Biceps",col:"#00b8ff",emoji:"💥",trains:"Pull Day",tip:"Supinate at the top"},
-        {name:"Triceps",col:"#4d79ff",emoji:"🔱",trains:"Push Day",tip:"Lock out fully on extensions"},
-        {name:"Quads",col:"#00e5a0",emoji:"🦵",trains:"Leg Day",tip:"Knees track over toes"},
-        {name:"Hamstrings",col:"#4d79ff",emoji:"🏃",trains:"Leg Day",tip:"Hip hinge on RDLs"},
-        {name:"Glutes",col:"#ff5c9d",emoji:"🍑",trains:"Leg Day",tip:"Squeeze hard at top of thrust"},
-        {name:"Calves",col:"#ff6535",emoji:"⚡",trains:"Leg Day",tip:"Full ROM — stretch at bottom"},
-        {name:"Abs",col:"#c8ff00",emoji:"🎯",trains:"Every session",tip:"Brace — don't just crunch"},
-      ].map(m=>`
-        <div style="background:#13151f;border:1px solid ${m.col}22;border-radius:14px;padding:12px">
-          <div style="font-size:18px;margin-bottom:4px">${m.emoji}</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:${m.col}">${m.name}</div>
-          <div style="font-size:9px;color:#6870a0;margin-top:2px;font-weight:600">${m.trains}</div>
-          <div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"${m.tip}"</div>
-        </div>
-      `).join("")}
+      <div style="background:#13151f;border:1px solid rgba(77,121,255,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">💪</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#4d79ff">Chest</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Push Day</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Full stretch at bottom"</div></div>
+      <div style="background:#13151f;border:1px solid rgba(0,196,191,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">🦾</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#00c4bf">Back</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Pull Day</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Pull elbows, not hands"</div></div>
+      <div style="background:#13151f;border:1px solid rgba(153,102,255,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">🏋️</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#9966ff">Shoulders</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Push + Pull</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Lateral raises for width"</div></div>
+      <div style="background:#13151f;border:1px solid rgba(0,184,255,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">💥</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#00b8ff">Biceps</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Pull Day</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Supinate at the top"</div></div>
+      <div style="background:#13151f;border:1px solid rgba(77,121,255,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">🔱</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#4d79ff">Triceps</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Push Day</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Lock out fully"</div></div>
+      <div style="background:#13151f;border:1px solid rgba(0,229,160,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">🦵</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#00e5a0">Quads</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Leg Day</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Knees track over toes"</div></div>
+      <div style="background:#13151f;border:1px solid rgba(77,121,255,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">🏃</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#4d79ff">Hamstrings</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Leg Day</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Hip hinge on RDLs"</div></div>
+      <div style="background:#13151f;border:1px solid rgba(255,92,157,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">🍑</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#ff5c9d">Glutes</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Leg Day</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Squeeze at top of thrust"</div></div>
+      <div style="background:#13151f;border:1px solid rgba(255,101,53,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">⚡</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#ff6535">Calves</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Leg Day</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Full ROM — stretch it"</div></div>
+      <div style="background:#13151f;border:1px solid rgba(200,255,0,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">🎯</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#c8ff00">Abs</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Every session</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Brace, don't crunch"</div></div>
     </div>
   </div>
 
@@ -557,74 +516,89 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
   <div id="know-protein" class="space-y-3" style="display:none">
     <h3 class="font-headline text-base font-black uppercase text-lime" style="font-style:italic">Why Protein Matters</h3>
     <div class="rounded-2xl p-5" style="background:linear-gradient(135deg,rgba(200,255,0,0.08),rgba(0,0,0,0));border:1px solid rgba(200,255,0,0.2)">
-      <div class="text-5xl font-black font-headline text-lime">2g</div>
-      <div class="text-sub text-xs font-bold uppercase tracking-widest mt-1">per kg of bodyweight · daily target</div>
-      <div class="text-dim text-xs mt-3">At 76kg → you need <span style="color:#c8ff00;font-weight:800">~152g protein/day</span> to preserve muscle while cutting.</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:900;color:#c8ff00;line-height:1">2g</div>
+      <div style="font-size:9px;color:#6870a0;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;margin-top:4px">per kg bodyweight · daily target</div>
+      <div style="font-size:11px;color:#6870a0;margin-top:10px">At 76kg → you need <span style="color:#c8ff00;font-weight:800">~152g protein/day</span> to preserve muscle while cutting.</div>
     </div>
-    ${[
-      {title:"Muscle Protein Synthesis",icon:"🔬",body:"Every time you eat protein, your body triggers MPS — the process of building and repairing muscle fibres. Without enough protein, even perfect training can't build muscle."},
-      {title:"Satiety — Stays Full Longer",icon:"🍽️",body:"Protein is the most satiating macronutrient. 30g of protein keeps you full 2x longer than 30g of carbs. This is your secret weapon in a calorie deficit."},
-      {title:"Thermic Effect",icon:"🔥",body:"Your body burns 20–30% of protein calories just digesting it. Eat 200kcal of chicken breast and your body only absorbs ~150kcal net. Carbs and fat burn only 5–10%."},
-      {title:"Muscle Preservation",icon:"💪",body:"In a calorie deficit, your body wants to burn muscle for fuel. High protein (2g/kg) signals your body to preserve lean mass and burn fat instead."},
-      {title:"Top Indian Sources",icon:"🇮🇳",body:"Paneer (18g/100g) · Chicken breast (31g/100g) · Eggs (6g each) · Dal (9g/cup cooked) · Greek yogurt (10g/100g) · Whey protein (25g/scoop)"},
-    ].map(c=>`
-      <div style="background:#13151f;border:1px solid rgba(255,255,255,0.05);border-radius:16px;padding:14px">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <span style="font-size:22px">${c.icon}</span>
-          <span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#f2f4ff">${c.title}</span>
-        </div>
-        <p style="font-size:11px;color:#6870a0;line-height:1.6">${c.body}</p>
-      </div>
-    `).join("")}
+    <div style="background:#13151f;border:1px solid rgba(255,255,255,0.05);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🔬</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#f2f4ff">Muscle Protein Synthesis</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Every time you eat protein, your body triggers MPS — the process of building and repairing muscle fibres. Without enough protein, even perfect training can't build muscle.</p>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(255,255,255,0.05);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🍽️</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#f2f4ff">Satiety — Stays Full Longer</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Protein is the most satiating macronutrient. 30g of protein keeps you full 2x longer than 30g of carbs. This is your secret weapon in a calorie deficit.</p>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(255,255,255,0.05);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🔥</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#f2f4ff">Thermic Effect</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Your body burns 20–30% of protein calories just digesting it. Eat 200kcal of chicken breast and your body only absorbs ~150kcal net. Carbs and fat burn only 5–10%.</p>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(255,255,255,0.05);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">💪</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#f2f4ff">Muscle Preservation</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">In a calorie deficit, your body wants to burn muscle for fuel. High protein (2g/kg) signals your body to preserve lean mass and burn fat instead.</p>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(255,255,255,0.05);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🇮🇳</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#f2f4ff">Top Indian Sources</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Paneer (18g/100g) · Chicken breast (31g/100g) · Eggs (6g each) · Dal (9g/cup cooked) · Greek yogurt (10g/100g) · Whey protein (25g/scoop)</p>
+    </div>
   </div>
 
   <!-- FAT LOSS -->
   <div id="know-fatloss" class="space-y-3" style="display:none">
     <h3 class="font-headline text-base font-black uppercase text-lime" style="font-style:italic">Fat Loss Science</h3>
     <div class="rounded-2xl p-5" style="background:#13151f;border:1px solid rgba(255,61,90,0.3)">
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:800;color:#ff3d5a;margin-bottom:6px">THE ONLY LAW THAT MATTERS</div>
+      <div style="font-size:9px;font-weight:800;color:#ff3d5a;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.1em">The Only Law That Matters</div>
       <div style="font-size:15px;font-weight:700;color:#f2f4ff">Calories In &lt; Calories Out = Fat Loss</div>
       <div style="font-size:10px;color:#6870a0;margin-top:6px">Everything else — keto, fasting, clean eating — only works because it helps you eat less. Period.</div>
     </div>
-    ${[
-      {title:"TDEE — Your Magic Number",icon:"⚡",col:"#c8ff00",body:"Total Daily Energy Expenditure = BMR + activity. At your stats (~76kg, active), TDEE ≈ 2,400 kcal. Eat 1,600–1,800 and you're in a 500–800 kcal deficit. That's 0.5–0.8kg lost per week."},
-      {title:"The 7,700 Rule",icon:"🔢",col:"#4d79ff",body:"1kg of fat = 7,700 kcal. A 500 kcal/day deficit = 3,500 kcal/week = 0.45kg lost. No shortcuts. But consistency compounds — 8 weeks at this rate = 3.6kg gone."},
-      {title:"Why the Scale Lies",icon:"⚖️",col:"#ff6535",body:"Water, salt, food weight, and glycogen fluctuate 1–3kg daily. Never judge progress by one weigh-in. Track weekly averages. The trend over 2–3 weeks is the truth."},
-      {title:"Cardio's Real Role",icon:"🏃",col:"#00e5a0",body:"Cardio doesn't burn as much as you think (30 min run = ~300 kcal = one small meal). Its real value: improves heart health, reduces stress, and creates a small extra deficit. Don't out-cardio a bad diet."},
-      {title:"Refeed Days",icon:"🔄",col:"#9966ff",body:"After 4–5 weeks of deficit, leptin (your metabolism hormone) drops. A strategic refeed day at maintenance calories resets hormones, improves mood, and keeps the deficit working. Not a cheat — a tool."},
-    ].map(c=>`
-      <div style="background:#13151f;border:1px solid ${c.col}22;border-radius:16px;padding:14px">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <span style="font-size:22px">${c.icon}</span>
-          <span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:${c.col}">${c.title}</span>
-        </div>
-        <p style="font-size:11px;color:#6870a0;line-height:1.6">${c.body}</p>
-      </div>
-    `).join("")}
+    <div style="background:#13151f;border:1px solid rgba(200,255,0,0.15);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">⚡</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#c8ff00">TDEE — Your Magic Number</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Total Daily Energy Expenditure = BMR + activity. At your stats (~76kg, active), TDEE ≈ 2,400 kcal. Eat 1,600–1,800 and you're in a 500–800 kcal deficit. That's 0.5–0.8kg lost per week.</p>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(77,121,255,0.15);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🔢</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#4d79ff">The 7,700 Rule</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">1kg of fat = 7,700 kcal. A 500 kcal/day deficit = 3,500 kcal/week = 0.45kg lost. No shortcuts. But consistency compounds — 8 weeks = 3.6kg gone.</p>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(255,101,53,0.15);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">⚖️</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#ff6535">Why the Scale Lies</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Water, salt, food weight, and glycogen fluctuate 1–3kg daily. Never judge progress by one weigh-in. Track weekly averages. The trend over 2–3 weeks is the truth.</p>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(0,229,160,0.15);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🏃</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#00e5a0">Cardio's Real Role</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Cardio doesn't burn as much as you think (30 min run = ~300 kcal = one small meal). Its real value: creates a small extra deficit and improves heart health. Don't out-cardio a bad diet.</p>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(153,102,255,0.15);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🔄</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#9966ff">Refeed Days</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">After 4–5 weeks of deficit, leptin drops. A strategic refeed day at maintenance calories resets hormones, improves mood, and keeps the deficit working. Not a cheat — a tool.</p>
+    </div>
   </div>
 
   <!-- SLEEP -->
   <div id="know-sleep" class="space-y-3" style="display:none">
     <h3 class="font-headline text-base font-black uppercase text-lime" style="font-style:italic">Sleep & Recovery</h3>
     <div class="rounded-2xl p-5 text-center" style="background:#13151f;border:1px solid rgba(77,121,255,0.3)">
-      <div style="font-size:48px;font-weight:900;font-family:'Space Grotesk',sans-serif;color:#4d79ff">8h</div>
-      <div style="font-size:10px;color:#6870a0;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">minimum for muscle growth</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:56px;font-weight:900;color:#4d79ff;line-height:1">8h</div>
+      <div style="font-size:10px;color:#6870a0;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-top:4px">minimum for muscle growth</div>
     </div>
-    ${[
-      {title:"Growth Hormone Spike",icon:"🧬",col:"#c8ff00",body:"90% of your body's growth hormone is released during deep sleep (stages 3–4). This is when actual muscle repair and growth happens. Skipping sleep = skipping gains. No supplement replaces this."},
-      {title:"Cortisol — The Muscle Killer",icon:"😤",col:"#ff3d5a",body:"Sleep deprivation spikes cortisol — your stress hormone. Chronically elevated cortisol breaks down muscle, increases fat storage (especially belly fat), and kills testosterone. 6h sleep vs 8h can increase cortisol by 37%."},
-      {title:"Appetite Hormones Go Haywire",icon:"🍕",col:"#ff6535",body:"Bad sleep raises ghrelin (hunger hormone) and lowers leptin (satiety hormone). You'll feel 20–25% hungrier the next day and crave high-calorie foods. This single factor destroys more diets than anything else."},
-      {title:"Recovery Protocol",icon:"🛌",col:"#00e5a0",body:"Same sleep/wake time daily. Room temperature 18–20°C. No screens 30 min before bed. 200mg magnesium glycinate before sleep. Dark room. 7–9 hours non-negotiable on training days."},
-      {title:"Naps Are Legit",icon:"💤",col:"#9966ff",body:"A 20-minute power nap (1–3pm) reduces cortisol, improves alertness for 2–3 hours, and aids afternoon muscle recovery. Keep it under 30 min or you'll wake groggy. Elite athletes do this daily."},
-    ].map(c=>`
-      <div style="background:#13151f;border:1px solid ${c.col}22;border-radius:16px;padding:14px">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <span style="font-size:22px">${c.icon}</span>
-          <span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:${c.col}">${c.title}</span>
-        </div>
-        <p style="font-size:11px;color:#6870a0;line-height:1.6">${c.body}</p>
-      </div>
-    `).join("")}
+    <div style="background:#13151f;border:1px solid rgba(200,255,0,0.15);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🧬</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#c8ff00">Growth Hormone Spike</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">90% of your body's growth hormone is released during deep sleep. This is when actual muscle repair and growth happens. Skipping sleep = skipping gains. No supplement replaces this.</p>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(255,61,90,0.15);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">😤</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#ff3d5a">Cortisol — The Muscle Killer</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Sleep deprivation spikes cortisol. Chronically elevated cortisol breaks down muscle, increases fat storage (especially belly fat), and kills testosterone. 6h vs 8h can raise cortisol by 37%.</p>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(255,101,53,0.15);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🍕</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#ff6535">Appetite Hormones</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Bad sleep raises ghrelin (hunger) and lowers leptin (satiety). You'll feel 25% hungrier the next day and crave high-calorie foods. This single factor destroys more diets than anything else.</p>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(0,229,160,0.15);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🛌</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#00e5a0">Recovery Protocol</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Same sleep/wake time daily. Room 18–20°C. No screens 30 min before bed. 200mg magnesium glycinate before sleep. Dark room. 7–9 hours non-negotiable on training days.</p>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(153,102,255,0.15);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">💤</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#9966ff">Naps Are Legit</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">A 20-minute power nap (1–3pm) reduces cortisol, improves alertness for 2–3 hours, and aids afternoon recovery. Keep it under 30 min or you'll wake groggy. Elite athletes do this daily.</p>
+    </div>
   </div>
 
   <!-- SUPPLEMENTS -->
@@ -634,52 +608,87 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
       <div style="font-size:10px;font-weight:800;color:#ff3d5a;margin-bottom:4px">⚠ TRUTH CHECK</div>
       <div style="font-size:11px;color:#6870a0">Supplements are 5% of your results. Food, sleep, training, and consistency are the other 95%. Don't buy anything until those are dialed in.</div>
     </div>
-    ${[
-      {name:"Whey Protein",tier:"Essential",col:"#c8ff00",dose:"25–30g post-workout",why:"Fastest absorbing protein. Hits muscles within 30 min. Only useful if you're not hitting protein targets from food. Not magic — just convenient protein.",brand:"MuscleBlaze Biozyme / Optimum Nutrition Gold"},
-      {name:"Creatine Monohydrate",tier:"Essential",col:"#4d79ff",dose:"5g daily (anytime)",why:"Most researched supplement in existence. Increases ATP (energy for heavy lifts), improves strength by 5–15%, adds 1–2kg lean mass over 4 weeks. Take it every day — no loading needed.",brand:"MuscleBlaze Creatine / any plain monohydrate"},
-      {name:"Magnesium Glycinate",tier:"High Value",col:"#9966ff",dose:"200–400mg before bed",why:"Most Indians are deficient. Improves sleep quality, reduces cortisol, reduces muscle cramps and soreness. Notice better sleep within 5–7 days.",brand:"Any pharmacy. Glycinate form — not oxide."},
-      {name:"Vitamin D3 + K2",tier:"High Value",col:"#ff6535",dose:"2000–4000 IU D3 + 100mcg K2",why:"90% of Indians are deficient. Low D3 = low testosterone, weak immunity, poor mood. K2 ensures calcium goes to bones not arteries. Take with fat.",brand:"HealthKart D3+K2 / TrueBasics"},
-      {name:"Caffeine / Pre-workout",tier:"Optional",col:"#ff3d5a",dose:"100–200mg, 30 min pre-workout",why:"Proven to improve strength, endurance, and focus. But tolerance builds fast. Cycle it — 5 days on, 2 days off. Black coffee works just as well as fancy pre-workout.",brand:"Black coffee is literally enough."},
-      {name:"Omega-3 Fish Oil",tier:"Optional",col:"#00c4bf",dose:"2–3g EPA+DHA daily",why:"Reduces inflammation, improves joint health (critical when training heavy), supports heart health. Look for EPA+DHA content — not total fish oil.",brand:"WOW Omega-3 / Himalaya Fish Oil"},
-    ].map(s=>`
-      <div style="background:#13151f;border:1px solid ${s.col}22;border-radius:16px;padding:14px">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
-          <div>
-            <div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:900;color:${s.col}">${s.name}</div>
-            <div style="font-size:9px;font-weight:800;color:${s.col};background:${s.col}15;border:1px solid ${s.col}30;border-radius:20px;padding:1px 8px;display:inline-block;margin-top:3px">${s.tier}</div>
-          </div>
-          <div style="text-align:right"><div style="font-size:9px;color:#6870a0;font-weight:700">${s.dose}</div></div>
-        </div>
-        <p style="font-size:11px;color:#6870a0;line-height:1.6;margin-bottom:6px">${s.why}</p>
-        <div style="font-size:9px;color:#353860;font-weight:600">📦 ${s.brand}</div>
+    <div style="background:#13151f;border:1px solid rgba(200,255,0,0.15);border-radius:16px;padding:14px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <div><div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:900;color:#c8ff00">Whey Protein</div><div style="font-size:9px;font-weight:800;color:#c8ff00;background:rgba(200,255,0,0.1);border:1px solid rgba(200,255,0,0.3);border-radius:20px;padding:1px 8px;display:inline-block;margin-top:3px">Essential</div></div>
+        <div style="font-size:9px;color:#6870a0;font-weight:700;text-align:right">25–30g post-workout</div>
       </div>
-    `).join("")}
+      <p style="font-size:11px;color:#6870a0;line-height:1.6;margin-bottom:6px">Fastest absorbing protein. Hits muscles within 30 min. Only useful if you're not hitting protein targets from food. Not magic — just convenient protein.</p>
+      <div style="font-size:9px;color:#353860;font-weight:600">📦 MuscleBlaze Biozyme / Optimum Nutrition Gold</div>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(77,121,255,0.15);border-radius:16px;padding:14px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <div><div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:900;color:#4d79ff">Creatine Monohydrate</div><div style="font-size:9px;font-weight:800;color:#4d79ff;background:rgba(77,121,255,0.1);border:1px solid rgba(77,121,255,0.3);border-radius:20px;padding:1px 8px;display:inline-block;margin-top:3px">Essential</div></div>
+        <div style="font-size:9px;color:#6870a0;font-weight:700;text-align:right">5g daily (anytime)</div>
+      </div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6;margin-bottom:6px">Most researched supplement in existence. Improves strength by 5–15%, adds 1–2kg lean mass over 4 weeks. Take every day — no loading needed.</p>
+      <div style="font-size:9px;color:#353860;font-weight:600">📦 MuscleBlaze Creatine / any plain monohydrate</div>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(153,102,255,0.15);border-radius:16px;padding:14px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <div><div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:900;color:#9966ff">Magnesium Glycinate</div><div style="font-size:9px;font-weight:800;color:#9966ff;background:rgba(153,102,255,0.1);border:1px solid rgba(153,102,255,0.3);border-radius:20px;padding:1px 8px;display:inline-block;margin-top:3px">High Value</div></div>
+        <div style="font-size:9px;color:#6870a0;font-weight:700;text-align:right">200–400mg before bed</div>
+      </div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6;margin-bottom:6px">Most Indians are deficient. Improves sleep quality, reduces cortisol, reduces muscle cramps. Notice better sleep within 5–7 days.</p>
+      <div style="font-size:9px;color:#353860;font-weight:600">📦 Any pharmacy. Glycinate form — not oxide.</div>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(255,101,53,0.15);border-radius:16px;padding:14px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <div><div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:900;color:#ff6535">Vitamin D3 + K2</div><div style="font-size:9px;font-weight:800;color:#ff6535;background:rgba(255,101,53,0.1);border:1px solid rgba(255,101,53,0.3);border-radius:20px;padding:1px 8px;display:inline-block;margin-top:3px">High Value</div></div>
+        <div style="font-size:9px;color:#6870a0;font-weight:700;text-align:right">2000–4000 IU D3 + 100mcg K2</div>
+      </div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6;margin-bottom:6px">90% of Indians are deficient. Low D3 = low testosterone, weak immunity, poor mood. K2 ensures calcium goes to bones. Take with fat.</p>
+      <div style="font-size:9px;color:#353860;font-weight:600">📦 HealthKart D3+K2 / TrueBasics</div>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(0,196,191,0.15);border-radius:16px;padding:14px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <div><div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:900;color:#00c4bf">Omega-3 Fish Oil</div><div style="font-size:9px;font-weight:800;color:#00c4bf;background:rgba(0,196,191,0.1);border:1px solid rgba(0,196,191,0.3);border-radius:20px;padding:1px 8px;display:inline-block;margin-top:3px">Optional</div></div>
+        <div style="font-size:9px;color:#6870a0;font-weight:700;text-align:right">2–3g EPA+DHA daily</div>
+      </div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6;margin-bottom:6px">Reduces inflammation, improves joint health (critical when training heavy), supports heart health. Look for EPA+DHA content — not total fish oil.</p>
+      <div style="font-size:9px;color:#353860;font-weight:600">📦 WOW Omega-3 / Himalaya Fish Oil</div>
+    </div>
   </div>
 
   <!-- STORIES -->
   <div id="know-stories" class="space-y-3" style="display:none">
     <h3 class="font-headline text-base font-black uppercase text-lime" style="font-style:italic">Motivation Stories</h3>
-    ${[
-      {name:"Virat Kohli",flag:"🇮🇳",from:"Junk food, inconsistent",to:"World-class athlete at 35",col:"#4d79ff",story:"At 23, Kohli was known for partying and eating whatever he wanted. A serious injury in 2012 forced him to rethink everything. He gave up alcohol entirely, switched to a strict high-protein diet, and began training twice a day. He dropped 15kg and completely transformed his body. His secret? He says: 'Discipline beats motivation every time. Motivation fades. Discipline is a habit.' At 35, he's the fittest cricketer on the planet."},
-      {name:"Dwayne Johnson",flag:"🇺🇸",from:"Broke & cut from NFL",to:"Highest-paid actor. 120kg lean.",col:"#ff6535",story:"In 1995, The Rock was 23, had $7 in his pocket, and had just been cut from the CFL. He had failed his dream. He channelled that pain into the gym — 4am workouts, 6 meals a day, 300g protein. He didn't become an overnight success. It took 5 years of consistent, brutal training before Hollywood came calling. His lesson: 'Success isn't always about greatness. It's about consistency. Consistent hard work gains success. Greatness will come.'"},
-      {name:"Anant Ambani",flag:"🇮🇳",from:"108kg, struggled with weight his entire life",to:"Lost 108kg in 18 months",col:"#c8ff00",story:"In 2023, Anant Ambani shocked India by revealing an 108kg transformation. What people didn't know: he had been battling severe asthma since childhood, and steroids for treatment caused massive weight gain. His journey involved 5-hour daily workouts, a 1,200-calorie diet, and walking 21km every single day. His trainer said he never complained — not once. Proof that if the will is strong enough, the body follows."},
-      {name:"The Average Person Who Quit",flag:"🔴",from:"Started strong in January",to:"Gave up by March",col:"#ff3d5a",story:"This is the story of 80% of people who start a fitness journey. They're motivated in week 1. By week 3, life gets busy. By week 6, they've missed enough sessions that they feel guilty, so they quit entirely. The mistake? They treated fitness as an all-or-nothing event. Missing one session isn't failure. Quitting because you missed one session — that's failure. The people who transform aren't the ones who never miss a day. They're the ones who always come back."},
-    ].map(s=>`
-      <div style="background:#13151f;border:1px solid ${s.col}22;border-radius:20px;overflow:hidden">
-        <div style="background:${s.col}10;padding:14px 14px 10px;border-bottom:1px solid ${s.col}15">
-          <div style="display:flex;align-items:center;gap:10px">
-            <span style="font-size:28px">${s.flag}</span>
-            <div>
-              <div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:900;color:${s.col}">${s.name}</div>
-              <div style="font-size:9px;color:#6870a0;font-weight:700">${s.from} → ${s.to}</div>
-            </div>
-          </div>
-        </div>
-        <div style="padding:14px">
-          <p style="font-size:11px;color:#6870a0;line-height:1.7">${s.story}</p>
+    <div style="background:#13151f;border:1px solid rgba(77,121,255,0.15);border-radius:20px;overflow:hidden">
+      <div style="background:rgba(77,121,255,0.08);padding:14px 14px 10px;border-bottom:1px solid rgba(77,121,255,0.1)">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:28px">🇮🇳</span>
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:900;color:#4d79ff">Virat Kohli</div><div style="font-size:9px;color:#6870a0;font-weight:700">Junk food, inconsistent → World-class athlete at 35</div></div>
         </div>
       </div>
-    `).join("")}
+      <div style="padding:14px"><p style="font-size:11px;color:#6870a0;line-height:1.7">At 23, Kohli was known for partying and eating whatever he wanted. A serious injury in 2012 forced him to rethink everything. He gave up alcohol entirely, switched to a strict high-protein diet, and began training twice a day. He dropped 15kg and completely transformed his body. His secret? "Discipline beats motivation every time. Motivation fades. Discipline is a habit." At 35, he's the fittest cricketer on the planet.</p></div>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(255,101,53,0.15);border-radius:20px;overflow:hidden">
+      <div style="background:rgba(255,101,53,0.08);padding:14px 14px 10px;border-bottom:1px solid rgba(255,101,53,0.1)">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:28px">🇺🇸</span>
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:900;color:#ff6535">Dwayne Johnson</div><div style="font-size:9px;color:#6870a0;font-weight:700">Broke & cut from NFL → Highest-paid actor. 120kg lean.</div></div>
+        </div>
+      </div>
+      <div style="padding:14px"><p style="font-size:11px;color:#6870a0;line-height:1.7">In 1995, The Rock was 23, had $7 in his pocket, and had just been cut from the CFL. He channelled that pain into the gym — 4am workouts, 6 meals a day, 300g protein. It took 5 years of consistent training before Hollywood came calling. His lesson: "Success isn't always about greatness. It's about consistency. Consistent hard work gains success."</p></div>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(200,255,0,0.15);border-radius:20px;overflow:hidden">
+      <div style="background:rgba(200,255,0,0.06);padding:14px 14px 10px;border-bottom:1px solid rgba(200,255,0,0.1)">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:28px">🇮🇳</span>
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:900;color:#c8ff00">Anant Ambani</div><div style="font-size:9px;color:#6870a0;font-weight:700">108kg overweight → Lost 108kg in 18 months</div></div>
+        </div>
+      </div>
+      <div style="padding:14px"><p style="font-size:11px;color:#6870a0;line-height:1.7">Anant Ambani shocked India with a 108kg transformation. What people didn't know: he had been battling severe asthma since childhood, and steroids caused massive weight gain. His journey involved 5-hour daily workouts, a strict diet, and walking 21km every single day. His trainer said he never complained — not once. Proof that if the will is strong enough, the body follows.</p></div>
+    </div>
+    <div style="background:#13151f;border:1px solid rgba(255,61,90,0.15);border-radius:20px;overflow:hidden">
+      <div style="background:rgba(255,61,90,0.06);padding:14px 14px 10px;border-bottom:1px solid rgba(255,61,90,0.1)">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:28px">🔴</span>
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:900;color:#ff3d5a">The Person Who Quit</div><div style="font-size:9px;color:#6870a0;font-weight:700">Started strong in January → Gave up by March</div></div>
+        </div>
+      </div>
+      <div style="padding:14px"><p style="font-size:11px;color:#6870a0;line-height:1.7">This is the story of 80% of people. Motivated in week 1. By week 3, life gets busy. By week 6, they feel so guilty about missed sessions that they quit entirely. The mistake? All-or-nothing thinking. Missing one session isn't failure. Quitting because you missed one — that's failure. The people who transform aren't the ones who never miss a day. They're the ones who always come back.</p></div>
+    </div>
   </div>
 
 </div>
@@ -1984,6 +1993,7 @@ async function afterAuth(){
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 window.onload=()=>{
+  hideSplash();
   setGreeting();
   buildWeekStrip();
   buildDayStrip();
@@ -1995,30 +2005,13 @@ window.onload=()=>{
   document.addEventListener("touchstart",()=>{
     try{new(window.AudioContext||window.webkitAudioContext)();}catch{}
   },{once:true});
-
-  const cachedToken = localStorage.getItem("af_token");
-  const cachedUid = localStorage.getItem("af_uid");
-  const lastLogin = localStorage.getItem("af_last_login");
-  const oneDayMs = 24 * 60 * 60 * 1000;
-  const sessionExpired = !lastLogin || (Date.now() - parseInt(lastLogin)) > oneDayMs;
-
-  if(cachedToken && cachedUid && !sessionExpired){
-    // Valid session under 1 day — go straight in
-    sb.token = cachedToken;
-    sb.uid = cachedUid;
-    hideSplash();
+  // Background cloud sync if session exists
+  const cachedToken=localStorage.getItem("af_token");
+  const cachedUid=localStorage.getItem("af_uid");
+  if(cachedToken&&cachedUid){
+    sb.token=cachedToken; sb.uid=cachedUid;
     updateSyncBadge(true);
-    setTimeout(()=> syncFromCloud().catch(()=> updateSyncBadge(false)), 800);
-  } else {
-    // No session or expired — show auth after splash
-    if(sessionExpired){
-      localStorage.removeItem("af_token");
-      localStorage.removeItem("af_uid");
-    }
-    hideSplash();
-    setTimeout(()=>{
-      document.getElementById("auth-screen").style.removeProperty("display");
-    }, 1900);
+    setTimeout(()=>syncFromCloud().catch(()=>updateSyncBadge(false)),1000);
   }
 };
 </script>
