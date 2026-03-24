@@ -455,29 +455,262 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
   </div>
 </div>
 
+<!-- ═══ KNOWLEDGE TAB ═══════════════════════════════════════════════════════ -->
+<div class="tab px-4 space-y-4 pb-4" id="tab-knowledge">
+
+  <!-- Hero -->
+  <div class="rounded-3xl p-6 text-center" style="background:linear-gradient(135deg,rgba(200,255,0,0.1),rgba(77,121,255,0.08));border:1px solid rgba(200,255,0,0.15)">
+    <div class="text-4xl mb-2">🧠</div>
+    <h2 class="font-headline text-2xl font-black uppercase text-lime" style="font-style:italic">Knowledge Hub</h2>
+    <p class="text-sub text-xs mt-1 font-bold">Science-backed. No fluff.</p>
+  </div>
+
+  <!-- Section tabs -->
+  <div class="flex gap-2 overflow-x-auto hide-scroll pb-1" id="know-tabs">
+    <button onclick="showKnow('anatomy')" id="kt-anatomy" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#c8ff00;color:#0a0c12">💪 Anatomy</button>
+    <button onclick="showKnow('protein')" id="kt-protein" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)">🥩 Protein</button>
+    <button onclick="showKnow('fatloss')" id="kt-fatloss" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)">🔥 Fat Loss</button>
+    <button onclick="showKnow('sleep')" id="kt-sleep" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)">😴 Sleep</button>
+    <button onclick="showKnow('supps')" id="kt-supps" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)">💊 Supps</button>
+    <button onclick="showKnow('stories')" id="kt-stories" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)">🏆 Stories</button>
+  </div>
+
+  <!-- ANATOMY -->
+  <div id="know-anatomy" class="space-y-3">
+    <h3 class="font-headline text-base font-black uppercase text-lime" style="font-style:italic">Muscle Group Map</h3>
+    <!-- SVG Body Diagram -->
+    <div class="rounded-2xl p-4" style="background:#13151f;border:1px solid rgba(255,255,255,0.06)">
+      <svg viewBox="0 0 220 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:220px;display:block;margin:0 auto">
+        <!-- Head -->
+        <ellipse cx="110" cy="30" rx="22" ry="26" fill="#1e2130" stroke="#353860" stroke-width="1.5"/>
+        <!-- Neck -->
+        <rect x="102" y="54" width="16" height="14" rx="4" fill="#1e2130" stroke="#353860" stroke-width="1"/>
+        <!-- Chest/Torso -->
+        <rect x="72" y="68" width="76" height="70" rx="10" fill="#1e2130" stroke="#4d79ff" stroke-width="1.5" id="svg-chest"/>
+        <!-- Chest label -->
+        <text x="110" y="87" text-anchor="middle" fill="#4d79ff" font-size="8" font-weight="800" font-family="Space Grotesk">CHEST</text>
+        <!-- Shoulders -->
+        <ellipse cx="66" cy="80" rx="18" ry="14" fill="#1e2130" stroke="#9966ff" stroke-width="1.5"/>
+        <text x="66" y="84" text-anchor="middle" fill="#9966ff" font-size="6" font-weight="800" font-family="Space Grotesk">DELT</text>
+        <ellipse cx="154" cy="80" rx="18" ry="14" fill="#1e2130" stroke="#9966ff" stroke-width="1.5"/>
+        <text x="154" y="84" text-anchor="middle" fill="#9966ff" font-size="6" font-weight="800" font-family="Space Grotesk">DELT</text>
+        <!-- Abs -->
+        <rect x="88" y="138" width="44" height="52" rx="6" fill="#1e2130" stroke="#c8ff00" stroke-width="1.5"/>
+        <line x1="110" y1="138" x2="110" y2="190" stroke="#c8ff00" stroke-width="0.8" opacity="0.4"/>
+        <line x1="88" y1="155" x2="132" y2="155" stroke="#c8ff00" stroke-width="0.8" opacity="0.4"/>
+        <line x1="88" y1="172" x2="132" y2="172" stroke="#c8ff00" stroke-width="0.8" opacity="0.4"/>
+        <text x="110" y="168" text-anchor="middle" fill="#c8ff00" font-size="7" font-weight="800" font-family="Space Grotesk">ABS</text>
+        <!-- Arms -->
+        <rect x="46" y="95" width="20" height="55" rx="8" fill="#1e2130" stroke="#4d79ff" stroke-width="1.5"/>
+        <text x="56" y="126" text-anchor="middle" fill="#4d79ff" font-size="6" font-weight="800" font-family="Space Grotesk" transform="rotate(-5,56,126)">TRI</text>
+        <rect x="154" y="95" width="20" height="55" rx="8" fill="#1e2130" stroke="#4d79ff" stroke-width="1.5"/>
+        <text x="164" y="126" text-anchor="middle" fill="#4d79ff" font-size="6" font-weight="800" font-family="Space Grotesk" transform="rotate(5,164,126)">TRI</text>
+        <!-- Forearms -->
+        <rect x="48" y="152" width="16" height="40" rx="6" fill="#1e2130" stroke="#353860" stroke-width="1"/>
+        <rect x="156" y="152" width="16" height="40" rx="6" fill="#1e2130" stroke="#353860" stroke-width="1"/>
+        <!-- Bicep highlight -->
+        <ellipse cx="52" cy="108" rx="7" ry="12" fill="rgba(0,184,255,0.15)" stroke="#00b8ff" stroke-width="1"/>
+        <text x="52" y="112" text-anchor="middle" fill="#00b8ff" font-size="5.5" font-weight="800" font-family="Space Grotesk">BIC</text>
+        <ellipse cx="168" cy="108" rx="7" ry="12" fill="rgba(0,184,255,0.15)" stroke="#00b8ff" stroke-width="1"/>
+        <text x="168" y="112" text-anchor="middle" fill="#00b8ff" font-size="5.5" font-weight="800" font-family="Space Grotesk">BIC</text>
+        <!-- Quads -->
+        <rect x="83" y="194" width="34" height="75" rx="10" fill="#1e2130" stroke="#00e5a0" stroke-width="1.5"/>
+        <rect x="103" y="194" width="34" height="75" rx="10" fill="#1e2130" stroke="#00e5a0" stroke-width="1.5"/>
+        <text x="92" y="238" text-anchor="middle" fill="#00e5a0" font-size="7" font-weight="800" font-family="Space Grotesk" transform="rotate(-5,92,238)">QUAD</text>
+        <text x="128" y="238" text-anchor="middle" fill="#00e5a0" font-size="7" font-weight="800" font-family="Space Grotesk" transform="rotate(5,128,238)">QUAD</text>
+        <!-- Glutes hint -->
+        <text x="110" y="205" text-anchor="middle" fill="#ff5c9d" font-size="7" font-weight="800" font-family="Space Grotesk">GLUTES</text>
+        <!-- Calves -->
+        <rect x="84" y="272" width="28" height="52" rx="8" fill="#1e2130" stroke="#ff6535" stroke-width="1.5"/>
+        <rect x="108" y="272" width="28" height="52" rx="8" fill="#1e2130" stroke="#ff6535" stroke-width="1.5"/>
+        <text x="92" y="302" text-anchor="middle" fill="#ff6535" font-size="7" font-weight="800" font-family="Space Grotesk">CALF</text>
+        <text x="122" y="302" text-anchor="middle" fill="#ff6535" font-size="7" font-weight="800" font-family="Space Grotesk">CALF</text>
+        <!-- Back label (behind) -->
+        <text x="110" y="108" text-anchor="middle" fill="#00c4bf" font-size="7" font-weight="800" font-family="Space Grotesk" opacity="0.6">BACK↗</text>
+      </svg>
+    </div>
+    <!-- Muscle cards -->
+    <div class="grid grid-cols-2 gap-2">
+      ${[
+        {name:"Chest",col:"#4d79ff",emoji:"💪",trains:"Push Day",tip:"Full stretch at bottom of press"},
+        {name:"Back",col:"#00c4bf",emoji:"🦾",trains:"Pull Day",tip:"Pull elbows, not hands"},
+        {name:"Shoulders",col:"#9966ff",emoji:"🏋️",trains:"Push + Pull",tip:"Lateral raises for width"},
+        {name:"Biceps",col:"#00b8ff",emoji:"💥",trains:"Pull Day",tip:"Supinate at the top"},
+        {name:"Triceps",col:"#4d79ff",emoji:"🔱",trains:"Push Day",tip:"Lock out fully on extensions"},
+        {name:"Quads",col:"#00e5a0",emoji:"🦵",trains:"Leg Day",tip:"Knees track over toes"},
+        {name:"Hamstrings",col:"#4d79ff",emoji:"🏃",trains:"Leg Day",tip:"Hip hinge on RDLs"},
+        {name:"Glutes",col:"#ff5c9d",emoji:"🍑",trains:"Leg Day",tip:"Squeeze hard at top of thrust"},
+        {name:"Calves",col:"#ff6535",emoji:"⚡",trains:"Leg Day",tip:"Full ROM — stretch at bottom"},
+        {name:"Abs",col:"#c8ff00",emoji:"🎯",trains:"Every session",tip:"Brace — don't just crunch"},
+      ].map(m=>`
+        <div style="background:#13151f;border:1px solid ${m.col}22;border-radius:14px;padding:12px">
+          <div style="font-size:18px;margin-bottom:4px">${m.emoji}</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:${m.col}">${m.name}</div>
+          <div style="font-size:9px;color:#6870a0;margin-top:2px;font-weight:600">${m.trains}</div>
+          <div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"${m.tip}"</div>
+        </div>
+      `).join("")}
+    </div>
+  </div>
+
+  <!-- PROTEIN -->
+  <div id="know-protein" class="space-y-3" style="display:none">
+    <h3 class="font-headline text-base font-black uppercase text-lime" style="font-style:italic">Why Protein Matters</h3>
+    <div class="rounded-2xl p-5" style="background:linear-gradient(135deg,rgba(200,255,0,0.08),rgba(0,0,0,0));border:1px solid rgba(200,255,0,0.2)">
+      <div class="text-5xl font-black font-headline text-lime">2g</div>
+      <div class="text-sub text-xs font-bold uppercase tracking-widest mt-1">per kg of bodyweight · daily target</div>
+      <div class="text-dim text-xs mt-3">At 76kg → you need <span style="color:#c8ff00;font-weight:800">~152g protein/day</span> to preserve muscle while cutting.</div>
+    </div>
+    ${[
+      {title:"Muscle Protein Synthesis",icon:"🔬",body:"Every time you eat protein, your body triggers MPS — the process of building and repairing muscle fibres. Without enough protein, even perfect training can't build muscle."},
+      {title:"Satiety — Stays Full Longer",icon:"🍽️",body:"Protein is the most satiating macronutrient. 30g of protein keeps you full 2x longer than 30g of carbs. This is your secret weapon in a calorie deficit."},
+      {title:"Thermic Effect",icon:"🔥",body:"Your body burns 20–30% of protein calories just digesting it. Eat 200kcal of chicken breast and your body only absorbs ~150kcal net. Carbs and fat burn only 5–10%."},
+      {title:"Muscle Preservation",icon:"💪",body:"In a calorie deficit, your body wants to burn muscle for fuel. High protein (2g/kg) signals your body to preserve lean mass and burn fat instead."},
+      {title:"Top Indian Sources",icon:"🇮🇳",body:"Paneer (18g/100g) · Chicken breast (31g/100g) · Eggs (6g each) · Dal (9g/cup cooked) · Greek yogurt (10g/100g) · Whey protein (25g/scoop)"},
+    ].map(c=>`
+      <div style="background:#13151f;border:1px solid rgba(255,255,255,0.05);border-radius:16px;padding:14px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+          <span style="font-size:22px">${c.icon}</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#f2f4ff">${c.title}</span>
+        </div>
+        <p style="font-size:11px;color:#6870a0;line-height:1.6">${c.body}</p>
+      </div>
+    `).join("")}
+  </div>
+
+  <!-- FAT LOSS -->
+  <div id="know-fatloss" class="space-y-3" style="display:none">
+    <h3 class="font-headline text-base font-black uppercase text-lime" style="font-style:italic">Fat Loss Science</h3>
+    <div class="rounded-2xl p-5" style="background:#13151f;border:1px solid rgba(255,61,90,0.3)">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:800;color:#ff3d5a;margin-bottom:6px">THE ONLY LAW THAT MATTERS</div>
+      <div style="font-size:15px;font-weight:700;color:#f2f4ff">Calories In &lt; Calories Out = Fat Loss</div>
+      <div style="font-size:10px;color:#6870a0;margin-top:6px">Everything else — keto, fasting, clean eating — only works because it helps you eat less. Period.</div>
+    </div>
+    ${[
+      {title:"TDEE — Your Magic Number",icon:"⚡",col:"#c8ff00",body:"Total Daily Energy Expenditure = BMR + activity. At your stats (~76kg, active), TDEE ≈ 2,400 kcal. Eat 1,600–1,800 and you're in a 500–800 kcal deficit. That's 0.5–0.8kg lost per week."},
+      {title:"The 7,700 Rule",icon:"🔢",col:"#4d79ff",body:"1kg of fat = 7,700 kcal. A 500 kcal/day deficit = 3,500 kcal/week = 0.45kg lost. No shortcuts. But consistency compounds — 8 weeks at this rate = 3.6kg gone."},
+      {title:"Why the Scale Lies",icon:"⚖️",col:"#ff6535",body:"Water, salt, food weight, and glycogen fluctuate 1–3kg daily. Never judge progress by one weigh-in. Track weekly averages. The trend over 2–3 weeks is the truth."},
+      {title:"Cardio's Real Role",icon:"🏃",col:"#00e5a0",body:"Cardio doesn't burn as much as you think (30 min run = ~300 kcal = one small meal). Its real value: improves heart health, reduces stress, and creates a small extra deficit. Don't out-cardio a bad diet."},
+      {title:"Refeed Days",icon:"🔄",col:"#9966ff",body:"After 4–5 weeks of deficit, leptin (your metabolism hormone) drops. A strategic refeed day at maintenance calories resets hormones, improves mood, and keeps the deficit working. Not a cheat — a tool."},
+    ].map(c=>`
+      <div style="background:#13151f;border:1px solid ${c.col}22;border-radius:16px;padding:14px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+          <span style="font-size:22px">${c.icon}</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:${c.col}">${c.title}</span>
+        </div>
+        <p style="font-size:11px;color:#6870a0;line-height:1.6">${c.body}</p>
+      </div>
+    `).join("")}
+  </div>
+
+  <!-- SLEEP -->
+  <div id="know-sleep" class="space-y-3" style="display:none">
+    <h3 class="font-headline text-base font-black uppercase text-lime" style="font-style:italic">Sleep & Recovery</h3>
+    <div class="rounded-2xl p-5 text-center" style="background:#13151f;border:1px solid rgba(77,121,255,0.3)">
+      <div style="font-size:48px;font-weight:900;font-family:'Space Grotesk',sans-serif;color:#4d79ff">8h</div>
+      <div style="font-size:10px;color:#6870a0;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">minimum for muscle growth</div>
+    </div>
+    ${[
+      {title:"Growth Hormone Spike",icon:"🧬",col:"#c8ff00",body:"90% of your body's growth hormone is released during deep sleep (stages 3–4). This is when actual muscle repair and growth happens. Skipping sleep = skipping gains. No supplement replaces this."},
+      {title:"Cortisol — The Muscle Killer",icon:"😤",col:"#ff3d5a",body:"Sleep deprivation spikes cortisol — your stress hormone. Chronically elevated cortisol breaks down muscle, increases fat storage (especially belly fat), and kills testosterone. 6h sleep vs 8h can increase cortisol by 37%."},
+      {title:"Appetite Hormones Go Haywire",icon:"🍕",col:"#ff6535",body:"Bad sleep raises ghrelin (hunger hormone) and lowers leptin (satiety hormone). You'll feel 20–25% hungrier the next day and crave high-calorie foods. This single factor destroys more diets than anything else."},
+      {title:"Recovery Protocol",icon:"🛌",col:"#00e5a0",body:"Same sleep/wake time daily. Room temperature 18–20°C. No screens 30 min before bed. 200mg magnesium glycinate before sleep. Dark room. 7–9 hours non-negotiable on training days."},
+      {title:"Naps Are Legit",icon:"💤",col:"#9966ff",body:"A 20-minute power nap (1–3pm) reduces cortisol, improves alertness for 2–3 hours, and aids afternoon muscle recovery. Keep it under 30 min or you'll wake groggy. Elite athletes do this daily."},
+    ].map(c=>`
+      <div style="background:#13151f;border:1px solid ${c.col}22;border-radius:16px;padding:14px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+          <span style="font-size:22px">${c.icon}</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:${c.col}">${c.title}</span>
+        </div>
+        <p style="font-size:11px;color:#6870a0;line-height:1.6">${c.body}</p>
+      </div>
+    `).join("")}
+  </div>
+
+  <!-- SUPPLEMENTS -->
+  <div id="know-supps" class="space-y-3" style="display:none">
+    <h3 class="font-headline text-base font-black uppercase text-lime" style="font-style:italic">Supplement Guide</h3>
+    <div class="rounded-2xl p-4" style="background:rgba(255,61,90,0.06);border:1px solid rgba(255,61,90,0.2)">
+      <div style="font-size:10px;font-weight:800;color:#ff3d5a;margin-bottom:4px">⚠ TRUTH CHECK</div>
+      <div style="font-size:11px;color:#6870a0">Supplements are 5% of your results. Food, sleep, training, and consistency are the other 95%. Don't buy anything until those are dialed in.</div>
+    </div>
+    ${[
+      {name:"Whey Protein",tier:"Essential",col:"#c8ff00",dose:"25–30g post-workout",why:"Fastest absorbing protein. Hits muscles within 30 min. Only useful if you're not hitting protein targets from food. Not magic — just convenient protein.",brand:"MuscleBlaze Biozyme / Optimum Nutrition Gold"},
+      {name:"Creatine Monohydrate",tier:"Essential",col:"#4d79ff",dose:"5g daily (anytime)",why:"Most researched supplement in existence. Increases ATP (energy for heavy lifts), improves strength by 5–15%, adds 1–2kg lean mass over 4 weeks. Take it every day — no loading needed.",brand:"MuscleBlaze Creatine / any plain monohydrate"},
+      {name:"Magnesium Glycinate",tier:"High Value",col:"#9966ff",dose:"200–400mg before bed",why:"Most Indians are deficient. Improves sleep quality, reduces cortisol, reduces muscle cramps and soreness. Notice better sleep within 5–7 days.",brand:"Any pharmacy. Glycinate form — not oxide."},
+      {name:"Vitamin D3 + K2",tier:"High Value",col:"#ff6535",dose:"2000–4000 IU D3 + 100mcg K2",why:"90% of Indians are deficient. Low D3 = low testosterone, weak immunity, poor mood. K2 ensures calcium goes to bones not arteries. Take with fat.",brand:"HealthKart D3+K2 / TrueBasics"},
+      {name:"Caffeine / Pre-workout",tier:"Optional",col:"#ff3d5a",dose:"100–200mg, 30 min pre-workout",why:"Proven to improve strength, endurance, and focus. But tolerance builds fast. Cycle it — 5 days on, 2 days off. Black coffee works just as well as fancy pre-workout.",brand:"Black coffee is literally enough."},
+      {name:"Omega-3 Fish Oil",tier:"Optional",col:"#00c4bf",dose:"2–3g EPA+DHA daily",why:"Reduces inflammation, improves joint health (critical when training heavy), supports heart health. Look for EPA+DHA content — not total fish oil.",brand:"WOW Omega-3 / Himalaya Fish Oil"},
+    ].map(s=>`
+      <div style="background:#13151f;border:1px solid ${s.col}22;border-radius:16px;padding:14px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+          <div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:900;color:${s.col}">${s.name}</div>
+            <div style="font-size:9px;font-weight:800;color:${s.col};background:${s.col}15;border:1px solid ${s.col}30;border-radius:20px;padding:1px 8px;display:inline-block;margin-top:3px">${s.tier}</div>
+          </div>
+          <div style="text-align:right"><div style="font-size:9px;color:#6870a0;font-weight:700">${s.dose}</div></div>
+        </div>
+        <p style="font-size:11px;color:#6870a0;line-height:1.6;margin-bottom:6px">${s.why}</p>
+        <div style="font-size:9px;color:#353860;font-weight:600">📦 ${s.brand}</div>
+      </div>
+    `).join("")}
+  </div>
+
+  <!-- STORIES -->
+  <div id="know-stories" class="space-y-3" style="display:none">
+    <h3 class="font-headline text-base font-black uppercase text-lime" style="font-style:italic">Motivation Stories</h3>
+    ${[
+      {name:"Virat Kohli",flag:"🇮🇳",from:"Junk food, inconsistent",to:"World-class athlete at 35",col:"#4d79ff",story:"At 23, Kohli was known for partying and eating whatever he wanted. A serious injury in 2012 forced him to rethink everything. He gave up alcohol entirely, switched to a strict high-protein diet, and began training twice a day. He dropped 15kg and completely transformed his body. His secret? He says: 'Discipline beats motivation every time. Motivation fades. Discipline is a habit.' At 35, he's the fittest cricketer on the planet."},
+      {name:"Dwayne Johnson",flag:"🇺🇸",from:"Broke & cut from NFL",to:"Highest-paid actor. 120kg lean.",col:"#ff6535",story:"In 1995, The Rock was 23, had $7 in his pocket, and had just been cut from the CFL. He had failed his dream. He channelled that pain into the gym — 4am workouts, 6 meals a day, 300g protein. He didn't become an overnight success. It took 5 years of consistent, brutal training before Hollywood came calling. His lesson: 'Success isn't always about greatness. It's about consistency. Consistent hard work gains success. Greatness will come.'"},
+      {name:"Anant Ambani",flag:"🇮🇳",from:"108kg, struggled with weight his entire life",to:"Lost 108kg in 18 months",col:"#c8ff00",story:"In 2023, Anant Ambani shocked India by revealing an 108kg transformation. What people didn't know: he had been battling severe asthma since childhood, and steroids for treatment caused massive weight gain. His journey involved 5-hour daily workouts, a 1,200-calorie diet, and walking 21km every single day. His trainer said he never complained — not once. Proof that if the will is strong enough, the body follows."},
+      {name:"The Average Person Who Quit",flag:"🔴",from:"Started strong in January",to:"Gave up by March",col:"#ff3d5a",story:"This is the story of 80% of people who start a fitness journey. They're motivated in week 1. By week 3, life gets busy. By week 6, they've missed enough sessions that they feel guilty, so they quit entirely. The mistake? They treated fitness as an all-or-nothing event. Missing one session isn't failure. Quitting because you missed one session — that's failure. The people who transform aren't the ones who never miss a day. They're the ones who always come back."},
+    ].map(s=>`
+      <div style="background:#13151f;border:1px solid ${s.col}22;border-radius:20px;overflow:hidden">
+        <div style="background:${s.col}10;padding:14px 14px 10px;border-bottom:1px solid ${s.col}15">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:28px">${s.flag}</span>
+            <div>
+              <div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:900;color:${s.col}">${s.name}</div>
+              <div style="font-size:9px;color:#6870a0;font-weight:700">${s.from} → ${s.to}</div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:14px">
+          <p style="font-size:11px;color:#6870a0;line-height:1.7">${s.story}</p>
+        </div>
+      </div>
+    `).join("")}
+  </div>
+
+</div>
+
 </main>
 
 <!-- BOTTOM NAV -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-end px-3 pb-6 pt-2" style="background:rgba(24,27,39,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,0.06);border-radius:24px 24px 0 0">
-  <button onclick="switchTab('workout')" id="nav-workout" class="nav-btn flex flex-col items-center justify-center px-4 py-2 rounded-2xl transition-all active:scale-90">
-    <span class="ms text-2xl text-sub" id="ni-workout">fitness_center</span>
-    <span class="text-[7px] uppercase font-bold tracking-widest mt-0.5 text-sub" id="nl-workout">Workout</span>
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-end px-2 pb-6 pt-2" style="background:rgba(24,27,39,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,0.06);border-radius:24px 24px 0 0">
+  <button onclick="switchTab('workout')" id="nav-workout" class="nav-btn flex flex-col items-center justify-center px-2 py-2 rounded-2xl transition-all active:scale-90">
+    <span class="ms text-xl text-sub" id="ni-workout">fitness_center</span>
+    <span class="text-[6px] uppercase font-bold tracking-widest mt-0.5 text-sub" id="nl-workout">Workout</span>
   </button>
-  <button onclick="switchTab('food')" id="nav-food" class="nav-btn flex flex-col items-center justify-center px-4 py-2 rounded-2xl transition-all active:scale-90">
-    <span class="ms text-2xl text-sub" id="ni-food">restaurant</span>
-    <span class="text-[7px] uppercase font-bold tracking-widest mt-0.5 text-sub" id="nl-food">Food</span>
+  <button onclick="switchTab('food')" id="nav-food" class="nav-btn flex flex-col items-center justify-center px-2 py-2 rounded-2xl transition-all active:scale-90">
+    <span class="ms text-xl text-sub" id="ni-food">restaurant</span>
+    <span class="text-[6px] uppercase font-bold tracking-widest mt-0.5 text-sub" id="nl-food">Food</span>
   </button>
-  <button onclick="switchTab('progress')" id="nav-progress" class="nav-btn flex flex-col items-center justify-center px-4 py-2 rounded-2xl transition-all active:scale-90">
-    <span class="ms text-2xl text-sub" id="ni-progress">insights</span>
-    <span class="text-[7px] uppercase font-bold tracking-widest mt-0.5 text-sub" id="nl-progress">Progress</span>
+  <button onclick="switchTab('progress')" id="nav-progress" class="nav-btn flex flex-col items-center justify-center px-2 py-2 rounded-2xl transition-all active:scale-90">
+    <span class="ms text-xl text-sub" id="ni-progress">insights</span>
+    <span class="text-[6px] uppercase font-bold tracking-widest mt-0.5 text-sub" id="nl-progress">Progress</span>
   </button>
-  <button onclick="switchTab('weight')" id="nav-weight" class="nav-btn flex flex-col items-center justify-center px-4 py-2 rounded-2xl transition-all active:scale-90">
-    <span class="ms text-2xl text-sub" id="ni-weight">scale</span>
-    <span class="text-[7px] uppercase font-bold tracking-widest mt-0.5 text-sub" id="nl-weight">Weight</span>
+  <button onclick="switchTab('weight')" id="nav-weight" class="nav-btn flex flex-col items-center justify-center px-2 py-2 rounded-2xl transition-all active:scale-90">
+    <span class="ms text-xl text-sub" id="ni-weight">scale</span>
+    <span class="text-[6px] uppercase font-bold tracking-widest mt-0.5 text-sub" id="nl-weight">Weight</span>
   </button>
-  <button onclick="switchTab('deficit')" id="nav-deficit" class="nav-btn flex flex-col items-center justify-center px-4 py-2 rounded-2xl transition-all active:scale-90">
-    <span class="ms text-2xl text-sub" id="ni-deficit">local_fire_department</span>
-    <span class="text-[7px] uppercase font-bold tracking-widest mt-0.5 text-sub" id="nl-deficit">Deficit</span>
+  <button onclick="switchTab('deficit')" id="nav-deficit" class="nav-btn flex flex-col items-center justify-center px-2 py-2 rounded-2xl transition-all active:scale-90">
+    <span class="ms text-xl text-sub" id="ni-deficit">local_fire_department</span>
+    <span class="text-[6px] uppercase font-bold tracking-widest mt-0.5 text-sub" id="nl-deficit">Deficit</span>
+  </button>
+  <button onclick="switchTab('knowledge')" id="nav-knowledge" class="nav-btn flex flex-col items-center justify-center px-2 py-2 rounded-2xl transition-all active:scale-90">
+    <span class="ms text-xl text-sub" id="ni-knowledge">school</span>
+    <span class="text-[6px] uppercase font-bold tracking-widest mt-0.5 text-sub" id="nl-knowledge">Learn</span>
   </button>
 </nav>
 
@@ -937,7 +1170,7 @@ function switchTab(id){
   beepTap();
   document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
   document.getElementById("tab-"+id).classList.add("active");
-  ["workout","food","progress","weight","deficit"].forEach(t=>{
+  ["workout","food","progress","weight","deficit","knowledge"].forEach(t=>{
     const ni=document.getElementById("ni-"+t);
     const nl=document.getElementById("nl-"+t);
     if(t===id){
@@ -953,6 +1186,14 @@ function switchTab(id){
   if(id==="progress") renderProgress();
   if(id==="deficit") updateDeficit();
   if(id==="weight") renderWeight();
+}
+
+function showKnow(section){
+  ["anatomy","protein","fatloss","sleep","supps","stories"].forEach(s=>{
+    document.getElementById("know-"+s).style.display=s===section?"block":"none";
+    const btn=document.getElementById("kt-"+s);
+    btn.style.cssText=s===section?"background:#c8ff00;color:#0a0c12;flex-shrink:0;padding:8px 16px;border-radius:16px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:0.05em":"background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06);flex-shrink:0;padding:8px 16px;border-radius:16px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:0.05em";
+  });
 }
 
 // ── WORKOUT ───────────────────────────────────────────────────────────────────
@@ -1674,6 +1915,7 @@ async function authSignIn(){
       sb.token=d.access_token; sb.uid=d.user.id;
       localStorage.setItem("af_token",d.access_token);
       localStorage.setItem("af_uid",d.user.id);
+      localStorage.setItem("af_last_login", Date.now().toString());
       if(d.refresh_token) localStorage.setItem("af_refresh",d.refresh_token);
       document.getElementById("auth-screen").style.display="none";
       showToast("✅ Signed in! Syncing...");
@@ -1710,6 +1952,7 @@ async function authSignUp(){
       sb.token=d.access_token; sb.uid=d.user.id;
       localStorage.setItem("af_token",d.access_token);
       localStorage.setItem("af_uid",d.user.id);
+      localStorage.setItem("af_last_login", Date.now().toString());
       if(d.refresh_token) localStorage.setItem("af_refresh",d.refresh_token);
       document.getElementById("auth-screen").style.display="none";
       showToast("🎉 Account created! Welcome.");
@@ -1755,17 +1998,23 @@ window.onload=()=>{
 
   const cachedToken = localStorage.getItem("af_token");
   const cachedUid = localStorage.getItem("af_uid");
+  const lastLogin = localStorage.getItem("af_last_login");
+  const oneDayMs = 24 * 60 * 60 * 1000;
+  const sessionExpired = !lastLogin || (Date.now() - parseInt(lastLogin)) > oneDayMs;
 
-  if(cachedToken && cachedUid){
-    // Trust cached token immediately — straight into app
+  if(cachedToken && cachedUid && !sessionExpired){
+    // Valid session under 1 day — go straight in
     sb.token = cachedToken;
     sb.uid = cachedUid;
     hideSplash();
     updateSyncBadge(true);
-    // Background sync — never blocks UI
     setTimeout(()=> syncFromCloud().catch(()=> updateSyncBadge(false)), 800);
   } else {
-    // First time — show splash then auth
+    // No session or expired — show auth after splash
+    if(sessionExpired){
+      localStorage.removeItem("af_token");
+      localStorage.removeItem("af_uid");
+    }
     hideSplash();
     setTimeout(()=>{
       document.getElementById("auth-screen").style.removeProperty("display");
