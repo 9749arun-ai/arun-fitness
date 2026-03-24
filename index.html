@@ -5,8 +5,8 @@
 <meta content="width=device-width,initial-scale=1.0,viewport-fit=cover" name="viewport"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-title" content="Arun Fitness"/>
-<title>Arun Fitness — 8 Week Shred</title>
+<meta name="apple-mobile-web-app-title" content="Trimora"/>
+<title>Trimora — 8 Week Shred</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -41,6 +41,25 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-font-smoothing:antialiased;}
 .muscle-glow{filter:drop-shadow(0 0 4px currentColor);}
 .hero-img{width:100%;height:100%;object-fit:cover;filter:grayscale(30%);opacity:0.7;}
+
+/* Animated exercise icons */
+@keyframes lift{0%,100%{transform:translateY(0) scaleY(1);}40%{transform:translateY(-3px) scaleY(0.95);}60%{transform:translateY(-5px) scaleY(1.05);}}
+@keyframes curl{0%,100%{transform:rotate(0deg);}50%{transform:rotate(-25deg);}}
+@keyframes press{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+@keyframes row{0%,100%{transform:translateX(0);}50%{transform:translateX(4px);}}
+@keyframes squat{0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.82) translateY(4px);}}
+@keyframes kick{0%,100%{transform:rotate(0deg);}50%{transform:rotate(20deg);}}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+@keyframes flex{0%,100%{transform:scaleX(1);}50%{transform:scaleX(1.15);}}
+.ex-icon-lift .bar{animation:lift 1.4s ease-in-out infinite;}
+.ex-icon-curl .arm{animation:curl 1.2s ease-in-out infinite;}
+.ex-icon-press .bar{animation:press 1.3s ease-in-out infinite;}
+.ex-icon-row .arm{animation:row 1.1s ease-in-out infinite;}
+.ex-icon-squat .body{animation:squat 1.5s ease-in-out infinite;}
+.ex-icon-kick .leg{animation:kick 1.2s ease-in-out infinite;}
+.ex-icon-bounce .dot{animation:bounce 0.9s ease-in-out infinite;}
+.ex-icon-flex .muscle{animation:flex 1s ease-in-out infinite;transform-origin:center;}
 </style>
 </head>
 <body class="select-none">
@@ -57,8 +76,8 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
           <path d="M10 45 L25 30 L35 40 L50 25" stroke="#c8ff00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
         </svg>
       </div>
-      <h1 class="font-headline text-4xl font-black uppercase tracking-tight text-lime" style="letter-spacing:-1px;font-style:italic">ARUN</h1>
-      <p class="text-sub text-xs uppercase tracking-widest mt-1 font-bold">8 Week Shred Program</p>
+      <h1 class="font-headline text-4xl font-black uppercase tracking-tight text-lime" style="letter-spacing:-1px;font-style:italic">TRIMORA</h1>
+      <p class="text-sub text-xs uppercase tracking-widest mt-1 font-bold">8 Week Shred</p>
     </div>
     <div class="text-center">
       <p class="text-dim text-xs uppercase tracking-widest">76.65 kg → 70 kg</p>
@@ -69,11 +88,18 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
 <!-- HEADER -->
 <header class="fixed w-full top-0 z-50 px-5 py-3 flex justify-between items-center" style="background:rgba(10,12,18,0.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05);">
   <div class="flex items-center gap-3">
-    <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-lime/30">
-      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMXFqVBug0XkrW-75HoBs7wwv8e_k9bPOOL-9dG3RT17ug9yqVlWZPzWsiEN7bwmebVbR3uleKCR639zqhg8SJnU4yZAfxpFqSVJtOuhf37oB3aFQh5sQ3qCdhH-Pc5PEatvAsfnFVAhTWieA-uzXKxn--FOX5SwrI70sHbIGiTmDsU-KE-ZfE-ybaRghiqEXJiGsDdaJPLhHjFYoDwOapUr1r_ZtrlKlQvhBum6_mK8Rly9mUfpdCESGMXYSe_1nzlqBc7gc7Gok" class="w-full h-full object-cover"/>
+    <!-- Logo mark -->
+    <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 lime-glow" style="background:linear-gradient(135deg,#c8ff00,#a8d800)">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 11h2M17 11h2M5 11V8a1 1 0 011-1h1a1 1 0 011 1v6a1 1 0 01-1 1H6a1 1 0 01-1-1v-3z" stroke="#0a0c12" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M17 11V8a1 1 0 00-1-1h-1a1 1 0 00-1 1v6a1 1 0 001 1h1a1 1 0 001-1v-3z" stroke="#0a0c12" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M8 11h6" stroke="#0a0c12" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="3" cy="11" r="1" fill="#0a0c12"/>
+        <circle cx="19" cy="11" r="1" fill="#0a0c12"/>
+      </svg>
     </div>
     <div>
-      <h1 class="font-headline font-black text-lg uppercase tracking-tight text-lime leading-none" style="font-style:italic">Arun Fitness</h1>
+      <h1 class="font-headline font-black text-lg uppercase tracking-tight text-lime leading-none" style="font-style:italic;letter-spacing:-0.5px">Trimora</h1>
       <p class="text-[9px] uppercase tracking-widest text-sub font-bold mt-0.5" id="hdr-greeting">Good Morning</p>
     </div>
   </div>
@@ -95,18 +121,40 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
 <!-- ═══ WORKOUT TAB ═══════════════════════════════════════════════════════ -->
 <div class="tab active px-4 space-y-5" id="tab-workout">
 
-  <!-- Hero card — real gym photo per week phase -->
-  <section class="relative overflow-hidden rounded-2xl h-52 flex flex-col justify-end" style="margin:0 -1px">
-    <img id="hero-bg-img" class="hero-img absolute inset-0" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80" alt="gym"/>
-    <div class="absolute inset-0" style="background:linear-gradient(to top,#0a0c12 0%,rgba(10,12,18,0.5) 50%,transparent 100%)"></div>
-    <div class="relative z-10 p-5">
-      <span class="inline-block px-3 py-1 mb-2 rounded-full text-[9px] font-black tracking-widest uppercase text-lime" style="background:rgba(200,255,0,0.15);border:1px solid rgba(200,255,0,0.3)" id="hero-tag">W1 · FOUNDATION</span>
-      <h2 class="font-headline text-3xl font-black text-txt leading-none italic" id="hero-name">Foundation</h2>
-      <div class="flex items-center gap-4 mt-1.5 text-sub font-bold text-[9px] uppercase tracking-wide">
-        <span><span class="ms text-xs align-middle mr-1">schedule</span><span id="hero-rest">45s Rest</span></span>
-        <span><span class="ms text-xs align-middle mr-1">local_fire_department</span><span id="hero-cal">450–500 kcal target</span></span>
+  <!-- Hero card — professional phase banner -->
+  <section class="relative overflow-hidden rounded-2xl flex flex-col justify-end" style="height:200px;border:1px solid rgba(255,255,255,0.08)">
+    <!-- CSS gradient background (always works) -->
+    <div id="hero-bg-gradient" style="position:absolute;inset:0;background:linear-gradient(135deg,#0d1a00 0%,#1a3300 40%,#0a0c12 100%);transition:background 0.5s ease"></div>
+    <!-- Unsplash image on top (works when online) -->
+    <img id="hero-bg-img" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=85" alt=""
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:grayscale(20%) brightness(0.75);transition:opacity 0.4s ease;opacity:0"
+      onload="this.style.opacity='1'" onerror="this.style.display='none'"/>
+    <!-- Decorative grid lines (always visible) -->
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(200,255,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(200,255,0,0.03) 1px,transparent 1px);background-size:40px 40px"></div>
+    <!-- Animated accent blob -->
+    <div id="hero-blob" style="position:absolute;top:-30px;right:-30px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(200,255,0,0.12),transparent 70%);transition:background 0.5s ease"></div>
+    <!-- Strong bottom gradient -->
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,18,0.98) 0%,rgba(10,12,18,0.55) 50%,transparent 100%)"></div>
+    <!-- Top right badge -->
+    <div style="position:absolute;top:14px;right:14px;background:rgba(10,12,18,0.7);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:4px 10px">
+      <span class="font-headline text-[10px] font-black text-sub uppercase tracking-wider" id="hero-week-pill">Week 1 of 8</span>
+    </div>
+    <!-- Content -->
+    <div class="relative z-10 px-5 pb-5">
+      <span class="inline-block px-3 py-1 mb-2 rounded-full text-[9px] font-black tracking-widest uppercase" id="hero-tag" style="background:rgba(200,255,0,0.15);border:1px solid rgba(200,255,0,0.35);color:#c8ff00">W1 · FOUNDATION</span>
+      <h2 class="font-headline text-3xl font-black leading-none italic text-txt" id="hero-name" style="text-shadow:0 2px 12px rgba(0,0,0,0.8)">Foundation</h2>
+      <div class="flex items-center gap-4 mt-2">
+        <div class="flex items-center gap-1.5">
+          <span class="ms text-xs text-sub">schedule</span>
+          <span class="text-[10px] text-sub font-bold uppercase tracking-wide" id="hero-rest">45s Rest</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="ms text-xs text-orange">local_fire_department</span>
+          <span class="text-[10px] text-sub font-bold uppercase tracking-wide" id="hero-cal">450–500 kcal</span>
+        </div>
       </div>
     </div>
+  </section>
   </section>
 
   <!-- Week selector -->
@@ -310,6 +358,16 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
 
   <!-- Session list -->
   <div id="sessions-list" class="space-y-2"></div>
+
+  <!-- ── PROGRESS PHOTOS ──────────────────────────────────────────── -->
+  <div class="rounded-2xl p-4 space-y-3" style="background:#13151f;border:1px solid rgba(255,255,255,0.05)">
+    <div class="flex justify-between items-center">
+      <h4 class="font-headline text-sm font-black uppercase text-lime" style="font-style:italic">Progress Photos</h4>
+      <span class="text-[9px] text-sub font-bold">Weekly body check-in</span>
+    </div>
+    <p class="text-[10px] text-dim">Upload one photo per week. Stored securely in cloud. Only you can see them.</p>
+    <div class="grid grid-cols-4 gap-2" id="progress-photos-grid"></div>
+  </div>
 </div>
 
 <!-- ═══ WEIGHT TAB ════════════════════════════════════════════════════════ -->
@@ -367,8 +425,38 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
 
 <!-- ═══ DEFICIT TAB ════════════════════════════════════════════════════════ -->
 <div class="tab px-4 space-y-5" id="tab-deficit">
+
+  <!-- Live Stats from real data -->
+  <div class="grid grid-cols-3 gap-2">
+    <div class="rounded-2xl p-3 text-center" style="background:#13151f;border:1px solid rgba(200,255,0,0.2)">
+      <div class="text-[7px] uppercase font-black text-sub tracking-widest mb-1">Current Weight</div>
+      <div class="font-headline text-lg font-black text-lime" id="def-live-weight">—</div>
+      <div class="text-[7px] text-dim">kg</div>
+    </div>
+    <div class="rounded-2xl p-3 text-center" style="background:#13151f;border:1px solid rgba(255,101,53,0.2)">
+      <div class="text-[7px] uppercase font-black text-sub tracking-widest mb-1">Avg Weekly Burn</div>
+      <div class="font-headline text-lg font-black text-orange" id="def-live-burn">—</div>
+      <div class="text-[7px] text-dim">kcal</div>
+    </div>
+    <div class="rounded-2xl p-3 text-center" style="background:#13151f;border:1px solid rgba(77,121,255,0.2)">
+      <div class="text-[7px] uppercase font-black text-sub tracking-widest mb-1">Weight Lost</div>
+      <div class="font-headline text-lg font-black text-blue" id="def-live-lost">—</div>
+      <div class="text-[7px] text-dim">kg total</div>
+    </div>
+  </div>
+
+  <!-- Weekly burn breakdown -->
+  <div class="rounded-2xl p-4 space-y-2" style="background:#13151f;border:1px solid rgba(255,255,255,0.05)">
+    <div class="flex justify-between items-center mb-3">
+      <h4 class="font-headline text-sm font-black uppercase" style="font-style:italic">Weekly Burn Log</h4>
+      <span class="text-[9px] text-sub font-bold">From Watch data</span>
+    </div>
+    <div id="def-weekly-burns" class="space-y-2"></div>
+  </div>
+
+  <!-- Sliders — manual overrides -->
   <section class="glass rounded-3xl p-6 space-y-6">
-    <!-- Food slider -->
+    <div class="text-[9px] uppercase font-black text-sub tracking-widest mb-1">Deficit Calculator</div>
     <div class="space-y-3">
       <div class="flex justify-between text-[10px] uppercase font-black tracking-widest text-sub">
         <span>Daily Food</span><span class="text-orange font-headline text-base" id="def-food-val">1600 kcal</span>
@@ -376,7 +464,6 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
       <input type="range" id="def-food" min="800" max="2500" step="50" value="1600"
         oninput="updateDeficit()" class="w-full" style="accent-color:#ff6535"/>
     </div>
-    <!-- Burn slider -->
     <div class="space-y-3">
       <div class="flex justify-between text-[10px] uppercase font-black tracking-widest text-sub">
         <span>Workout Burn</span><span class="text-lime font-headline text-base" id="def-burn-val">500 kcal</span>
@@ -384,7 +471,6 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
       <input type="range" id="def-burn" min="0" max="1000" step="50" value="500"
         oninput="updateDeficit()" class="w-full" style="accent-color:#c8ff00"/>
     </div>
-    <!-- Weight slider -->
     <div class="space-y-3">
       <div class="flex justify-between text-[10px] uppercase font-black tracking-widest text-sub">
         <span>Current Weight</span><span class="text-blue font-headline text-base" id="def-wt-val">76.65 kg</span>
@@ -408,9 +494,9 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
   </div>
 
   <div class="rounded-[32px] p-8 text-center space-y-2 lime-glow" style="background:#c8ff00">
-    <div class="text-[9px] uppercase font-black tracking-[0.2em]" style="color:#0a0c12">Days to 70kg Goal</div>
+    <div class="text-[9px] uppercase font-black tracking-[0.2em]" style="color:#0a0c12">Days Remaining to 70kg</div>
     <div class="font-headline text-7xl font-black tracking-tighter" style="color:#0a0c12;font-style:italic" id="def-days">—</div>
-    <div class="text-xs font-bold opacity-60" style="color:#0a0c12">Stay consistent. It's working.</div>
+    <div class="text-xs font-bold opacity-60" style="color:#0a0c12">Program Day <span id="def-program-day">1</span> · Stay consistent.</div>
   </div>
 
   <div class="rounded-2xl p-4" style="background:#13151f;border:1px solid rgba(255,255,255,0.05)">
@@ -429,24 +515,7 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
 <div class="tab px-4 pb-4" id="tab-knowledge">
 
   <!-- Hero -->
-  <div class="rounded-3xl p-6 text-center" style="background:linear-gradient(135deg,rgba(200,255,0,0.1),rgba(77,121,255,0.08));border:1px solid rgba(200,255,0,0.15)">
-    <div class="text-4xl mb-2">🧠</div>
-    <h2 class="font-headline text-2xl font-black uppercase text-lime" style="font-style:italic">Knowledge Hub</h2>
-    <p class="text-sub text-xs mt-1 font-bold">Science-backed. No fluff.</p>
-  </div>
-
-  <!-- Section tabs -->
-  <div class="flex gap-2 overflow-x-auto hide-scroll pb-1" id="know-tabs">
-    <button onclick="showKnow('anatomy')" id="kt-anatomy" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#c8ff00;color:#0a0c12">💪 Anatomy</button>
-    <button onclick="showKnow('protein')" id="kt-protein" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)">🥩 Protein</button>
-    <button onclick="showKnow('fatloss')" id="kt-fatloss" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)">🔥 Fat Loss</button>
-    <button onclick="showKnow('sleep')" id="kt-sleep" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)">😴 Sleep</button>
-    <button onclick="showKnow('supps')" id="kt-supps" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)">💊 Supps</button>
-    <button onclick="showKnow('stories')" id="kt-stories" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)">🏆 Stories</button>
-  </div>
-
-  <!-- Hero -->
-  <div class="rounded-3xl p-6 text-center mt-4 mb-4" style="background:linear-gradient(135deg,rgba(200,255,0,0.1),rgba(77,121,255,0.08));border:1px solid rgba(200,255,0,0.15)">
+  <div class="rounded-3xl p-5 text-center mt-4 mb-4" style="background:linear-gradient(135deg,rgba(200,255,0,0.1),rgba(77,121,255,0.08));border:1px solid rgba(200,255,0,0.15)">
     <div class="text-4xl mb-2">🧠</div>
     <h2 class="font-headline text-2xl font-black uppercase text-lime" style="font-style:italic">Knowledge Hub</h2>
     <p class="text-sub text-xs mt-1 font-bold">Science-backed. No fluff.</p>
@@ -462,9 +531,11 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
     <button onclick="showKnow('stories')" id="kt-stories" class="flex-shrink-0 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-wider" style="background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)">🏆 Stories</button>
   </div>
 
-  <!-- ANATOMY -->
+  <!-- ── ANATOMY ─────────────────────────────────────────────────────── -->
   <div id="know-anatomy" class="space-y-3">
     <h3 class="font-headline text-base font-black uppercase text-lime" style="font-style:italic">Muscle Group Map</h3>
+
+    <!-- SVG Body -->
     <div class="rounded-2xl p-4" style="background:#13151f;border:1px solid rgba(255,255,255,0.06)">
       <svg viewBox="0 0 220 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:200px;display:block;margin:0 auto">
         <ellipse cx="110" cy="30" rx="22" ry="26" fill="#1e2130" stroke="#353860" stroke-width="1.5"/>
@@ -475,7 +546,7 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
         <text x="65" y="84" text-anchor="middle" fill="#9966ff" font-size="6.5" font-weight="800" font-family="Space Grotesk">DELT</text>
         <ellipse cx="155" cy="80" rx="18" ry="14" fill="#1e2130" stroke="#9966ff" stroke-width="1.5"/>
         <text x="155" y="84" text-anchor="middle" fill="#9966ff" font-size="6.5" font-weight="800" font-family="Space Grotesk">DELT</text>
-        <text x="110" y="115" text-anchor="middle" fill="#00c4bf" font-size="7" font-weight="800" font-family="Space Grotesk" opacity="0.7">BACK↗</text>
+        <text x="110" y="115" text-anchor="middle" fill="#00c4bf" font-size="7" font-weight="800" font-family="Space Grotesk" opacity="0.7">BACK (LAT)</text>
         <rect x="88" y="136" width="44" height="52" rx="6" fill="#1e2130" stroke="#c8ff00" stroke-width="1.5"/>
         <line x1="110" y1="136" x2="110" y2="188" stroke="#c8ff00" stroke-width="0.8" opacity="0.4"/>
         <line x1="88" y1="153" x2="132" y2="153" stroke="#c8ff00" stroke-width="0.8" opacity="0.4"/>
@@ -502,192 +573,345 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
         <text x="123" y="297" text-anchor="middle" fill="#ff6535" font-size="7" font-weight="800" font-family="Space Grotesk">CALF</text>
       </svg>
     </div>
+
+    <!-- How muscles work -->
+    <div style="background:#13151f;border:1px solid rgba(77,121,255,0.2);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:20px">⚡</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#4d79ff">How Muscles Actually Work</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.7">Brain sends signal → motor neuron → muscle fibres → actin & myosin filaments slide → contraction. This is the <strong style="color:#f2f4ff">Sliding Filament Theory</strong>. Contraction strength depends on number of fibres recruited, speed of signal, and training adaptation. Beginner strength gains are largely <strong style="color:#c8ff00">neurological</strong> — your brain gets better at recruiting fibres before muscle size increases.</p>
+    </div>
+
+    <!-- Hypertrophy types -->
+    <div style="background:#13151f;border:1px solid rgba(200,255,0,0.2);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:20px">🔬</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#c8ff00">2 Types of Muscle Growth</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px">
+        <div style="background:rgba(200,255,0,0.06);border-radius:10px;padding:10px">
+          <div style="font-size:10px;font-weight:800;color:#c8ff00;margin-bottom:4px">MYOFIBRILLAR</div>
+          <p style="font-size:10px;color:#6870a0;line-height:1.5">Increases muscle fibre density. Result: strength + hardness. Low reps, heavy weight (3–6 reps).</p>
+        </div>
+        <div style="background:rgba(77,121,255,0.06);border-radius:10px;padding:10px">
+          <div style="font-size:10px;font-weight:800;color:#4d79ff;margin-bottom:4px">SARCOPLASMIC</div>
+          <p style="font-size:10px;color:#6870a0;line-height:1.5">Increases muscle volume and fluid. Result: size + pump. Moderate reps (8–15 reps).</p>
+        </div>
+      </div>
+      <p style="font-size:10px;color:#353860;margin-top:8px">PPL program trains both — compounds build strength, accessories build size.</p>
+    </div>
+
+    <!-- Muscle cards -->
     <div class="grid grid-cols-2 gap-2">
-      <div style="background:#13151f;border:1px solid rgba(77,121,255,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">💪</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#4d79ff">Chest</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Push Day</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Full stretch at bottom"</div></div>
-      <div style="background:#13151f;border:1px solid rgba(0,196,191,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">🦾</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#00c4bf">Back</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Pull Day</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Pull elbows, not hands"</div></div>
-      <div style="background:#13151f;border:1px solid rgba(153,102,255,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">🏋️</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#9966ff">Shoulders</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Push + Pull</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Lateral raises for width"</div></div>
-      <div style="background:#13151f;border:1px solid rgba(0,184,255,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">💥</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#00b8ff">Biceps</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Pull Day</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Supinate at the top"</div></div>
-      <div style="background:#13151f;border:1px solid rgba(77,121,255,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">🔱</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#4d79ff">Triceps</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Push Day</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Lock out fully"</div></div>
-      <div style="background:#13151f;border:1px solid rgba(0,229,160,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">🦵</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#00e5a0">Quads</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Leg Day</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Knees track over toes"</div></div>
-      <div style="background:#13151f;border:1px solid rgba(77,121,255,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">🏃</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#4d79ff">Hamstrings</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Leg Day</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Hip hinge on RDLs"</div></div>
-      <div style="background:#13151f;border:1px solid rgba(255,92,157,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">🍑</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#ff5c9d">Glutes</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Leg Day</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Squeeze at top of thrust"</div></div>
-      <div style="background:#13151f;border:1px solid rgba(255,101,53,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">⚡</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#ff6535">Calves</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Leg Day</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Full ROM — stretch it"</div></div>
-      <div style="background:#13151f;border:1px solid rgba(200,255,0,0.2);border-radius:14px;padding:12px"><div style="font-size:18px">🎯</div><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#c8ff00">Abs</div><div style="font-size:9px;color:#6870a0;margin-top:2px">Every session</div><div style="font-size:9px;color:#353860;margin-top:4px;font-style:italic">"Brace, don't crunch"</div></div>
+      <div style="background:#13151f;border:1px solid rgba(77,121,255,0.2);border-radius:14px;padding:12px">
+        <div style="font-size:16px">💪</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#4d79ff;margin-top:4px">Chest (Pec Major)</div>
+        <div style="font-size:9px;color:#6870a0;margin-top:2px">Push Day · Horizontal push</div>
+        <div style="font-size:9px;color:#353860;margin-top:4px">Best: Bench press, push-ups. Full stretch at bottom — that's where growth happens.</div>
+      </div>
+      <div style="background:#13151f;border:1px solid rgba(0,196,191,0.2);border-radius:14px;padding:12px">
+        <div style="font-size:16px">🦾</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#00c4bf;margin-top:4px">Back (Latissimus)</div>
+        <div style="font-size:9px;color:#6870a0;margin-top:2px">Pull Day · Pulling, posture</div>
+        <div style="font-size:9px;color:#353860;margin-top:4px">Best: Pull-ups, rows. Pull elbows — not hands. Controls upper body width.</div>
+      </div>
+      <div style="background:#13151f;border:1px solid rgba(153,102,255,0.2);border-radius:14px;padding:12px">
+        <div style="font-size:16px">🏋️</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#9966ff;margin-top:4px">Shoulders (Delts)</div>
+        <div style="font-size:9px;color:#6870a0;margin-top:2px">Push + Pull · 3 heads</div>
+        <div style="font-size:9px;color:#353860;margin-top:4px">Front: pressing. Side: width (lateral raises). Rear: posture (face pulls).</div>
+      </div>
+      <div style="background:#13151f;border:1px solid rgba(0,184,255,0.2);border-radius:14px;padding:12px">
+        <div style="font-size:16px">💥</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#00b8ff;margin-top:4px">Biceps</div>
+        <div style="font-size:9px;color:#6870a0;margin-top:2px">Pull Day · Elbow flexion</div>
+        <div style="font-size:9px;color:#353860;margin-top:4px">Supinate wrist at top of curl for peak contraction. Don't swing.</div>
+      </div>
+      <div style="background:#13151f;border:1px solid rgba(77,121,255,0.2);border-radius:14px;padding:12px">
+        <div style="font-size:16px">🔱</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#4d79ff;margin-top:4px">Triceps</div>
+        <div style="font-size:9px;color:#6870a0;margin-top:2px">Push Day · 2/3 of arm size</div>
+        <div style="font-size:9px;color:#353860;margin-top:4px">Full lockout on extensions. Bigger arms = bigger triceps, not biceps.</div>
+      </div>
+      <div style="background:#13151f;border:1px solid rgba(0,229,160,0.2);border-radius:14px;padding:12px">
+        <div style="font-size:16px">🦵</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#00e5a0;margin-top:4px">Quads</div>
+        <div style="font-size:9px;color:#6870a0;margin-top:2px">Leg Day · Knee extension</div>
+        <div style="font-size:9px;color:#353860;margin-top:4px">Squat, leg press, lunges. Knees track over toes. Largest muscle group.</div>
+      </div>
+      <div style="background:#13151f;border:1px solid rgba(77,121,255,0.2);border-radius:14px;padding:12px">
+        <div style="font-size:16px">🏃</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#4d79ff;margin-top:4px">Hamstrings</div>
+        <div style="font-size:9px;color:#6870a0;margin-top:2px">Leg Day · Knee flexion</div>
+        <div style="font-size:9px;color:#353860;margin-top:4px">RDL, leg curl. Hip hinge pattern. Often undertrained vs quads.</div>
+      </div>
+      <div style="background:#13151f;border:1px solid rgba(255,92,157,0.2);border-radius:14px;padding:12px">
+        <div style="font-size:16px">🍑</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#ff5c9d;margin-top:4px">Glutes</div>
+        <div style="font-size:9px;color:#6870a0;margin-top:2px">Leg Day · Most powerful muscle</div>
+        <div style="font-size:9px;color:#353860;margin-top:4px">Hip extension. Hip thrust, squats. Squeeze hard at top — mind-muscle is critical here.</div>
+      </div>
+      <div style="background:#13151f;border:1px solid rgba(255,101,53,0.2);border-radius:14px;padding:12px">
+        <div style="font-size:16px">⚡</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#ff6535;margin-top:4px">Calves</div>
+        <div style="font-size:9px;color:#6870a0;margin-top:2px">Leg Day · Ankle push-off</div>
+        <div style="font-size:9px;color:#353860;margin-top:4px">Full ROM — stretch at bottom, hard contraction at top. Slow reps work best.</div>
+      </div>
+      <div style="background:#13151f;border:1px solid rgba(200,255,0,0.2);border-radius:14px;padding:12px">
+        <div style="font-size:16px">🎯</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;color:#c8ff00;margin-top:4px">Core / Abs</div>
+        <div style="font-size:9px;color:#6870a0;margin-top:2px">Every session · Stabilisation</div>
+        <div style="font-size:9px;color:#353860;margin-top:4px">Core = stabilisation, not just aesthetics. Brace hard on every compound lift.</div>
+      </div>
+    </div>
+
+    <!-- Key metabolic insight -->
+    <div style="background:rgba(200,255,0,0.06);border:1px solid rgba(200,255,0,0.2);border-radius:16px;padding:14px">
+      <div style="font-size:10px;font-weight:800;color:#c8ff00;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.08em">Key Metabolic Fact</div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Each kg of muscle burns approximately <strong style="color:#c8ff00">10–15 kcal/day at rest</strong>. More muscle = higher basal metabolic rate = easier fat loss long-term. This is why strength training is non-negotiable during a cut.</p>
     </div>
   </div>
 
-  <!-- PROTEIN -->
+  <!-- ── PROTEIN ─────────────────────────────────────────────────────── -->
   <div id="know-protein" class="space-y-3" style="display:none">
     <h3 class="font-headline text-base font-black uppercase text-lime" style="font-style:italic">Why Protein Matters</h3>
+
     <div class="rounded-2xl p-5" style="background:linear-gradient(135deg,rgba(200,255,0,0.08),rgba(0,0,0,0));border:1px solid rgba(200,255,0,0.2)">
       <div style="font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:900;color:#c8ff00;line-height:1">2g</div>
-      <div style="font-size:9px;color:#6870a0;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;margin-top:4px">per kg bodyweight · daily target</div>
-      <div style="font-size:11px;color:#6870a0;margin-top:10px">At 76kg → you need <span style="color:#c8ff00;font-weight:800">~152g protein/day</span> to preserve muscle while cutting.</div>
+      <div style="font-size:9px;color:#6870a0;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;margin-top:4px">per kg bodyweight · daily minimum</div>
+      <div style="font-size:11px;color:#6870a0;margin-top:10px">At 76kg → target <strong style="color:#c8ff00">~152g protein/day</strong>. This preserves muscle while in a calorie deficit.</div>
     </div>
+
     <div style="background:#13151f;border:1px solid rgba(255,255,255,0.05);border-radius:16px;padding:14px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🔬</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#f2f4ff">Muscle Protein Synthesis</span></div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6">Every time you eat protein, your body triggers MPS — the process of building and repairing muscle fibres. Without enough protein, even perfect training can't build muscle.</p>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:20px">🔬</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#f2f4ff">Muscle Protein Synthesis (MPS)</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Every time you eat protein, your body triggers MPS — the cellular process of building and repairing muscle fibres. The trigger is <strong style="color:#c8ff00">Leucine</strong> — you need ~2.5–3g leucine per meal to maximally stimulate MPS. High-quality proteins like whey, eggs, and chicken hit this threshold easily. Plant proteins often don't — combine sources or supplement.</p>
     </div>
+
     <div style="background:#13151f;border:1px solid rgba(255,255,255,0.05);border-radius:16px;padding:14px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🍽️</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#f2f4ff">Satiety — Stays Full Longer</span></div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6">Protein is the most satiating macronutrient. 30g of protein keeps you full 2x longer than 30g of carbs. This is your secret weapon in a calorie deficit.</p>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:20px">⏰</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#f2f4ff">Protein Distribution Strategy</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Don't eat all your protein in one meal. Spread across <strong style="color:#c8ff00">3–5 meals</strong>, each containing 25–40g protein. This creates repeated MPS spikes throughout the day — maximising muscle retention during your cut. Daily total matters most, but distribution optimises it.</p>
     </div>
+
     <div style="background:#13151f;border:1px solid rgba(255,255,255,0.05);border-radius:16px;padding:14px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🔥</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#f2f4ff">Thermic Effect</span></div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6">Your body burns 20–30% of protein calories just digesting it. Eat 200kcal of chicken breast and your body only absorbs ~150kcal net. Carbs and fat burn only 5–10%.</p>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:20px">🔥</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#f2f4ff">Thermic Effect of Protein</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Your body burns <strong style="color:#c8ff00">20–30%</strong> of protein calories just digesting it. Eat 200kcal of chicken — you only absorb ~150kcal net. Carbs burn 5–10%, fats burn 3%. High protein intake automatically creates a small daily deficit through digestion alone.</p>
     </div>
+
     <div style="background:#13151f;border:1px solid rgba(255,255,255,0.05);border-radius:16px;padding:14px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">💪</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#f2f4ff">Muscle Preservation</span></div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6">In a calorie deficit, your body wants to burn muscle for fuel. High protein (2g/kg) signals your body to preserve lean mass and burn fat instead.</p>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:20px">🍽️</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#f2f4ff">Satiety — Protein Kills Hunger</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Protein is the most satiating macronutrient. 30g protein keeps you full 2x longer than 30g carbs. Critical in a deficit when hunger is your biggest enemy. Lead every meal with protein.</p>
     </div>
-    <div style="background:#13151f;border:1px solid rgba(255,255,255,0.05);border-radius:16px;padding:14px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🇮🇳</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#f2f4ff">Top Indian Sources</span></div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6">Paneer (18g/100g) · Chicken breast (31g/100g) · Eggs (6g each) · Dal (9g/cup cooked) · Greek yogurt (10g/100g) · Whey protein (25g/scoop)</p>
+
+    <!-- Indian sources -->
+    <div style="background:#13151f;border:1px solid rgba(200,255,0,0.15);border-radius:16px;padding:14px">
+      <div style="font-size:10px;font-weight:800;color:#c8ff00;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.08em">🇮🇳 High Protein Indian Foods</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        <div style="background:rgba(255,255,255,0.03);border-radius:8px;padding:8px"><div style="font-size:11px;font-weight:700;color:#f2f4ff">Chicken Breast</div><div style="font-size:10px;color:#c8ff00;font-weight:800">31g / 100g</div><div style="font-size:9px;color:#353860">165 kcal</div></div>
+        <div style="background:rgba(255,255,255,0.03);border-radius:8px;padding:8px"><div style="font-size:11px;font-weight:700;color:#f2f4ff">Paneer</div><div style="font-size:10px;color:#c8ff00;font-weight:800">18g / 100g</div><div style="font-size:9px;color:#353860">265 kcal</div></div>
+        <div style="background:rgba(255,255,255,0.03);border-radius:8px;padding:8px"><div style="font-size:11px;font-weight:700;color:#f2f4ff">Whole Eggs</div><div style="font-size:10px;color:#c8ff00;font-weight:800">6g / egg</div><div style="font-size:9px;color:#353860">70 kcal</div></div>
+        <div style="background:rgba(255,255,255,0.03);border-radius:8px;padding:8px"><div style="font-size:11px;font-weight:700;color:#f2f4ff">Dal (cooked)</div><div style="font-size:10px;color:#c8ff00;font-weight:800">9g / cup</div><div style="font-size:9px;color:#353860">incomplete protein</div></div>
+        <div style="background:rgba(255,255,255,0.03);border-radius:8px;padding:8px"><div style="font-size:11px;font-weight:700;color:#f2f4ff">Greek Yogurt</div><div style="font-size:10px;color:#c8ff00;font-weight:800">10g / 100g</div><div style="font-size:9px;color:#353860">59 kcal</div></div>
+        <div style="background:rgba(255,255,255,0.03);border-radius:8px;padding:8px"><div style="font-size:11px;font-weight:700;color:#f2f4ff">Whey Protein</div><div style="font-size:10px;color:#c8ff00;font-weight:800">25g / scoop</div><div style="font-size:9px;color:#353860">fast digesting</div></div>
+      </div>
     </div>
   </div>
 
-  <!-- FAT LOSS -->
+  <!-- ── FAT LOSS ────────────────────────────────────────────────────── -->
   <div id="know-fatloss" class="space-y-3" style="display:none">
     <h3 class="font-headline text-base font-black uppercase text-lime" style="font-style:italic">Fat Loss Science</h3>
+
     <div class="rounded-2xl p-5" style="background:#13151f;border:1px solid rgba(255,61,90,0.3)">
       <div style="font-size:9px;font-weight:800;color:#ff3d5a;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.1em">The Only Law That Matters</div>
       <div style="font-size:15px;font-weight:700;color:#f2f4ff">Calories In &lt; Calories Out = Fat Loss</div>
-      <div style="font-size:10px;color:#6870a0;margin-top:6px">Everything else — keto, fasting, clean eating — only works because it helps you eat less. Period.</div>
+      <div style="font-size:10px;color:#6870a0;margin-top:6px">Everything else — keto, fasting, clean eating — only works because it creates a calorie deficit. Period.</div>
     </div>
+
     <div style="background:#13151f;border:1px solid rgba(200,255,0,0.15);border-radius:16px;padding:14px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">⚡</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#c8ff00">TDEE — Your Magic Number</span></div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6">Total Daily Energy Expenditure = BMR + activity. At your stats (~76kg, active), TDEE ≈ 2,400 kcal. Eat 1,600–1,800 and you're in a 500–800 kcal deficit. That's 0.5–0.8kg lost per week.</p>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:20px">⚡</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#c8ff00">How Fat is Actually Burned</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Fat burn is hormonal: Low insulin → hormone signal → triglycerides break into fatty acids → enter bloodstream → used for energy (oxidation). Stubborn belly fat has <strong style="color:#f2f4ff">higher alpha receptors</strong> and lower blood flow — it's the last to go. No shortcut. Consistent deficit + time is the only solution.</p>
     </div>
+
     <div style="background:#13151f;border:1px solid rgba(77,121,255,0.15);border-radius:16px;padding:14px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🔢</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#4d79ff">The 7,700 Rule</span></div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6">1kg of fat = 7,700 kcal. A 500 kcal/day deficit = 3,500 kcal/week = 0.45kg lost. No shortcuts. But consistency compounds — 8 weeks = 3.6kg gone.</p>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:20px">🔢</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#4d79ff">The 7,700 Rule</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">1kg of fat = 7,700 kcal stored. A 500 kcal/day deficit = 3,500 kcal/week = <strong style="color:#c8ff00">~0.45kg lost per week</strong>. At your stats, this is the target. Consistency over 8 weeks = 3.5kg+ gone. Math doesn't lie.</p>
     </div>
+
     <div style="background:#13151f;border:1px solid rgba(255,101,53,0.15);border-radius:16px;padding:14px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">⚖️</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#ff6535">Why the Scale Lies</span></div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6">Water, salt, food weight, and glycogen fluctuate 1–3kg daily. Never judge progress by one weigh-in. Track weekly averages. The trend over 2–3 weeks is the truth.</p>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:20px">📉</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#ff6535">Metabolic Adaptation (Why Plateaus Happen)</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Your body fights fat loss. As you diet, your TDEE drops — from 2,200 kcal to ~2,000 kcal after weeks. This is <strong style="color:#f2f4ff">adaptive thermogenesis</strong>. You also move less subconsciously. Causes: less movement, lower energy output, hormonal changes (leptin drops, ghrelin rises). Fix: increase steps, slight calorie adjustment, or a <strong style="color:#c8ff00">1–2 week diet break at maintenance</strong>.</p>
     </div>
+
+    <div style="background:#13151f;border:1px solid rgba(255,61,90,0.15);border-radius:16px;padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:20px">😤</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#ff3d5a">Cortisol & Belly Fat</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Chronic stress spikes cortisol — your catabolic stress hormone. Elevated cortisol breaks down muscle, increases belly fat storage, and disrupts sleep. Control via: adequate sleep, not overtraining, and stress management. This is why recovery is as important as training.</p>
+    </div>
+
     <div style="background:#13151f;border:1px solid rgba(0,229,160,0.15);border-radius:16px;padding:14px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🏃</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#00e5a0">Cardio's Real Role</span></div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6">Cardio doesn't burn as much as you think (30 min run = ~300 kcal = one small meal). Its real value: creates a small extra deficit and improves heart health. Don't out-cardio a bad diet.</p>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:20px">🚶</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#00e5a0">NEAT — Your Hidden Weapon</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6"><strong style="color:#c8ff00">Non-Exercise Activity Thermogenesis</strong> — all movement outside gym. Walking, fidgeting, daily activity. NEAT often burns <strong style="color:#f2f4ff">more calories than your gym workout</strong>. Target 8,000–12,000 steps daily. This alone can create a 300–500 kcal/day extra deficit without gym time.</p>
     </div>
+
     <div style="background:#13151f;border:1px solid rgba(153,102,255,0.15);border-radius:16px;padding:14px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🔄</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#9966ff">Refeed Days</span></div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6">After 4–5 weeks of deficit, leptin drops. A strategic refeed day at maintenance calories resets hormones, improves mood, and keeps the deficit working. Not a cheat — a tool.</p>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:20px">⚖️</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#9966ff">Why the Scale Lies</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Water retention, food weight, glycogen, and hormones cause 1–3kg of daily fluctuation. Never judge by one weigh-in. <strong style="color:#c8ff00">Track weekly averages</strong>. The trend over 2–3 weeks is the truth. Ideal rate: 0.5–1% of bodyweight per week.</p>
     </div>
   </div>
 
-  <!-- SLEEP -->
+  <!-- ── SLEEP ───────────────────────────────────────────────────────── -->
   <div id="know-sleep" class="space-y-3" style="display:none">
     <h3 class="font-headline text-base font-black uppercase text-lime" style="font-style:italic">Sleep & Recovery</h3>
+
     <div class="rounded-2xl p-5 text-center" style="background:#13151f;border:1px solid rgba(77,121,255,0.3)">
       <div style="font-family:'Space Grotesk',sans-serif;font-size:56px;font-weight:900;color:#4d79ff;line-height:1">8h</div>
-      <div style="font-size:10px;color:#6870a0;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-top:4px">minimum for muscle growth</div>
+      <div style="font-size:10px;color:#6870a0;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-top:4px">minimum for muscle growth & fat loss</div>
     </div>
-    <div style="background:#13151f;border:1px solid rgba(200,255,0,0.15);border-radius:16px;padding:14px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🧬</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#c8ff00">Growth Hormone Spike</span></div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6">90% of your body's growth hormone is released during deep sleep. This is when actual muscle repair and growth happens. Skipping sleep = skipping gains. No supplement replaces this.</p>
+
+    <!-- Sleep stages -->
+    <div style="background:#13151f;border:1px solid rgba(77,121,255,0.2);border-radius:16px;padding:14px">
+      <div style="font-size:10px;font-weight:800;color:#4d79ff;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.08em">Sleep Cycle Stages</div>
+      <div style="space-y:6px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="width:8px;height:8px;border-radius:50%;background:#c8ff00;flex-shrink:0"></div><div><span style="font-size:11px;font-weight:700;color:#c8ff00">Deep Sleep (Stage 3–4)</span><span style="font-size:10px;color:#6870a0"> — 90% of growth hormone released here. Muscle repair happens NOW.</span></div></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="width:8px;height:8px;border-radius:50%;background:#4d79ff;flex-shrink:0"></div><div><span style="font-size:11px;font-weight:700;color:#4d79ff">REM Sleep</span><span style="font-size:10px;color:#6870a0"> — Memory consolidation, motor learning, neural recovery. Critical for skill retention.</span></div></div>
+        <div style="display:flex;align-items:center;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:#353860;flex-shrink:0"></div><div><span style="font-size:11px;font-weight:700;color:#6870a0">Light Sleep</span><span style="font-size:10px;color:#353860"> — Transition phases. Less anabolic.</span></div></div>
+      </div>
     </div>
+
     <div style="background:#13151f;border:1px solid rgba(255,61,90,0.15);border-radius:16px;padding:14px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">😤</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#ff3d5a">Cortisol — The Muscle Killer</span></div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6">Sleep deprivation spikes cortisol. Chronically elevated cortisol breaks down muscle, increases fat storage (especially belly fat), and kills testosterone. 6h vs 8h can raise cortisol by 37%.</p>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:20px">😤</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#ff3d5a">Cortisol — Sleep Deprivation's Weapon</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">6h sleep vs 8h sleep can increase cortisol by <strong style="color:#ff3d5a">37%</strong>. That cortisol breaks down muscle, stores fat (especially belly), kills testosterone. Skipping sleep is the fastest way to ruin your shred.</p>
     </div>
+
     <div style="background:#13151f;border:1px solid rgba(255,101,53,0.15);border-radius:16px;padding:14px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🍕</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#ff6535">Appetite Hormones</span></div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6">Bad sleep raises ghrelin (hunger) and lowers leptin (satiety). You'll feel 25% hungrier the next day and crave high-calorie foods. This single factor destroys more diets than anything else.</p>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:20px">🍕</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#ff6535">Sleep & Hunger Hormones</span></div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6">Bad sleep raises <strong style="color:#ff6535">ghrelin</strong> (hunger) and lowers <strong style="color:#c8ff00">leptin</strong> (fullness). You'll feel 20–25% hungrier the next day and crave high-calorie foods. This destroys more diets than anything else. Fix your sleep first.</p>
     </div>
+
     <div style="background:#13151f;border:1px solid rgba(0,229,160,0.15);border-radius:16px;padding:14px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">🛌</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#00e5a0">Recovery Protocol</span></div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6">Same sleep/wake time daily. Room 18–20°C. No screens 30 min before bed. 200mg magnesium glycinate before sleep. Dark room. 7–9 hours non-negotiable on training days.</p>
-    </div>
-    <div style="background:#13151f;border:1px solid rgba(153,102,255,0.15);border-radius:16px;padding:14px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">💤</span><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:800;color:#9966ff">Naps Are Legit</span></div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6">A 20-minute power nap (1–3pm) reduces cortisol, improves alertness for 2–3 hours, and aids afternoon recovery. Keep it under 30 min or you'll wake groggy. Elite athletes do this daily.</p>
+      <div style="font-size:10px;font-weight:800;color:#00e5a0;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.08em">Recovery Protocol Checklist</div>
+      <div style="space-y:4px">
+        <div style="display:flex;gap:8px;align-items:flex-start;margin-bottom:5px"><span style="color:#c8ff00;font-size:11px;flex-shrink:0">✓</span><span style="font-size:11px;color:#6870a0">Same sleep/wake time daily — consistency > duration</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start;margin-bottom:5px"><span style="color:#c8ff00;font-size:11px;flex-shrink:0">✓</span><span style="font-size:11px;color:#6870a0">Room temperature 18–20°C — cooler = deeper sleep</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start;margin-bottom:5px"><span style="color:#c8ff00;font-size:11px;flex-shrink:0">✓</span><span style="font-size:11px;color:#6870a0">No screens 30 min before bed — blue light kills melatonin</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start;margin-bottom:5px"><span style="color:#c8ff00;font-size:11px;flex-shrink:0">✓</span><span style="font-size:11px;color:#6870a0">200mg Magnesium Glycinate before sleep</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:#c8ff00;font-size:11px;flex-shrink:0">✓</span><span style="font-size:11px;color:#6870a0">20-min power nap (1–3pm) — elite athletes do this daily</span></div>
+      </div>
     </div>
   </div>
 
-  <!-- SUPPLEMENTS -->
+  <!-- ── SUPPLEMENTS ────────────────────────────────────────────────── -->
   <div id="know-supps" class="space-y-3" style="display:none">
     <h3 class="font-headline text-base font-black uppercase text-lime" style="font-style:italic">Supplement Guide</h3>
+
     <div class="rounded-2xl p-4" style="background:rgba(255,61,90,0.06);border:1px solid rgba(255,61,90,0.2)">
-      <div style="font-size:10px;font-weight:800;color:#ff3d5a;margin-bottom:4px">⚠ TRUTH CHECK</div>
-      <div style="font-size:11px;color:#6870a0">Supplements are 5% of your results. Food, sleep, training, and consistency are the other 95%. Don't buy anything until those are dialed in.</div>
+      <div style="font-size:10px;font-weight:800;color:#ff3d5a;margin-bottom:4px">⚠ TRUTH FIRST</div>
+      <div style="font-size:11px;color:#6870a0">Supplements are 5% of your results. Food, sleep, training, and consistency are the other 95%. Get those right first. Supplements supplement — they don't replace.</div>
     </div>
-    <div style="background:#13151f;border:1px solid rgba(200,255,0,0.15);border-radius:16px;padding:14px">
+
+    <!-- Essential -->
+    <div style="font-size:9px;font-weight:800;color:#c8ff00;text-transform:uppercase;letter-spacing:0.12em;padding:0 2px">Essential</div>
+
+    <div style="background:#13151f;border:1px solid rgba(200,255,0,0.2);border-radius:16px;padding:14px">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
-        <div><div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:900;color:#c8ff00">Whey Protein</div><div style="font-size:9px;font-weight:800;color:#c8ff00;background:rgba(200,255,0,0.1);border:1px solid rgba(200,255,0,0.3);border-radius:20px;padding:1px 8px;display:inline-block;margin-top:3px">Essential</div></div>
+        <div><div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:900;color:#c8ff00">Creatine Monohydrate</div><div style="font-size:9px;font-weight:800;color:#c8ff00;background:rgba(200,255,0,0.1);border:1px solid rgba(200,255,0,0.3);border-radius:20px;padding:1px 8px;display:inline-block;margin-top:3px">Most Researched</div></div>
+        <div style="font-size:9px;color:#6870a0;font-weight:700;text-align:right">5g daily · anytime</div>
+      </div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6;margin-bottom:6px">Mechanism: increases phosphocreatine stores → improves ATP regeneration → more reps per set. Improves strength by 5–15%, adds 1–2kg lean mass over 4 weeks. Take every day — no loading needed. Most proven supplement in existence. No cycling required.</p>
+      <div style="font-size:9px;color:#353860;font-weight:600">📦 MuscleBlaze Creatine / any plain monohydrate. Avoid fancy forms.</div>
+    </div>
+
+    <div style="background:#13151f;border:1px solid rgba(77,121,255,0.2);border-radius:16px;padding:14px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <div><div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:900;color:#4d79ff">Whey Protein</div><div style="font-size:9px;font-weight:800;color:#4d79ff;background:rgba(77,121,255,0.1);border:1px solid rgba(77,121,255,0.3);border-radius:20px;padding:1px 8px;display:inline-block;margin-top:3px">Convenience Tool</div></div>
         <div style="font-size:9px;color:#6870a0;font-weight:700;text-align:right">25–30g post-workout</div>
       </div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6;margin-bottom:6px">Fastest absorbing protein. Hits muscles within 30 min. Only useful if you're not hitting protein targets from food. Not magic — just convenient protein.</p>
-      <div style="font-size:9px;color:#353860;font-weight:600">📦 MuscleBlaze Biozyme / Optimum Nutrition Gold</div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6;margin-bottom:6px">Fast-digesting, high leucine content — hits muscles within 30 min. Only useful if you're not hitting protein from food. Not magic — just convenient protein. Whey = complete amino acid profile with high bioavailability.</p>
+      <div style="font-size:9px;color:#353860;font-weight:600">📦 MuscleBlaze Biozyme / Optimum Nutrition Gold Standard</div>
     </div>
-    <div style="background:#13151f;border:1px solid rgba(77,121,255,0.15);border-radius:16px;padding:14px">
+
+    <!-- High Value -->
+    <div style="font-size:9px;font-weight:800;color:#9966ff;text-transform:uppercase;letter-spacing:0.12em;padding:0 2px">High Value</div>
+
+    <div style="background:#13151f;border:1px solid rgba(153,102,255,0.2);border-radius:16px;padding:14px">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
-        <div><div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:900;color:#4d79ff">Creatine Monohydrate</div><div style="font-size:9px;font-weight:800;color:#4d79ff;background:rgba(77,121,255,0.1);border:1px solid rgba(77,121,255,0.3);border-radius:20px;padding:1px 8px;display:inline-block;margin-top:3px">Essential</div></div>
-        <div style="font-size:9px;color:#6870a0;font-weight:700;text-align:right">5g daily (anytime)</div>
-      </div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6;margin-bottom:6px">Most researched supplement in existence. Improves strength by 5–15%, adds 1–2kg lean mass over 4 weeks. Take every day — no loading needed.</p>
-      <div style="font-size:9px;color:#353860;font-weight:600">📦 MuscleBlaze Creatine / any plain monohydrate</div>
-    </div>
-    <div style="background:#13151f;border:1px solid rgba(153,102,255,0.15);border-radius:16px;padding:14px">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
-        <div><div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:900;color:#9966ff">Magnesium Glycinate</div><div style="font-size:9px;font-weight:800;color:#9966ff;background:rgba(153,102,255,0.1);border:1px solid rgba(153,102,255,0.3);border-radius:20px;padding:1px 8px;display:inline-block;margin-top:3px">High Value</div></div>
+        <div><div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:900;color:#9966ff">Magnesium Glycinate</div><div style="font-size:9px;font-weight:800;color:#9966ff;background:rgba(153,102,255,0.1);border:1px solid rgba(153,102,255,0.3);border-radius:20px;padding:1px 8px;display:inline-block;margin-top:3px">300+ Enzymatic Roles</div></div>
         <div style="font-size:9px;color:#6870a0;font-weight:700;text-align:right">200–400mg before bed</div>
       </div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6;margin-bottom:6px">Most Indians are deficient. Improves sleep quality, reduces cortisol, reduces muscle cramps. Notice better sleep within 5–7 days.</p>
-      <div style="font-size:9px;color:#353860;font-weight:600">📦 Any pharmacy. Glycinate form — not oxide.</div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6;margin-bottom:6px">Most Indians are deficient. Improves deep sleep quality, reduces cortisol, reduces muscle cramps and soreness. Notice better sleep within 5–7 days. Choose glycinate form — not oxide (poorly absorbed).</p>
+      <div style="font-size:9px;color:#353860;font-weight:600">📦 Any pharmacy. Look for "magnesium glycinate" specifically.</div>
     </div>
-    <div style="background:#13151f;border:1px solid rgba(255,101,53,0.15);border-radius:16px;padding:14px">
+
+    <div style="background:#13151f;border:1px solid rgba(255,101,53,0.2);border-radius:16px;padding:14px">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
-        <div><div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:900;color:#ff6535">Vitamin D3 + K2</div><div style="font-size:9px;font-weight:800;color:#ff6535;background:rgba(255,101,53,0.1);border:1px solid rgba(255,101,53,0.3);border-radius:20px;padding:1px 8px;display:inline-block;margin-top:3px">High Value</div></div>
+        <div><div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:900;color:#ff6535">Vitamin D3 + K2</div><div style="font-size:9px;font-weight:800;color:#ff6535;background:rgba(255,101,53,0.1);border:1px solid rgba(255,101,53,0.3);border-radius:20px;padding:1px 8px;display:inline-block;margin-top:3px">90% Indians Deficient</div></div>
         <div style="font-size:9px;color:#6870a0;font-weight:700;text-align:right">2000–4000 IU D3 + 100mcg K2</div>
       </div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6;margin-bottom:6px">90% of Indians are deficient. Low D3 = low testosterone, weak immunity, poor mood. K2 ensures calcium goes to bones. Take with fat.</p>
-      <div style="font-size:9px;color:#353860;font-weight:600">📦 HealthKart D3+K2 / TrueBasics</div>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6;margin-bottom:6px">Low D3 = low testosterone, weak immunity, poor mood, impaired recovery. Regulates calcium and impacts hormone production. K2 directs calcium to bones not arteries. Take with a fatty meal for absorption.</p>
+      <div style="font-size:9px;color:#353860;font-weight:600">📦 HealthKart D3+K2 / TrueBasics Vitamin D3</div>
     </div>
+
+    <!-- Optional -->
+    <div style="font-size:9px;font-weight:800;color:#6870a0;text-transform:uppercase;letter-spacing:0.12em;padding:0 2px">Optional</div>
+
     <div style="background:#13151f;border:1px solid rgba(0,196,191,0.15);border-radius:16px;padding:14px">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
-        <div><div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:900;color:#00c4bf">Omega-3 Fish Oil</div><div style="font-size:9px;font-weight:800;color:#00c4bf;background:rgba(0,196,191,0.1);border:1px solid rgba(0,196,191,0.3);border-radius:20px;padding:1px 8px;display:inline-block;margin-top:3px">Optional</div></div>
+        <div><div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:900;color:#00c4bf">Omega-3 Fish Oil</div><div style="font-size:9px;font-weight:800;color:#00c4bf;background:rgba(0,196,191,0.1);border:1px solid rgba(0,196,191,0.3);border-radius:20px;padding:1px 8px;display:inline-block;margin-top:3px">Anti-Inflammatory</div></div>
         <div style="font-size:9px;color:#6870a0;font-weight:700;text-align:right">2–3g EPA+DHA daily</div>
       </div>
-      <p style="font-size:11px;color:#6870a0;line-height:1.6;margin-bottom:6px">Reduces inflammation, improves joint health (critical when training heavy), supports heart health. Look for EPA+DHA content — not total fish oil.</p>
+      <p style="font-size:11px;color:#6870a0;line-height:1.6;margin-bottom:6px">Reduces inflammation, supports joint health (critical when training heavy), improves heart health. Look at EPA+DHA content on label — not total fish oil.</p>
       <div style="font-size:9px;color:#353860;font-weight:600">📦 WOW Omega-3 / Himalaya Fish Oil</div>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:16px;padding:14px">
+      <div style="font-size:10px;font-weight:800;color:#353860;margin-bottom:8px;text-transform:uppercase">Skip These</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <span style="font-size:10px;color:#353860;background:rgba(255,255,255,0.03);border-radius:8px;padding:4px 8px">Fat burners → minimal real effect</span>
+        <span style="font-size:10px;color:#353860;background:rgba(255,255,255,0.03);border-radius:8px;padding:4px 8px">BCAA → redundant if protein adequate</span>
+        <span style="font-size:10px;color:#353860;background:rgba(255,255,255,0.03);border-radius:8px;padding:4px 8px">Glutamine → no evidence</span>
+      </div>
     </div>
   </div>
 
-  <!-- STORIES -->
+  <!-- ── STORIES ─────────────────────────────────────────────────────── -->
   <div id="know-stories" class="space-y-3" style="display:none">
     <h3 class="font-headline text-base font-black uppercase text-lime" style="font-style:italic">Motivation Stories</h3>
+
     <div style="background:#13151f;border:1px solid rgba(77,121,255,0.15);border-radius:20px;overflow:hidden">
       <div style="background:rgba(77,121,255,0.08);padding:14px 14px 10px;border-bottom:1px solid rgba(77,121,255,0.1)">
         <div style="display:flex;align-items:center;gap:10px">
           <span style="font-size:28px">🇮🇳</span>
-          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:900;color:#4d79ff">Virat Kohli</div><div style="font-size:9px;color:#6870a0;font-weight:700">Junk food, inconsistent → World-class athlete at 35</div></div>
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:900;color:#4d79ff">Virat Kohli</div><div style="font-size:9px;color:#6870a0;font-weight:700">Junk food & inconsistency → World's fittest cricketer at 35</div></div>
         </div>
       </div>
-      <div style="padding:14px"><p style="font-size:11px;color:#6870a0;line-height:1.7">At 23, Kohli was known for partying and eating whatever he wanted. A serious injury in 2012 forced him to rethink everything. He gave up alcohol entirely, switched to a strict high-protein diet, and began training twice a day. He dropped 15kg and completely transformed his body. His secret? "Discipline beats motivation every time. Motivation fades. Discipline is a habit." At 35, he's the fittest cricketer on the planet.</p></div>
+      <div style="padding:14px"><p style="font-size:11px;color:#6870a0;line-height:1.7">At 23, Kohli partied hard and ate whatever he wanted. A serious injury in 2012 changed everything. He eliminated alcohol, switched to a strict high-protein diet, and trained twice daily. He dropped 15kg and completely rebuilt his body. His principle: <strong style="color:#4d79ff">"Discipline beats motivation every time. Motivation fades. Discipline is a habit."</strong> At 35, he's the benchmark for fitness in Indian sport.</p></div>
     </div>
+
     <div style="background:#13151f;border:1px solid rgba(255,101,53,0.15);border-radius:20px;overflow:hidden">
       <div style="background:rgba(255,101,53,0.08);padding:14px 14px 10px;border-bottom:1px solid rgba(255,101,53,0.1)">
         <div style="display:flex;align-items:center;gap:10px">
           <span style="font-size:28px">🇺🇸</span>
-          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:900;color:#ff6535">Dwayne Johnson</div><div style="font-size:9px;color:#6870a0;font-weight:700">Broke & cut from NFL → Highest-paid actor. 120kg lean.</div></div>
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:900;color:#ff6535">Dwayne Johnson</div><div style="font-size:9px;color:#6870a0;font-weight:700">$7 in pocket, cut from CFL → Highest-paid actor. 120kg lean.</div></div>
         </div>
       </div>
-      <div style="padding:14px"><p style="font-size:11px;color:#6870a0;line-height:1.7">In 1995, The Rock was 23, had $7 in his pocket, and had just been cut from the CFL. He channelled that pain into the gym — 4am workouts, 6 meals a day, 300g protein. It took 5 years of consistent training before Hollywood came calling. His lesson: "Success isn't always about greatness. It's about consistency. Consistent hard work gains success."</p></div>
+      <div style="padding:14px"><p style="font-size:11px;color:#6870a0;line-height:1.7">In 1995, The Rock was 23, had $7 in his pocket, and had just been cut from the CFL. Failed dream, no money. He turned pain into the gym — 4am workouts, 6 meals daily, 300g protein. It took 5 years of relentless consistency before Hollywood came. His lesson: <strong style="color:#ff6535">"Success isn't about greatness. It's about consistency. Consistent hard work leads to success."</strong></p></div>
     </div>
+
     <div style="background:#13151f;border:1px solid rgba(200,255,0,0.15);border-radius:20px;overflow:hidden">
       <div style="background:rgba(200,255,0,0.06);padding:14px 14px 10px;border-bottom:1px solid rgba(200,255,0,0.1)">
         <div style="display:flex;align-items:center;gap:10px">
           <span style="font-size:28px">🇮🇳</span>
-          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:900;color:#c8ff00">Anant Ambani</div><div style="font-size:9px;color:#6870a0;font-weight:700">108kg overweight → Lost 108kg in 18 months</div></div>
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:900;color:#c8ff00">Anant Ambani</div><div style="font-size:9px;color:#6870a0;font-weight:700">108kg overweight from steroid treatment → Lost 108kg in 18 months</div></div>
         </div>
       </div>
-      <div style="padding:14px"><p style="font-size:11px;color:#6870a0;line-height:1.7">Anant Ambani shocked India with a 108kg transformation. What people didn't know: he had been battling severe asthma since childhood, and steroids caused massive weight gain. His journey involved 5-hour daily workouts, a strict diet, and walking 21km every single day. His trainer said he never complained — not once. Proof that if the will is strong enough, the body follows.</p></div>
+      <div style="padding:14px"><p style="font-size:11px;color:#6870a0;line-height:1.7">Since childhood, Anant battled severe asthma. Steroid treatment caused massive weight gain. His journey: 5-hour daily workouts, strict calorie control, walking 21km every single day. His trainer said he <strong style="color:#c8ff00">never complained once</strong>. Not once in 18 months. Proof: when the will is unbreakable, the body follows.</p></div>
     </div>
+
     <div style="background:#13151f;border:1px solid rgba(255,61,90,0.15);border-radius:20px;overflow:hidden">
       <div style="background:rgba(255,61,90,0.06);padding:14px 14px 10px;border-bottom:1px solid rgba(255,61,90,0.1)">
         <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-size:28px">🔴</span>
+          <span style="font-size:28px">🪞</span>
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:900;color:#ff3d5a">The Person Who Almost Quit</div><div style="font-size:9px;color:#6870a0;font-weight:700">Week 3 plateau → kept going → 8kg down in 8 weeks</div></div>
+        </div>
+      </div>
+      <div style="padding:14px"><p style="font-size:11px;color:#6870a0;line-height:1.7">This is the story of 80% of people. Motivated in week 1. Scale stalls in week 3 — it's water retention, not failure. They feel guilty, skip a session, then two, then quit. The mistake: all-or-nothing thinking. The people who transform aren't the ones who never miss a day. <strong style="color:#ff3d5a">They're the ones who always come back.</strong> Missing one session is not failure. Quitting because you missed one is.</p></div>
+    </div>
+  </div>
+
+</div>
 
 </main>
 
@@ -719,7 +943,146 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
   </button>
 </nav>
 
-// ── EXERCISE IMAGES ─────────────────────────────────────────────────────────
+<script>
+// ── ANIMATED EXERCISE ICONS ───────────────────────────────────────────────────
+function getExerciseIcon(type, col){
+  const c = col || "#c8ff00";
+  const icons = {
+    // PUSH — bench, press movements
+    flat_press:`<svg class="ex-icon-lift" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <g class="bar"><rect x="8" y="18" width="24" height="4" rx="2" fill="${c}" opacity="0.9"/>
+      <rect x="4" y="15" width="4" height="10" rx="2" fill="${c}"/><rect x="32" y="15" width="4" height="10" rx="2" fill="${c}"/>
+      <rect x="2" y="16" width="3" height="8" rx="1.5" fill="${c}" opacity="0.5"/><rect x="35" y="16" width="3" height="8" rx="1.5" fill="${c}" opacity="0.5"/></g>
+      <path d="M14 22 Q20 30 26 22" stroke="${c}" stroke-width="1.5" fill="none" opacity="0.4"/>
+    </svg>`,
+    incline_press:`<svg class="ex-icon-press" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <g class="bar"><rect x="8" y="16" width="24" height="4" rx="2" fill="${c}" opacity="0.9" transform="rotate(-10 20 18)"/>
+      <rect x="4" y="13" width="4" height="10" rx="2" fill="${c}" transform="rotate(-10 6 18)"/>
+      <rect x="32" y="13" width="4" height="10" rx="2" fill="${c}" transform="rotate(-10 34 18)"/></g>
+      <ellipse cx="20" cy="30" rx="6" ry="3" fill="${c}" opacity="0.2"/>
+    </svg>`,
+    fly_cable:`<svg class="ex-icon-flex" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <circle cx="20" cy="14" r="4" fill="${c}" opacity="0.3"/>
+      <g class="muscle"><path d="M8 20 Q14 14 20 18 Q26 14 32 20" stroke="${c}" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M10 24 Q16 18 20 22 Q24 18 30 24" stroke="${c}" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.5"/></g>
+    </svg>`,
+    overhead_press:`<svg class="ex-icon-press" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <g class="bar"><rect x="8" y="10" width="24" height="4" rx="2" fill="${c}"/>
+      <rect x="4" y="8" width="3" height="8" rx="1.5" fill="${c}"/><rect x="33" y="8" width="3" height="8" rx="1.5" fill="${c}"/></g>
+      <path d="M14 14 L14 26 M26 14 L26 26" stroke="${c}" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+      <ellipse cx="20" cy="30" rx="5" ry="2.5" fill="${c}" opacity="0.2"/>
+    </svg>`,
+    lateral_raise:`<svg class="ex-icon-lift" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <circle cx="20" cy="16" r="3.5" fill="${c}" opacity="0.4"/>
+      <g class="bar"><path d="M6 20 L14 16 M26 16 L34 20" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="5" cy="20" r="3" fill="${c}"/><circle cx="35" cy="20" r="3" fill="${c}"/></g>
+    </svg>`,
+    face_pull:`<svg class="ex-icon-row" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <g class="arm"><path d="M30 14 L22 20 M30 26 L22 20" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="32" cy="14" r="3" fill="${c}" opacity="0.5"/><circle cx="32" cy="26" r="3" fill="${c}" opacity="0.5"/>
+      <path d="M8 20 L22 20" stroke="${c}" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.5"/></g>
+      <circle cx="20" cy="20" r="3.5" fill="${c}" opacity="0.3"/>
+    </svg>`,
+    pushdown:`<svg class="ex-icon-press" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <rect x="17" y="6" width="6" height="3" rx="1.5" fill="${c}" opacity="0.5"/>
+      <g class="bar"><path d="M20 9 L20 22" stroke="${c}" stroke-width="2" stroke-linecap="round"/>
+      <path d="M12 22 L28 22" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M14 22 L12 30 M26 22 L28 30" stroke="${c}" stroke-width="2" stroke-linecap="round"/></g>
+    </svg>`,
+    // PULL — back, bicep movements  
+    pull_up:`<svg class="ex-icon-lift" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <rect x="6" y="7" width="28" height="3" rx="1.5" fill="${c}" opacity="0.5"/>
+      <g class="bar"><path d="M14 10 L14 20 M26 10 L26 20" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>
+      <ellipse cx="20" cy="26" rx="7" ry="8" fill="${c}" opacity="0.15" stroke="${c}" stroke-width="1.5"/>
+      <path d="M14 20 Q20 16 26 20" stroke="${c}" stroke-width="1.5" fill="none"/></g>
+    </svg>`,
+    barbell_row:`<svg class="ex-icon-row" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <g class="arm"><rect x="6" y="19" width="20" height="4" rx="2" fill="${c}"/>
+      <rect x="2" y="16" width="4" height="10" rx="2" fill="${c}"/><rect x="26" y="17" width="3" height="8" rx="1.5" fill="${c}" opacity="0.6"/>
+      <path d="M26 21 L36 18" stroke="${c}" stroke-width="2" stroke-linecap="round"/></g>
+    </svg>`,
+    seated_row:`<svg class="ex-icon-row" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <g class="arm"><path d="M8 20 L28 20" stroke="${c}" stroke-width="2" stroke-dasharray="3 2" opacity="0.4"/>
+      <path d="M28 14 L36 20 L28 26" stroke="${c}" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
+      <path d="M6 16 L6 28 Q6 30 8 30 L20 30" stroke="${c}" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/></g>
+    </svg>`,
+    lat_pulldown:`<svg class="ex-icon-lift" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <rect x="4" y="7" width="32" height="3" rx="1.5" fill="${c}" opacity="0.5"/>
+      <g class="bar"><path d="M8 10 Q8 16 14 18 Q20 20 26 18 Q32 16 32 10" stroke="${c}" stroke-width="2" fill="none"/>
+      <path d="M14 18 L14 32 M26 18 L26 32" stroke="${c}" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+      <path d="M14 32 L26 32" stroke="${c}" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/></g>
+    </svg>`,
+    bicep_curl:`<svg class="ex-icon-curl" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <g class="arm" style="transform-origin:20px 28px">
+        <path d="M20 28 L20 14" stroke="${c}" stroke-width="3" stroke-linecap="round"/>
+        <rect x="10" y="12" width="20" height="5" rx="2.5" fill="${c}"/>
+        <rect x="6" y="10" width="4" height="9" rx="2" fill="${c}"/><rect x="30" y="10" width="4" height="9" rx="2" fill="${c}"/>
+      </g>
+      <ellipse cx="20" cy="30" rx="5" ry="2" fill="${c}" opacity="0.2"/>
+    </svg>`,
+    hammer_curl:`<svg class="ex-icon-curl" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <g class="arm" style="transform-origin:20px 28px">
+        <path d="M20 28 L20 18" stroke="${c}" stroke-width="3" stroke-linecap="round"/>
+        <rect x="16" y="12" width="8" height="16" rx="3" fill="${c}" opacity="0.8"/>
+        <rect x="14" y="10" width="12" height="5" rx="2" fill="${c}"/>
+      </g>
+    </svg>`,
+    // LEGS
+    squat:`<svg class="ex-icon-squat" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <rect x="6" y="10" width="28" height="4" rx="2" fill="${c}" opacity="0.6"/>
+      <g class="body" style="transform-origin:20px 22px">
+        <circle cx="20" cy="18" r="3.5" fill="${c}" opacity="0.4"/>
+        <path d="M20 22 L14 34 M20 22 L26 34" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M14 34 L10 34 M26 34 L30 34" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>
+      </g>
+    </svg>`,
+    rdl:`<svg class="ex-icon-row" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <g class="arm"><rect x="6" y="22" width="24" height="4" rx="2" fill="${c}"/>
+      <rect x="2" y="19" width="4" height="10" rx="2" fill="${c}"/><rect x="30" y="19" width="4" height="10" rx="2" fill="${c}"/>
+      <path d="M18 22 L18 10 M22 22 L22 10" stroke="${c}" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+      <path d="M14 10 L26 10" stroke="${c}" stroke-width="2" stroke-linecap="round" opacity="0.4"/></g>
+    </svg>`,
+    leg_press:`<svg class="ex-icon-press" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <rect x="4" y="10" width="14" height="20" rx="4" fill="${c}" opacity="0.1" stroke="${c}" stroke-width="1.5"/>
+      <g class="bar"><path d="M18 20 L36 14 M18 20 L36 26" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>
+      <rect x="33" y="12" width="4" height="16" rx="2" fill="${c}"/></g>
+    </svg>`,
+    hip_thrust:`<svg class="ex-icon-bounce" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <rect x="4" y="26" width="32" height="4" rx="2" fill="${c}" opacity="0.3"/>
+      <g class="dot"><path d="M10 26 Q10 14 20 14 Q30 14 30 26" stroke="${c}" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <circle cx="10" cy="26" r="3" fill="${c}" opacity="0.5"/>
+      <rect x="6" y="12" width="28" height="4" rx="2" fill="${c}" opacity="0.6"/></g>
+    </svg>`,
+    leg_curl:`<svg class="ex-icon-curl" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <g class="arm" style="transform-origin:16px 20px">
+        <path d="M16 20 L28 20" stroke="${c}" stroke-width="3" stroke-linecap="round"/>
+        <path d="M16 20 L10 28" stroke="${c}" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="30" cy="20" r="4" fill="${c}" opacity="0.5"/>
+      </g>
+    </svg>`,
+    calf_raise:`<svg class="ex-icon-bounce" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <g class="dot"><path d="M14 8 L14 30" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M26 8 L26 30" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M10 30 L18 30 M22 30 L30 30" stroke="${c}" stroke-width="2" stroke-linecap="round"/>
+      <path d="M10 34 Q14 30 18 34 M22 34 Q26 30 30 34" stroke="${c}" stroke-width="2" stroke-linecap="round" fill="none"/></g>
+    </svg>`,
+    // CARDIO
+    cardio_rowing:`<svg class="ex-icon-row" width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <g class="arm"><path d="M8 14 Q20 10 32 16" stroke="${c}" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <circle cx="20" cy="22" r="5" fill="${c}" opacity="0.15" stroke="${c}" stroke-width="1.5"/>
+      <path d="M8 26 Q14 22 20 22 Q26 22 32 26" stroke="${c}" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M4 18 L36 28" stroke="${c}" stroke-width="1" stroke-dasharray="3 3" opacity="0.3"/></g>
+    </svg>`,
+    // Default fallback
+    default:`<svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <circle cx="20" cy="20" r="12" stroke="${c}" stroke-width="2" opacity="0.4"/>
+      <path d="M14 20 h12 M20 14 v12" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>`
+  };
+  return icons[type] || icons.default;
+}
+
+// ── EXERCISE IMAGES (kept for compatibility) ───────────────────────────────
 const IMGS = {
   "flat_press": "data:image/png;base64,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",
   "incline_press": "data:image/png;base64,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",
@@ -1189,8 +1552,8 @@ function switchTab(id){
       nl.style.color="#353860";
     }
   });
-  if(id==="progress") renderProgress();
-  if(id==="deficit") updateDeficit();
+  if(id==="progress") { renderProgress(); renderProgressPhotosGrid(); }
+  if(id==="deficit") { updateDeficit(); renderDeficitLiveData(); }
   if(id==="weight") renderWeight();
 }
 
@@ -1302,19 +1665,31 @@ function renderWorkout(){
   document.getElementById("hero-cal").textContent=`${p.tMin}–${p.tMax} kcal target`;
   document.getElementById("snap-week-label").textContent=CW;
 
-  // Hero image per week phase
-  const heroImgs={
-    1:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80",
-    2:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80",
-    3:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&q=80",
-    4:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&q=80",
-    5:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80",
-    6:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80",
-    7:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=80",
-    8:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=80",
+  // Hero — gradient always works, image loads if online
+  const phaseStyles={
+    1:{grad:"linear-gradient(135deg,#0d1a00 0%,#1a3300 40%,#0a0c12 100%)",blob:"rgba(200,255,0,0.12)",img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=85"},
+    2:{grad:"linear-gradient(135deg,#0d1a00 0%,#1a3300 40%,#0a0c12 100%)",blob:"rgba(200,255,0,0.12)",img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=85"},
+    3:{grad:"linear-gradient(135deg,#001233 0%,#002366 40%,#0a0c12 100%)",blob:"rgba(77,121,255,0.15)",img:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=900&q=85"},
+    4:{grad:"linear-gradient(135deg,#001233 0%,#002366 40%,#0a0c12 100%)",blob:"rgba(77,121,255,0.15)",img:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=900&q=85"},
+    5:{grad:"linear-gradient(135deg,#1a0800 0%,#3d1500 40%,#0a0c12 100%)",blob:"rgba(255,101,53,0.15)",img:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=900&q=85"},
+    6:{grad:"linear-gradient(135deg,#1a0800 0%,#3d1500 40%,#0a0c12 100%)",blob:"rgba(255,101,53,0.15)",img:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=900&q=85"},
+    7:{grad:"linear-gradient(135deg,#1a0010 0%,#3d0025 40%,#0a0c12 100%)",blob:"rgba(255,61,90,0.15)",img:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=900&q=85"},
+    8:{grad:"linear-gradient(135deg,#1a0010 0%,#3d0025 40%,#0a0c12 100%)",blob:"rgba(255,61,90,0.15)",img:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=900&q=85"},
   };
-  const img=document.getElementById("hero-bg-img");
-  if(img) img.src=heroImgs[CW]||heroImgs[1];
+  const ps=phaseStyles[CW]||phaseStyles[1];
+  const bgGrad=document.getElementById("hero-bg-gradient");
+  const blobEl=document.getElementById("hero-blob");
+  const imgEl=document.getElementById("hero-bg-img");
+  if(bgGrad) bgGrad.style.background=ps.grad;
+  if(blobEl) blobEl.style.background=`radial-gradient(circle,${ps.blob},transparent 70%)`;
+  if(imgEl){
+    imgEl.style.opacity="0";
+    imgEl.onerror=()=>imgEl.style.display="none";
+    imgEl.onload=()=>imgEl.style.opacity="1";
+    imgEl.src=ps.img;
+  }
+  const weekPill=document.getElementById("hero-week-pill");
+  if(weekPill) weekPill.textContent=`Week ${CW} of 8`;
 
   const groups=buildExercises();
   const allEx=groups.flatMap(g=>g.items);
@@ -1372,9 +1747,9 @@ function renderWorkout(){
       const row=document.createElement("div");
       row.style.cssText="display:flex;align-items:center;gap:10px;padding:10px 12px";
       row.innerHTML=`
-        <div style="width:52px;height:52px;border-radius:12px;background:${ex.col}15;border:1px solid ${ex.col}22;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center">
-          <img src="${IMGS[ex.img]||''}" style="width:44px;height:44px;object-fit:contain;opacity:${done?0.3:1}"/>
-        </div>
+          <div style="width:52px;height:52px;border-radius:12px;background:${ex.col}15;border:1px solid ${ex.col}22;flex-shrink:0;display:flex;align-items:center;justify-content:center;opacity:${done?0.3:1}">
+            ${getExerciseIcon(ex.img, ex.col)}
+          </div>
         <div style="flex:1;min-width:0">
           <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(ex.name+' exercise form')}" target="_blank"
             style="font-size:13px;font-weight:700;color:${done?"#353860":ex.col};text-decoration:none;opacity:${done?0.5:1};${done?"text-decoration:line-through":""}">
@@ -1869,7 +2244,23 @@ function logWeight(){
   showToast("⚖ Weight logged & synced");
 }
 
-// ── DEFICIT ───────────────────────────────────────────────────────────────────
+// ── PROGRAM START DATE ────────────────────────────────────────────────────────
+function getProgramStart(){
+  let start = localStorage.getItem("af6_program_start");
+  if(!start){
+    // First time — set today as start
+    start = new Date().toISOString().split("T")[0];
+    localStorage.setItem("af6_program_start", start);
+  }
+  return new Date(start);
+}
+
+function getDayNumber(){
+  const start = getProgramStart();
+  const today = new Date();
+  const diff = Math.floor((today - start) / (1000*60*60*24));
+  return diff + 1; // Day 1 on start date
+}
 function updateDeficit(){
   const food=parseInt(document.getElementById("def-food").value);
   const burn=parseInt(document.getElementById("def-burn").value);
@@ -1880,30 +2271,164 @@ function updateDeficit(){
   const tdee=Math.round((10*wt+6.25*175-5*30+5)*1.375);
   const deficit=(tdee+burn)-food;
   const kpw=((deficit*7)/7700).toFixed(2);
-  const days=wt>70&&deficit>0?Math.round(((wt-70)*7700)/deficit):0;
+  const totalDaysNeeded=wt>70&&deficit>0?Math.round(((wt-70)*7700)/deficit):0;
+  const daysElapsed=getDayNumber()-1;
+  const daysRemaining=Math.max(0,totalDaysNeeded-daysElapsed);
   document.getElementById("def-deficit").textContent=deficit>0?deficit:0;
   document.getElementById("def-weekly").textContent=deficit>0?kpw+"kg":"—";
-  document.getElementById("def-days").textContent=days>0?days:"—";
+  document.getElementById("def-days").textContent=daysRemaining>0?daysRemaining:"—";
+  renderDeficitLiveData();
+}
+
+function renderDeficitLiveData(){
+  // Program day counter
+  const dayNum = getDayNumber();
+  const dayEl = document.getElementById("def-program-day");
+  if(dayEl) dayEl.textContent = dayNum;
+  // Live weight from WLOG
+  const curWeight=WLOG.length?WLOG[WLOG.length-1].w:null;
+  const startWeight=WLOG.length?WLOG[0].w:null;
+  const lostKg=curWeight&&startWeight?(startWeight-curWeight).toFixed(2):null;
+
+  const liveWt=document.getElementById("def-live-weight");
+  const liveLost=document.getElementById("def-live-lost");
+  if(liveWt) liveWt.textContent=curWeight?curWeight+"":"—";
+  if(liveLost) liveLost.textContent=lostKg?lostKg:"—";
+
+  // Auto-sync weight slider to latest log
+  if(curWeight){
+    const slider=document.getElementById("def-wt");
+    if(slider){ slider.value=curWeight; updateDeficitSliders(); }
+  }
+
+  // Weekly burns from SNAPS
+  const burnEl=document.getElementById("def-weekly-burns");
+  if(!burnEl) return;
+  burnEl.innerHTML="";
+  let totalBurn=0, weeksWithData=0;
+  PROG.forEach(p=>{
+    const snaps=SNAPS[p.w]||[];
+    const weekTotal=snaps.reduce((s,sn)=>s+(sn.active||0),0);
+    if(weekTotal>0){ totalBurn+=weekTotal; weeksWithData++; }
+    const isCur=p.w===CW;
+    const hit=weekTotal>=p.tMin;
+    const div=document.createElement("div");
+    div.style.cssText=`display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:10px;background:${isCur?"rgba(200,255,0,0.06)":"rgba(255,255,255,0.02)"};border:1px solid ${hit?"rgba(200,255,0,0.2)":isCur?"rgba(200,255,0,0.1)":"rgba(255,255,255,0.04)"}`;
+    div.innerHTML=`
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:800;color:${p.col}">W${p.w}</span>
+        <span style="font-size:9px;color:#6870a0">${p.name}</span>
+        ${isCur?`<span style="font-size:8px;font-weight:800;color:#ff6535;background:rgba(255,107,53,0.12);border-radius:20px;padding:1px 6px">NOW</span>`:""}
+        ${hit?`<span style="font-size:8px;font-weight:800;color:#c8ff00;background:rgba(200,255,0,0.1);border-radius:20px;padding:1px 6px">✓</span>`:""}
+      </div>
+      <div style="text-align:right">
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:900;color:${weekTotal>0?(hit?"#c8ff00":"#ff6535"):"#353860"}">${weekTotal>0?weekTotal+"":"—"}</span>
+        <span style="font-size:9px;color:#353860;margin-left:3px">kcal</span>
+      </div>`;
+    burnEl.appendChild(div);
+  });
+
+  // Avg weekly burn
+  const avgBurn=weeksWithData?Math.round(totalBurn/weeksWithData):0;
+  const liveBurn=document.getElementById("def-live-burn");
+  if(liveBurn) liveBurn.textContent=avgBurn>0?avgBurn:"—";
+
+  // Update burn slider to match avg
+  if(avgBurn>0){
+    const bslider=document.getElementById("def-burn");
+    if(bslider){ bslider.value=Math.min(avgBurn,1000); }
+  }
+}
+
+function updateDeficitSliders(){
+  const food=parseInt(document.getElementById("def-food").value);
+  const burn=parseInt(document.getElementById("def-burn").value);
+  const wt=parseFloat(document.getElementById("def-wt").value);
+  document.getElementById("def-food-val").textContent=food+" kcal";
+  document.getElementById("def-burn-val").textContent=burn+" kcal";
+  document.getElementById("def-wt-val").textContent=wt.toFixed(1)+" kg";
+  const tdee=Math.round((10*wt+6.25*175-5*30+5)*1.375);
+  const deficit=(tdee+burn)-food;
+  const kpw=((deficit*7)/7700).toFixed(2);
+  const totalDaysNeeded2=wt>70&&deficit>0?Math.round(((wt-70)*7700)/deficit):0;
+  const daysElapsed2=getDayNumber()-1;
+  const daysRemaining2=Math.max(0,totalDaysNeeded2-daysElapsed2);
+  document.getElementById("def-deficit").textContent=deficit>0?deficit:0;
+  document.getElementById("def-weekly").textContent=deficit>0?kpw+"kg":"—";
+  document.getElementById("def-days").textContent=daysRemaining2>0?daysRemaining2:"—";
+}
+
+// ── PROGRESS PHOTOS ───────────────────────────────────────────────────────────
+let PROGRESS_PHOTOS = lsGet("af6_progress_photos",{});
+
+function renderProgressPhotosGrid(){
+  const grid=document.getElementById("progress-photos-grid");
+  if(!grid) return;
+  grid.innerHTML="";
+  for(let w=1;w<=8;w++){
+    const p=PROG[w-1];
+    const photo=PROGRESS_PHOTOS[w];
+    const isCur=w===CW;
+    const cell=document.createElement("div");
+    cell.style.cssText="position:relative;aspect-ratio:1;border-radius:12px;overflow:hidden;cursor:pointer";
+    if(photo){
+      cell.innerHTML=`
+        <img src="${photo}" style="width:100%;height:100%;object-fit:cover"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,18,0.8),transparent 50%)"></div>
+        <div style="position:absolute;bottom:4px;left:0;right:0;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:9px;font-weight:800;color:${p.col}">W${w}</div>
+        ${isCur?`<div style="position:absolute;top:4px;right:4px;width:6px;height:6px;border-radius:50%;background:#ff6535"></div>`:""}`;
+    } else {
+      cell.innerHTML=`
+        <div style="width:100%;height:100%;background:${isCur?"rgba(200,255,0,0.08)":"#13151f"};border:1px solid ${isCur?"rgba(200,255,0,0.3)":"rgba(255,255,255,0.06)"};border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px">
+          <span style="font-size:16px">${isCur?"📸":"+"}</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:8px;font-weight:800;color:${isCur?"#c8ff00":"#353860"}">W${w}</span>
+        </div>`;
+      cell.onclick=()=>triggerProgressPhotoUpload(w);
+    }
+    if(photo) cell.onclick=()=>triggerProgressPhotoUpload(w);
+    grid.appendChild(cell);
+  }
+}
+
+function triggerProgressPhotoUpload(week){
+  const inp=document.createElement("input");
+  inp.type="file"; inp.accept="image/*";
+  inp.onchange=async()=>{
+    const file=inp.files[0]; if(!file) return;
+    showToast("☁ Uploading W"+week+" photo...",5000);
+    try{
+      const url=await uploadToCloudinary(file,"progress-photos");
+      if(url){
+        PROGRESS_PHOTOS[week]=url;
+        lsSet("af6_progress_photos",PROGRESS_PHOTOS);
+        if(sb.uid){
+          const tbl=await sb.from("progress_photos");
+          await tbl.insert({user_id:sb.uid,week,photo_url:url});
+        }
+        renderProgressPhotosGrid();
+        showToast("✅ W"+week+" photo saved!");
+      }
+    }catch(e){ showToast("Upload failed. Try again."); }
+  };
+  inp.click();
 }
 
 // ── HEADER GREETING ───────────────────────────────────────────────────────────
 function setGreeting(){
   const h=new Date().getHours();
-  const g=h<5?"Late night, Arun":h<12?"Good morning, Arun":h<17?"Good afternoon, Arun":"Good evening, Arun";
+  const g=h<5?"Let's go, Arun 🌙":h<12?"Let's go, Arun 🔥":h<17?"Let's go, Arun ⚡":"Let's go, Arun 💪";
   document.getElementById("hdr-greeting").textContent=g;
 }
 
 // ── SPLASH ────────────────────────────────────────────────────────────────────
 function hideSplash(){
   setTimeout(()=>{
-    document.getElementById("splash-circle").style.strokeDashoffset="0";
-  },300);
-  setTimeout(()=>{
     const splash=document.getElementById("splash");
+    if(!splash) return;
     splash.style.transition="opacity 0.5s ease";
     splash.style.opacity="0";
     setTimeout(()=>splash.style.display="none",500);
-  },1800);
+  },1600);
 }
 
 // ── AUTH FUNCTIONS ────────────────────────────────────────────────────────────
@@ -2012,6 +2537,7 @@ window.onload=()=>{
   loadFoodToday();
   renderWeight();
   updateDeficit();
+  renderDeficitLiveData();
   switchTab("workout");
   document.addEventListener("touchstart",()=>{
     try{new(window.AudioContext||window.webkitAudioContext)();}catch{}
@@ -2026,5 +2552,4 @@ window.onload=()=>{
   }
 };
 </script>
-</body>
 </body></html>
