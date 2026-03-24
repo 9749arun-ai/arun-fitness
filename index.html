@@ -2506,10 +2506,8 @@ function renderProgressPhotosGrid(){
 }
 
 function deleteProgressPhoto(week, angle){
-  if(!confirm(`Delete W${week} ${angle} photo?`)) return;
   if(PROGRESS_PHOTOS[week]) delete PROGRESS_PHOTOS[week][angle];
   lsSet("af6_progress_photos", PROGRESS_PHOTOS);
-  // Remove from Supabase
   if(sb.uid){
     sb.from("progress_photos").then(tbl=>{
       tbl.eq("user_id",sb.uid).eq("week",week).eq("exercise_key",angle).delete().catch(()=>{});
@@ -2519,6 +2517,8 @@ function deleteProgressPhoto(week, angle){
   renderProgressPhotosGrid();
   showToast(`W${week} ${angle} deleted`);
 }
+
+function openLightbox(url, label){
   const lb = document.getElementById("lightbox");
   const img = document.getElementById("lightbox-img");
   const lbl = document.getElementById("lightbox-label");
@@ -2661,13 +2661,28 @@ function setGreeting(){
 
 // ── SPLASH ────────────────────────────────────────────────────────────────────
 function hideSplash(){
+  const splash = document.getElementById("splash");
+  if(!splash) return;
   setTimeout(()=>{
-    const splash=document.getElementById("splash");
-    if(!splash) return;
-    splash.style.transition="opacity 0.4s ease";
-    splash.style.opacity="0";
-    setTimeout(()=>splash.style.display="none",400);
-  },1400);
+    splash.style.transition = "opacity 0.5s ease";
+    splash.style.opacity = "0";
+    setTimeout(()=>{
+      splash.style.display = "none";
+      const cachedToken = localStorage.getItem("af_token");
+      const cachedUid = localStorage.getItem("af_uid");
+      const lastLogin = localStorage.getItem("af_last_login");
+      const sessionValid = cachedToken && cachedUid && lastLogin &&
+        (Date.now() - parseInt(lastLogin)) < 24*60*60*1000;
+      if(sessionValid){
+        sb.token = cachedToken; sb.uid = cachedUid;
+        showApp();
+        updateSyncBadge(true);
+        setTimeout(()=>afterAuth().catch(()=>updateSyncBadge(false)), 300);
+      } else {
+        document.getElementById("auth-screen").style.display = "flex";
+      }
+    }, 500);
+  }, 1800);
 }
 
 // ── AUTH FUNCTIONS ────────────────────────────────────────────────────────────
@@ -2812,7 +2827,7 @@ async function afterAuth(){
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 window.onload=()=>{
-  hideSplash();
+  hideSplash(); // handles session check + shows auth or app after splash
   setGreeting();
   buildWeekStrip();
   buildDayStrip();
@@ -2825,21 +2840,6 @@ window.onload=()=>{
   document.addEventListener("touchstart",()=>{
     try{new(window.AudioContext||window.webkitAudioContext)();}catch{}
   },{once:true});
-  const cachedToken=localStorage.getItem("af_token");
-  const cachedUid=localStorage.getItem("af_uid");
-  const lastLogin=localStorage.getItem("af_last_login");
-  const oneDayMs=24*60*60*1000;
-  const sessionValid=cachedToken&&cachedUid&&lastLogin&&(Date.now()-parseInt(lastLogin))<oneDayMs;
-  if(sessionValid){
-    sb.token=cachedToken; sb.uid=cachedUid;
-    showApp();
-    updateSyncBadge(true);
-    setTimeout(()=>afterAuth().catch(()=>updateSyncBadge(false)),800);
-  } else {
-    setTimeout(()=>{
-      document.getElementById("auth-screen").style.display="flex";
-    },1900);
-  }
 };
 </script>
 </body></html>
