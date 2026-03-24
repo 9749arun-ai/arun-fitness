@@ -39,23 +39,25 @@ tailwind.config = {
 input[type=range]{-webkit-appearance:none;height:4px;border-radius:2px;outline:none;}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;cursor:pointer;border:2px solid #0a0c12;}
 body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-font-smoothing:antialiased;}
+.muscle-glow{filter:drop-shadow(0 0 4px currentColor);}
+.hero-img{width:100%;height:100%;object-fit:cover;filter:grayscale(30%);opacity:0.7;}
 </style>
 </head>
 <body class="select-none">
 
-<!-- SPLASH SCREEN -->
+<!-- SPLASH -->
 <div id="splash" class="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-navy" style="background:radial-gradient(ellipse at 50% 40%,rgba(200,255,0,0.08),transparent 70%),#0a0c12">
   <div style="animation:fadeUp 0.8s ease 0.2s both">
     <div class="text-center mb-8">
-      <div class="text-lime text-6xl mb-4" id="splash-ring">
-        <svg width="90" height="90" viewBox="0 0 90 90" style="transform:rotate(-90deg)">
-          <circle cx="45" cy="45" r="38" fill="none" stroke="rgba(200,255,0,0.1)" stroke-width="5"/>
-          <circle cx="45" cy="45" r="38" fill="none" stroke="#c8ff00" stroke-width="5"
-            stroke-dasharray="239" stroke-dashoffset="239" stroke-linecap="round"
-            id="splash-circle" style="transition:stroke-dashoffset 1.2s ease"/>
+      <div class="relative w-32 h-32 mx-auto flex items-center justify-center mb-4">
+        <div class="absolute inset-0 border-4 border-lime rounded-full animate-ping opacity-20"></div>
+        <div class="absolute inset-2 border-2 border-lime rounded-full animate-pulse"></div>
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+          <path d="M10 30 L25 15 L35 25 L50 10" stroke="#c8ff00" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M10 45 L25 30 L35 40 L50 25" stroke="#c8ff00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
         </svg>
       </div>
-      <h1 class="font-headline text-4xl font-black uppercase tracking-tight text-lime" style="letter-spacing:-1px">ARUN</h1>
+      <h1 class="font-headline text-4xl font-black uppercase tracking-tight text-lime" style="letter-spacing:-1px;font-style:italic">ARUN</h1>
       <p class="text-sub text-xs uppercase tracking-widest mt-1 font-bold">8 Week Shred Program</p>
     </div>
     <div class="text-center">
@@ -66,38 +68,40 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
 
 <!-- HEADER -->
 <header class="fixed w-full top-0 z-50 px-5 py-3 flex justify-between items-center" style="background:rgba(10,12,18,0.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05);">
-  <div>
-    <h1 class="font-headline font-black text-lg uppercase tracking-tight text-lime leading-none" style="font-style:italic">Arun Fitness</h1>
-    <p class="text-[9px] uppercase tracking-widest text-sub font-bold mt-0.5" id="hdr-greeting">Good Morning</p>
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-lime/30">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMXFqVBug0XkrW-75HoBs7wwv8e_k9bPOOL-9dG3RT17ug9yqVlWZPzWsiEN7bwmebVbR3uleKCR639zqhg8SJnU4yZAfxpFqSVJtOuhf37oB3aFQh5sQ3qCdhH-Pc5PEatvAsfnFVAhTWieA-uzXKxn--FOX5SwrI70sHbIGiTmDsU-KE-ZfE-ybaRghiqEXJiGsDdaJPLhHjFYoDwOapUr1r_ZtrlKlQvhBum6_mK8Rly9mUfpdCESGMXYSe_1nzlqBc7gc7Gok" class="w-full h-full object-cover"/>
+    </div>
+    <div>
+      <h1 class="font-headline font-black text-lg uppercase tracking-tight text-lime leading-none" style="font-style:italic">Arun Fitness</h1>
+      <p class="text-[9px] uppercase tracking-widest text-sub font-bold mt-0.5" id="hdr-greeting">Good Morning</p>
+    </div>
   </div>
   <div class="flex items-center gap-3">
     <div class="text-right">
       <span class="block text-sm font-black font-headline" id="hdr-weight">76.65kg</span>
       <span class="block text-[8px] text-lime uppercase font-bold">→ 70kg Goal</span>
     </div>
-    <div class="flex flex-col items-end gap-0.5">
-      <span id="sync-badge" class="text-[8px] font-black uppercase tracking-wider text-dim">☁ Connecting</span>
-      <div class="w-9 h-9 rounded-full flex items-center justify-center text-lime" style="background:rgba(200,255,0,0.1);border:1px solid rgba(200,255,0,0.2)">
-        <span class="ms text-lg">notifications</span>
+    <div class="flex flex-col items-center">
+      <span id="sync-badge" class="text-[7px] font-black uppercase text-dim">☁ Sync</span>
+      <div class="w-8 h-8 rounded-full flex items-center justify-center text-lime" style="background:rgba(200,255,0,0.1);border:1px solid rgba(200,255,0,0.2)">
+        <span class="ms text-base">notifications</span>
       </div>
     </div>
   </div>
 </header>
 
 <main class="pt-20 pb-28">
-
 <!-- ═══ WORKOUT TAB ═══════════════════════════════════════════════════════ -->
 <div class="tab active px-4 space-y-5" id="tab-workout">
 
-  <!-- Hero card -->
-  <section class="relative overflow-hidden rounded-2xl h-44 flex flex-col justify-end p-5 group" style="background:#13151f">
-    <div class="absolute inset-0 overflow-hidden">
-      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,255,0,0.08),transparent 60%),linear-gradient(to top,#0a0c12 0%,rgba(10,12,18,0.3) 50%,transparent 100%)"></div>
-      <div style="position:absolute;top:-20px;right:-20px;width:180px;height:180px;background:radial-gradient(circle,rgba(200,255,0,0.12),transparent 70%)"></div>
-    </div>
-    <div class="relative z-10">
-      <span class="inline-block px-2.5 py-0.5 mb-2 rounded-full text-[9px] font-black tracking-widest uppercase text-lime" style="background:rgba(200,255,0,0.12);border:1px solid rgba(200,255,0,0.2)" id="hero-tag">W1 · SHRED</span>
-      <h2 class="font-headline text-2xl font-black text-txt leading-none" id="hero-name">Foundation</h2>
+  <!-- Hero card — real gym photo per week phase -->
+  <section class="relative overflow-hidden rounded-2xl h-52 flex flex-col justify-end" style="margin:0 -1px">
+    <img id="hero-bg-img" class="hero-img absolute inset-0" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80" alt="gym"/>
+    <div class="absolute inset-0" style="background:linear-gradient(to top,#0a0c12 0%,rgba(10,12,18,0.5) 50%,transparent 100%)"></div>
+    <div class="relative z-10 p-5">
+      <span class="inline-block px-3 py-1 mb-2 rounded-full text-[9px] font-black tracking-widest uppercase text-lime" style="background:rgba(200,255,0,0.15);border:1px solid rgba(200,255,0,0.3)" id="hero-tag">W1 · FOUNDATION</span>
+      <h2 class="font-headline text-3xl font-black text-txt leading-none italic" id="hero-name">Foundation</h2>
       <div class="flex items-center gap-4 mt-1.5 text-sub font-bold text-[9px] uppercase tracking-wide">
         <span><span class="ms text-xs align-middle mr-1">schedule</span><span id="hero-rest">45s Rest</span></span>
         <span><span class="ms text-xs align-middle mr-1">local_fire_department</span><span id="hero-cal">450–500 kcal target</span></span>
@@ -684,46 +688,37 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
       <div style="background:rgba(255,61,90,0.06);padding:14px 14px 10px;border-bottom:1px solid rgba(255,61,90,0.1)">
         <div style="display:flex;align-items:center;gap:10px">
           <span style="font-size:28px">🔴</span>
-          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:900;color:#ff3d5a">The Person Who Quit</div><div style="font-size:9px;color:#6870a0;font-weight:700">Started strong in January → Gave up by March</div></div>
-        </div>
-      </div>
-      <div style="padding:14px"><p style="font-size:11px;color:#6870a0;line-height:1.7">This is the story of 80% of people. Motivated in week 1. By week 3, life gets busy. By week 6, they feel so guilty about missed sessions that they quit entirely. The mistake? All-or-nothing thinking. Missing one session isn't failure. Quitting because you missed one — that's failure. The people who transform aren't the ones who never miss a day. They're the ones who always come back.</p></div>
-    </div>
-  </div>
-
-</div>
 
 </main>
 
-<!-- BOTTOM NAV -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-end px-2 pb-6 pt-2" style="background:rgba(24,27,39,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,0.06);border-radius:24px 24px 0 0">
-  <button onclick="switchTab('workout')" id="nav-workout" class="nav-btn flex flex-col items-center justify-center px-2 py-2 rounded-2xl transition-all active:scale-90">
-    <span class="ms text-xl text-sub" id="ni-workout">fitness_center</span>
-    <span class="text-[6px] uppercase font-bold tracking-widest mt-0.5 text-sub" id="nl-workout">Workout</span>
+<!-- BOTTOM NAV — stitch-5 style -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3" style="background:rgba(17,19,26,0.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,0.06);border-radius:2.5rem 2.5rem 0 0;box-shadow:0 -10px 30px rgba(200,255,0,0.08)">
+  <button onclick="switchTab('workout')" id="nav-workout" class="flex flex-col items-center gap-0.5 px-3 py-2 rounded-2xl transition-all active:scale-90">
+    <span class="ms text-2xl" id="ni-workout" style="color:#c8ff00;filter:drop-shadow(0 0 8px rgba(200,255,0,0.5))">fitness_center</span>
+    <span class="text-[9px] uppercase font-bold tracking-widest" id="nl-workout" style="color:#c8ff00">Workout</span>
   </button>
-  <button onclick="switchTab('food')" id="nav-food" class="nav-btn flex flex-col items-center justify-center px-2 py-2 rounded-2xl transition-all active:scale-90">
-    <span class="ms text-xl text-sub" id="ni-food">restaurant</span>
-    <span class="text-[6px] uppercase font-bold tracking-widest mt-0.5 text-sub" id="nl-food">Food</span>
+  <button onclick="switchTab('food')" id="nav-food" class="flex flex-col items-center gap-0.5 px-3 py-2 rounded-2xl transition-all active:scale-90">
+    <span class="ms text-2xl" id="ni-food" style="color:#353860">restaurant</span>
+    <span class="text-[9px] uppercase font-bold tracking-widest" id="nl-food" style="color:#353860">Food</span>
   </button>
-  <button onclick="switchTab('progress')" id="nav-progress" class="nav-btn flex flex-col items-center justify-center px-2 py-2 rounded-2xl transition-all active:scale-90">
-    <span class="ms text-xl text-sub" id="ni-progress">insights</span>
-    <span class="text-[6px] uppercase font-bold tracking-widest mt-0.5 text-sub" id="nl-progress">Progress</span>
+  <button onclick="switchTab('progress')" id="nav-progress" class="flex flex-col items-center gap-0.5 px-3 py-2 rounded-2xl transition-all active:scale-90">
+    <span class="ms text-2xl" id="ni-progress" style="color:#353860">insights</span>
+    <span class="text-[9px] uppercase font-bold tracking-widest" id="nl-progress" style="color:#353860">Progress</span>
   </button>
-  <button onclick="switchTab('weight')" id="nav-weight" class="nav-btn flex flex-col items-center justify-center px-2 py-2 rounded-2xl transition-all active:scale-90">
-    <span class="ms text-xl text-sub" id="ni-weight">scale</span>
-    <span class="text-[6px] uppercase font-bold tracking-widest mt-0.5 text-sub" id="nl-weight">Weight</span>
+  <button onclick="switchTab('weight')" id="nav-weight" class="flex flex-col items-center gap-0.5 px-3 py-2 rounded-2xl transition-all active:scale-90">
+    <span class="ms text-2xl" id="ni-weight" style="color:#353860">monitor_weight</span>
+    <span class="text-[9px] uppercase font-bold tracking-widest" id="nl-weight" style="color:#353860">Weight</span>
   </button>
-  <button onclick="switchTab('deficit')" id="nav-deficit" class="nav-btn flex flex-col items-center justify-center px-2 py-2 rounded-2xl transition-all active:scale-90">
-    <span class="ms text-xl text-sub" id="ni-deficit">local_fire_department</span>
-    <span class="text-[6px] uppercase font-bold tracking-widest mt-0.5 text-sub" id="nl-deficit">Deficit</span>
+  <button onclick="switchTab('deficit')" id="nav-deficit" class="flex flex-col items-center gap-0.5 px-3 py-2 rounded-2xl transition-all active:scale-90">
+    <span class="ms text-2xl" id="ni-deficit" style="color:#353860">local_fire_department</span>
+    <span class="text-[9px] uppercase font-bold tracking-widest" id="nl-deficit" style="color:#353860">Burn</span>
   </button>
-  <button onclick="switchTab('knowledge')" id="nav-knowledge" class="nav-btn flex flex-col items-center justify-center px-2 py-2 rounded-2xl transition-all active:scale-90">
-    <span class="ms text-xl text-sub" id="ni-knowledge">school</span>
-    <span class="text-[6px] uppercase font-bold tracking-widest mt-0.5 text-sub" id="nl-knowledge">Learn</span>
+  <button onclick="switchTab('knowledge')" id="nav-knowledge" class="flex flex-col items-center gap-0.5 px-3 py-2 rounded-2xl transition-all active:scale-90">
+    <span class="ms text-2xl" id="ni-knowledge" style="color:#353860">school</span>
+    <span class="text-[9px] uppercase font-bold tracking-widest" id="nl-knowledge" style="color:#353860">Learn</span>
   </button>
 </nav>
 
-<script>
 // ── EXERCISE IMAGES ─────────────────────────────────────────────────────────
 const IMGS = {
   "flat_press": "data:image/png;base64,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",
@@ -1183,13 +1178,15 @@ function switchTab(id){
     const ni=document.getElementById("ni-"+t);
     const nl=document.getElementById("nl-"+t);
     if(t===id){
-      ni.style.color="#c8ff00"; ni.classList.add("ms-fill");
+      ni.style.color="#c8ff00";
+      ni.style.filter="drop-shadow(0 0 8px rgba(200,255,0,0.5))";
+      ni.classList.add("ms-fill");
       nl.style.color="#c8ff00";
-      document.getElementById("nav-"+t).style.background="rgba(200,255,0,0.1)";
     } else {
-      ni.style.color="#6870a0"; ni.classList.remove("ms-fill");
-      nl.style.color="#6870a0";
-      document.getElementById("nav-"+t).style.background="transparent";
+      ni.style.color="#353860";
+      ni.style.filter="none";
+      ni.classList.remove("ms-fill");
+      nl.style.color="#353860";
     }
   });
   if(id==="progress") renderProgress();
@@ -1304,6 +1301,20 @@ function renderWorkout(){
   document.getElementById("hero-rest").textContent=`${p.rest}s Rest`;
   document.getElementById("hero-cal").textContent=`${p.tMin}–${p.tMax} kcal target`;
   document.getElementById("snap-week-label").textContent=CW;
+
+  // Hero image per week phase
+  const heroImgs={
+    1:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80",
+    2:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80",
+    3:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&q=80",
+    4:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&q=80",
+    5:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80",
+    6:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80",
+    7:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=80",
+    8:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=80",
+  };
+  const img=document.getElementById("hero-bg-img");
+  if(img) img.src=heroImgs[CW]||heroImgs[1];
 
   const groups=buildExercises();
   const allEx=groups.flatMap(g=>g.items);
@@ -2016,4 +2027,4 @@ window.onload=()=>{
 };
 </script>
 </body>
-</html>
+</body></html>
