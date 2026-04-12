@@ -1745,8 +1745,14 @@ function updateSyncBadge(ok) {
 
 async function manualResync() {
   if (!sb.uid) { showToast("Not logged in"); return; }
-  showToast("🔄 Syncing from cloud...", 5000);
+  showToast("🔄 Refreshing session...", 5000);
   updateSyncBadge(false);
+  try {
+    // Refresh token first — it may be expired
+    const refreshed = await sb.refreshSession();
+    if(refreshed) showToast("🔄 Token refreshed, syncing...", 5000);
+    else showToast("🔄 Syncing with current token...", 5000);
+  } catch(e) { console.warn("Refresh failed:", e); }
   try {
     await syncFromCloud();
     WLOG = lsGet(SK.weight,[{d:"15 Mar",w:78}]);
@@ -2946,7 +2952,17 @@ function hideSplash(){
         sb.token = cachedToken; sb.uid = cachedUid;
         showApp();
         updateSyncBadge(true);
-        setTimeout(()=>afterAuth().catch(()=>updateSyncBadge(false)), 300);
+        // Refresh token before syncing — cached token may be expired
+        setTimeout(async ()=>{
+          try {
+            const refreshed = await sb.refreshSession();
+            if(!refreshed){
+              // Token refresh failed — try using cached token anyway
+              console.warn("Token refresh failed, using cached token");
+            }
+          } catch(e) { console.warn("Refresh error:", e); }
+          try { await afterAuth(); } catch(e) { updateSyncBadge(false); }
+        }, 300);
       } else {
         document.getElementById("auth-screen").style.display = "flex";
       }
