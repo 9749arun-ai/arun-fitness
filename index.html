@@ -1651,15 +1651,24 @@ async function syncFromCloud() {
     }
   } catch(e) { console.warn("Workout sync error:", e); syncOk = false; }
 
-  // Progress photos
+  // Progress photos — table has no angle column, angles stored as JSON in photo_url
   try {
     const pp = await (await sb.from("progress_photos")).eq("user_id", sb.uid).select();
     if (pp && pp.length) {
       const merged = {};
       pp.forEach(r => {
+        if(!r.photo_url) return;
+        // Try parsing photo_url as JSON (new format: {Front:url, Back:url, ...})
+        try {
+          const angles = JSON.parse(r.photo_url);
+          if(typeof angles === "object" && !Array.isArray(angles)){
+            merged[r.week] = angles;
+            return;
+          }
+        } catch(e){}
+        // Fallback: plain URL (old format — single photo per week)
         if(!merged[r.week]) merged[r.week] = {};
-        const angle = r.exercise_key || "Front";
-        if(r.photo_url) merged[r.week][angle] = r.photo_url;
+        merged[r.week]["Front"] = r.photo_url;
       });
       PROGRESS_PHOTOS = merged;
       lsSet("af6_progress_photos", PROGRESS_PHOTOS);
@@ -2796,8 +2805,16 @@ function deleteProgressPhoto(week, angle){
   if(PROGRESS_PHOTOS[week]) delete PROGRESS_PHOTOS[week][angle];
   lsSet("af6_progress_photos", PROGRESS_PHOTOS);
   if(sb.uid){
-    sb.from("progress_photos").then(tbl=>{
-      tbl.eq("user_id",sb.uid).eq("week",week).eq("exercise_key",angle).delete().catch(()=>{});
+    // Re-save the whole week's photos as JSON (no exercise_key column)
+    const remaining = PROGRESS_PHOTOS[week] || {};
+    const hasPhotos = Object.keys(remaining).length > 0;
+    sb.from("progress_photos").then(async tbl=>{
+      try {
+        await (await sb.from("progress_photos")).eq("user_id",sb.uid).eq("week",parseInt(week)).delete();
+        if(hasPhotos){
+          await (await sb.from("progress_photos")).insert({user_id:sb.uid, week:parseInt(week), photo_url:JSON.stringify(remaining)});
+        }
+      } catch(e){}
     });
   }
   renderPhotoWeekStrip();
@@ -2821,27 +2838,24 @@ async function pushPhotosToCloud(){
   for(const week of weeks){
     const angles = photos[week];
     if(!angles || typeof angles !== "object") continue;
-    for(const [angle, url] of Object.entries(angles)){
-      if(!url) continue;
+    // Store all angles as JSON string in photo_url (table has no angle column)
+    const photoJson = JSON.stringify(angles);
+    try {
+      // Delete existing row for this week
       try {
-        // Check if already exists
-        const existing = await (await sb.from("progress_photos")).eq("user_id",sb.uid).eq("week",parseInt(week)).eq("exercise_key",angle).select();
-        if(existing && existing.length){
-          pushed++; // already there
-          continue;
-        }
-        // Insert
-        const tbl = await sb.from("progress_photos");
-        const result = await tbl.insert({user_id:sb.uid, week:parseInt(week), photo_url:url, exercise_key:angle});
-        if(result) pushed++;
-        else failed++;
-      } catch(e){
-        console.warn(`Failed to push W${week} ${angle}:`, e);
-        failed++;
-      }
+        await (await sb.from("progress_photos")).eq("user_id",sb.uid).eq("week",parseInt(week)).delete();
+      } catch(e){}
+      // Insert new row with JSON angles in photo_url
+      const tbl = await sb.from("progress_photos");
+      const result = await tbl.insert({user_id:sb.uid, week:parseInt(week), photo_url:photoJson});
+      if(result) pushed++;
+      else failed++;
+    } catch(e){
+      console.warn(`Failed to push W${week}:`, e);
+      failed++;
     }
   }
-  showToast(`☁ Done! ${pushed} photos pushed, ${failed} failed`, 5000);
+  showToast(`☁ Done! ${pushed} weeks pushed, ${failed} failed`, 5000);
 }
 
 function openLightbox(url, label){
@@ -2874,11 +2888,12 @@ async function triggerProgressPhotoUpload(week, angle){
         if(!PROGRESS_PHOTOS[week]) PROGRESS_PHOTOS[week] = {};
         PROGRESS_PHOTOS[week][angle] = url;
         lsSet("af6_progress_photos", PROGRESS_PHOTOS);
-        // Save to Supabase
+        // Save to Supabase — store all angles as JSON in photo_url
         if(sb.uid){
           try{
-            const tbl = await sb.from("progress_photos");
-            await tbl.insert({user_id:sb.uid, week:parseInt(week), photo_url:url, exercise_key:angle});
+            // Delete existing row for this week, then insert updated JSON
+            try { await (await sb.from("progress_photos")).eq("user_id",sb.uid).eq("week",parseInt(week)).delete(); } catch(e){}
+            await (await sb.from("progress_photos")).insert({user_id:sb.uid, week:parseInt(week), photo_url:JSON.stringify(PROGRESS_PHOTOS[week])});
           }catch(e){ console.warn("Supabase photo save:", e); }
         }
         renderPhotoWeekStrip();
