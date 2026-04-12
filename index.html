@@ -1745,14 +1745,41 @@ function updateSyncBadge(ok) {
 
 async function manualResync() {
   if (!sb.uid) { showToast("Not logged in"); return; }
-  showToast("🔄 Refreshing session...", 5000);
+  showToast("🔄 Refreshing session...", 8000);
   updateSyncBadge(false);
+
+  // Step 1: Try refresh token
+  let tokenStatus = "cached";
   try {
-    // Refresh token first — it may be expired
     const refreshed = await sb.refreshSession();
-    if(refreshed) showToast("🔄 Token refreshed, syncing...", 5000);
-    else showToast("🔄 Syncing with current token...", 5000);
-  } catch(e) { console.warn("Refresh failed:", e); }
+    if(refreshed) tokenStatus = "refreshed";
+  } catch(e) { tokenStatus = "refresh-failed"; }
+
+  // Step 2: Try each table individually and report results
+  const report = [];
+  const tables = [
+    {name:"weight_logs", query: async()=> await (await sb.from("weight_logs")).eq("user_id",sb.uid).select()},
+    {name:"food_logs", query: async()=> await (await sb.from("food_logs")).eq("user_id",sb.uid).select()},
+    {name:"workout_progress", query: async()=> await (await sb.from("workout_progress")).eq("user_id",sb.uid).select()},
+    {name:"progress_photos", query: async()=> await (await sb.from("progress_photos")).eq("user_id",sb.uid).select()},
+    {name:"calorie_snaps", query: async()=> await (await sb.from("calorie_snaps")).eq("user_id",sb.uid).select()},
+  ];
+
+  for(const t of tables){
+    try {
+      const data = await t.query();
+      report.push(`${t.name}: ${Array.isArray(data)?data.length:"?"} rows`);
+    } catch(e) {
+      report.push(`${t.name}: ERROR ${e.message}`);
+    }
+  }
+
+  // Step 3: Show debug info
+  const info = `Token: ${tokenStatus}\nUID: ${sb.uid?.slice(0,8)}...\n${report.join("\n")}`;
+  showToast(info, 10000);
+  console.log("SYNC DEBUG:", info);
+
+  // Step 4: Actually sync
   try {
     await syncFromCloud();
     WLOG = lsGet(SK.weight,[{d:"15 Mar",w:78}]);
@@ -1770,9 +1797,7 @@ async function manualResync() {
     renderProgressPhotosGrid();
     renderComparePills();
     updateSyncBadge(true);
-    showToast("✅ All data synced!");
   } catch(e) {
-    console.error("Manual sync failed:", e);
     updateSyncBadge(false);
     showToast("❌ Sync failed: " + e.message);
   }
