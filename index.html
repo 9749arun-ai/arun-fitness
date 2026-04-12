@@ -213,7 +213,6 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
       </div>
     </div>
   </section>
-  </section>
 
   <!-- Week selector -->
   <div class="flex gap-2 overflow-x-auto hide-scroll pb-1" id="week-strip"></div>
@@ -1195,94 +1194,262 @@ const IMGS = {
 
 // ── PROGRAM ──────────────────────────────────────────────────────────────────
 const PROG = [
-  {w:1,name:"Foundation", sets:3,reps:"12–15",rest:45,cardio:20,kcal:1400,tMin:450,tMax:500,tag:"SHRED",col:"#4d79ff"},
-  {w:2,name:"Deepen",     sets:3,reps:"12–15",rest:45,cardio:22,kcal:1400,tMin:500,tMax:550,tag:"SHRED",col:"#4d79ff"},
-  {w:3,name:"Activate",   sets:4,reps:"10–12",rest:50,cardio:25,kcal:1600,tMin:575,tMax:625,tag:"BURN", col:"#ff6535"},
-  {w:4,name:"Supersets",  sets:4,reps:"10–12",rest:40,cardio:25,kcal:1600,tMin:625,tMax:675,tag:"BURN", col:"#ff6535"},
-  {w:5,name:"Intensity",  sets:4,reps:"8–10", rest:60,cardio:28,kcal:1700,tMin:700,tMax:750,tag:"INTENSE",col:"#9966ff"},
-  {w:6,name:"Overload",   sets:4,reps:"8–10", rest:55,cardio:28,kcal:1700,tMin:750,tMax:800,tag:"INTENSE",col:"#9966ff"},
-  {w:7,name:"Peak",       sets:5,reps:"6–8",  rest:75,cardio:30,kcal:1600,tMin:825,tMax:875,tag:"PEAK",  col:"#00e5a0"},
-  {w:8,name:"Deload",     sets:3,reps:"12–15",rest:45,cardio:20,kcal:1500,tMin:450,tMax:500,tag:"RECOVER",col:"#6870a0"},
+  // W1-W3: Original PPL
+  {w:1,name:"Foundation", sets:3,reps:"12–15",rest:45,cardio:20,kcal:1400,tMin:450,tMax:500,tag:"SHRED",col:"#4d79ff",split:"ppl"},
+  {w:2,name:"Deepen",     sets:3,reps:"12–15",rest:45,cardio:22,kcal:1400,tMin:500,tMax:550,tag:"SHRED",col:"#4d79ff",split:"ppl"},
+  {w:3,name:"Activate",   sets:4,reps:"10–12",rest:50,cardio:25,kcal:1600,tMin:575,tMax:625,tag:"BURN", col:"#ff6535",split:"ppl"},
+  // W4-W8: Trainer plan — A/B alternating weeks
+  {w:4,name:"Lean A",     sets:3,reps:"10–12",rest:50,cardio:20,kcal:1600,tMin:600,tMax:650,tag:"LEAN·A",col:"#00c4bf",split:"trainer",ab:"A"},
+  {w:5,name:"Lean B",     sets:3,reps:"10–12",rest:50,cardio:20,kcal:1600,tMin:650,tMax:700,tag:"LEAN·B",col:"#9966ff",split:"trainer",ab:"B"},
+  {w:6,name:"Lean A",     sets:3,reps:"10–12",rest:50,cardio:22,kcal:1700,tMin:700,tMax:750,tag:"LEAN·A",col:"#00c4bf",split:"trainer",ab:"A"},
+  {w:7,name:"Lean B",     sets:4,reps:"8–10", rest:55,cardio:25,kcal:1700,tMin:750,tMax:800,tag:"LEAN·B",col:"#9966ff",split:"trainer",ab:"B"},
+  {w:8,name:"Peak Lean",  sets:3,reps:"10–12",rest:50,cardio:20,kcal:1600,tMin:650,tMax:700,tag:"PEAK",  col:"#00e5a0",split:"trainer",ab:"A"},
 ];
 
 // ── EXERCISE LIBRARY ─────────────────────────────────────────────────────────
 const LIB = {
+  // === CHEST ===
   chest:[
-    {slot:"Flat Press",   img:"flat_press",   col:"#4d79ff",v:["Chest Press Machine","Dumbbell Bench Press","Barbell Bench Press","Smith Machine Bench"]},
-    {slot:"Incline Press",img:"incline_press", col:"#4d79ff",v:["Incline Chest Machine","Incline Dumbbell Press","Low-High Cable Press","Incline Barbell"]},
-    {slot:"Fly / Cable",  img:"fly_cable",    col:"#4d79ff",v:["Pec Deck Fly Machine","Cable Crossover","Dumbbell Chest Fly","High-Low Cable Fly"]},
-    {slot:"Decline Press",img:"decline_press",col:"#4d79ff",v:["Decline Press Machine","Decline Dumbbell Press","Weighted Push Up","Cable Push Up"]},
+    {slot:"Incline DB Press",  img:"incline_press",col:"#4d79ff",v:["Incline Dumbbell Press","Incline Barbell Press","Incline Chest Machine","Low-High Cable Press"]},
+    {slot:"Decline DB Press",  img:"flat_press",   col:"#4d79ff",v:["Decline Dumbbell Press","Decline Barbell Press","Decline Machine Press","Cable Decline Press"]},
+    {slot:"Fly Machine",       img:"fly_cable",    col:"#4d79ff",v:["Fly Machine","Cable Crossover","Dumbbell Chest Fly","Pec Deck"]},
+    {slot:"Lying DB Press",    img:"flat_press",   col:"#4d79ff",v:["Lying Dumbbell Press","Flat Bench Press","Plated Chest Press","Smith Machine Bench"]},
+    {slot:"Incline BB Press",  img:"incline_press",col:"#4d79ff",v:["Incline Barbell Press","Incline Smith Press","Incline DB Press","Incline Chest Machine"]},
+    {slot:"Pushups",           img:"flat_press",   col:"#4d79ff",v:["Push Ups","Diamond Push Ups","Wide Push Ups","Weighted Push Ups"]},
   ],
+  // === SHOULDERS ===
   shoulders:[
-    {slot:"Overhead Press",img:"overhead_press",col:"#9966ff",v:["Shoulder Press Machine","Dumbbell Shoulder Press","Arnold Press","Smith Machine Press"]},
-    {slot:"Lateral Raise", img:"lateral_raise", col:"#9966ff",v:["Lateral Raise Machine","Dumbbell Lateral Raise","Cable Lateral Raise","Leaning Cable Lateral"]},
-    {slot:"Front Raise",   img:"front_raise",   col:"#9966ff",v:["Cable Front Raise","Dumbbell Front Raise","Plate Front Raise","EZ Bar Front Raise"]},
-    {slot:"Rear Delt",     img:"rear_delt",     col:"#9966ff",v:["Rear Delt Fly Machine","Reverse Pec Deck","Cable Face Pull","Bent Over DB Fly"]},
+    {slot:"OH DB Press",       img:"overhead_press",col:"#9966ff",v:["Overhead Dumbbell Press (elbows in)","Arnold Press","Dumbbell Shoulder Press","Machine Overhead Press"]},
+    {slot:"Lateral Raise",     img:"lateral_raise", col:"#9966ff",v:["Sitting Lateral DB Raise","Standing Lateral DB Raise","Cable Lateral Raise","Leaning Cable Lateral"]},
+    {slot:"Plate Lateral Twist",img:"lateral_raise",col:"#9966ff",v:["Plate Lateral Raise with Twist","Plate Front Raise","Dumbbell Front Raise","Cable Front Raise"]},
+    {slot:"Face Pull",         img:"face_pull",     col:"#9966ff",v:["Cable Face Pull (D-handle)","Rope Face Pull","Band Face Pull","Rear Delt Fly"]},
+    {slot:"OH Rod Press",      img:"overhead_press",col:"#9966ff",v:["Overhead Rod Press","Barbell Press","Smith Machine Press","Cable Upright Row"]},
+    {slot:"Shrugs",            img:"rdl",           col:"#9966ff",v:["Weighted Dumbbell Shrugs","Barbell Shrugs","Smith Machine Shrugs","Trap Bar Shrugs"]},
   ],
+  // === TRICEPS ===
   triceps:[
-    {slot:"Pushdown",     img:"pushdown",     col:"#ff5c9d",v:["Rope Tricep Pushdown","V-Bar Pushdown","Tricep Machine Pushdown","Reverse Grip Pushdown"]},
-    {slot:"Overhead Ext", img:"overhead_ext", col:"#ff5c9d",v:["Overhead Tricep Machine","Dumbbell Overhead Ext","Cable Overhead Ext","EZ Bar Overhead"]},
-    {slot:"Close Press",  img:"close_press",  col:"#ff5c9d",v:["Skull Crusher Machine","Tricep Dip Machine","Close Grip Press Machine","Close Grip DB Press"]},
+    {slot:"Cable Pulldown",    img:"pushdown",    col:"#ff5c9d",v:["Cable Pull Down for Triceps","Rope Tricep Pushdown","V-Bar Pushdown","Reverse Grip Pushdown"]},
+    {slot:"OH DB/Plate Ext",   img:"overhead_press",col:"#ff5c9d",v:["Overhead Dumbbell for Triceps","Overhead Plate for Triceps","Cable Overhead Ext","EZ Bar Overhead"]},
+    {slot:"Cable Row Tri",     img:"pushdown",    col:"#ff5c9d",v:["Cable Row for Triceps","Tricep Dips","Close Grip Press","Skull Crushers"]},
   ],
+  // === BACK ===
   back:[
-    {slot:"Vertical Pull", img:"vertical_pull",  col:"#00c4bf",v:["Lat Pulldown Machine","Assisted Pull Up","Wide Grip Pulldown","Neutral Grip Pulldown"]},
-    {slot:"Horizontal Row",img:"horizontal_row", col:"#00c4bf",v:["Seated Cable Row","Chest Supported Row","Bentover Barbell Row","T-Bar Row Machine"]},
-    {slot:"Single Arm Row",img:"single_arm_row", col:"#00c4bf",v:["Single Arm DB Row","Single Arm Cable Row","Machine Single Arm Row","Meadows Row"]},
-    {slot:"Pullover",      img:"pullover",       col:"#00c4bf",v:["Straight Arm Pulldown","Cable Pullover","Dumbbell Pullover","Machine Pullover"]},
+    {slot:"Lat Pulldown",      img:"lat_pulldown", col:"#00c4bf",v:["Lat Pulldown","Wide Grip Pulldown","Chin Ups","Assisted Pull Up"]},
+    {slot:"Narrow Lat Pull",   img:"lat_pulldown", col:"#00c4bf",v:["Inward/Narrow Lat Pulldown","Neutral Grip Pulldown","V-Bar Pulldown","Close Grip Pulldown"]},
+    {slot:"Bent Over Row",     img:"barbell_row",  col:"#00c4bf",v:["Bent Over Rows","Barbell Row","T-Bar Row","Pendlay Row"]},
+    {slot:"One Arm Row",       img:"barbell_row",  col:"#00c4bf",v:["Single Arm Dumbbell Row","Single Arm Cable Row","Meadows Row","Machine Single Arm Row"]},
+    {slot:"Reverse Fly",       img:"face_pull",    col:"#00c4bf",v:["Reverse Fly","Rear Delt Fly Machine","Bent Over DB Fly","Cable Reverse Fly"]},
+    {slot:"Deadlift",          img:"rdl",          col:"#00c4bf",v:["Deadlifts","Romanian Deadlift","Sumo Deadlift","Rack Pull"]},
+    {slot:"Both Arm Row",      img:"barbell_row",  col:"#00c4bf",v:["Both Arm Dumbbell Row","Seated Cable Row","Chest Supported Row","Machine Row"]},
+    {slot:"Inward Bent Row",   img:"barbell_row",  col:"#00c4bf",v:["Hand Inward Bent Over Rows","Narrow Grip Row","Underhand Row","Close Grip Cable Row"]},
+    {slot:"Seated Cable Row",  img:"seated_row",   col:"#00c4bf",v:["Seated Cable Row","Machine Row","Chest Supported Row","Single Arm Cable Row"]},
+    {slot:"Hyperextension",    img:"rdl",          col:"#00c4bf",v:["Hyperextensions","Back Extension Machine","Reverse Hyper","Good Mornings"]},
   ],
+  // === BICEPS ===
   biceps:[
-    {slot:"Standard Curl",img:"standard_curl",col:"#00b8ff",v:["Bicep Curl Machine","Dumbbell Bicep Curl","Barbell Curl","EZ Bar Curl"]},
-    {slot:"Stretch Curl", img:"stretch_curl", col:"#00b8ff",v:["Incline Dumbbell Curl","Preacher Curl Machine","Cable Preacher Curl","Spider Curl"]},
-    {slot:"Hammer Curl",  img:"hammer_curl",  col:"#00b8ff",v:["Hammer Curl Dumbbells","Cable Hammer Curl","Cross Body Hammer Curl","Neutral Grip Curl"]},
+    {slot:"Incline DB Curl",   img:"bicep_curl",  col:"#00b8ff",v:["Incline Dumbbell Curl","Preacher Curl","Spider Curl","Cable Preacher Curl"]},
+    {slot:"Incline Hammer",    img:"hammer_curl",  col:"#00b8ff",v:["Incline Dumbbell Hammer","Cable Hammer Curl","Cross Body Hammer","Neutral Grip Curl"]},
+    {slot:"Arnold Curl",       img:"bicep_curl",  col:"#00b8ff",v:["Arnold Bicep Curls","Dumbbell Bicep Curl","EZ Bar Curl","Barbell Curl"]},
+    {slot:"Hammer Curl",       img:"hammer_curl",  col:"#00b8ff",v:["Hammer Curl Dumbbells","Cable Hammer Curl","Cross Body Hammer","Rope Hammer Curl"]},
+    {slot:"Barbell Curl",      img:"bicep_curl",  col:"#00b8ff",v:["Barbell Curls","EZ Bar Curl","Cable Curl","Rested Arms Curls"]},
+    {slot:"Up Cable Pull",     img:"bicep_curl",  col:"#00b8ff",v:["Up Cable Pull","Low Cable Curl","Cable Preacher Curl","Concentration Curl"]},
   ],
+  // === QUADS ===
   quads:[
-    {slot:"Leg Press",    img:"leg_press",    col:"#00e5a0",v:["Leg Press Machine","Hack Squat Machine","V-Squat Machine","Single Leg Press"]},
-    {slot:"Leg Extension",img:"leg_extension",col:"#00e5a0",v:["Leg Extension Machine","Single Leg Extension","Cable Leg Extension","Short Arc Quad Ext"]},
-    {slot:"Squat",        img:"squat",        col:"#00e5a0",v:["Smith Machine Squat","Goblet Squat Dumbbell","Bulgarian Split Squat","Walking Lunges"]},
-    {slot:"Lunge",        img:"lunge",        col:"#00e5a0",v:["Reverse Lunge Machine","Step Up Dumbbell","Sissy Squat Machine","Split Squat Machine"]},
+    {slot:"Leg Press",         img:"leg_press",   col:"#00e5a0",v:["Leg Press Machine","Hack Squat Machine","V-Squat Machine","Single Leg Press"]},
+    {slot:"Leg Extension",     img:"leg_press",   col:"#00e5a0",v:["Leg Extension Machine","Single Leg Extension","Cable Leg Extension","Short Arc Quad Ext"]},
+    {slot:"Squat",             img:"squat",       col:"#00e5a0",v:["Smith Machine Squat","Barbell Squat","Goblet Squat","Bodyweight Squats"]},
+    {slot:"Walking Lunge",     img:"squat",       col:"#00e5a0",v:["Weighted Walking Lunges","Barbell Lunges","Dumbbell Lunges","Reverse Lunges"]},
+    {slot:"Bulgarian Squat",   img:"squat",       col:"#00e5a0",v:["Bulgarian Split Squat","Dumbbell Bulgarian","Smith Machine Bulgarian","Rear Foot Elevated Squat"]},
+    {slot:"Sumo Squat",        img:"squat",       col:"#00e5a0",v:["Weighted Sumo Squat","Dumbbell Sumo Squat","Goblet Sumo Squat","Smith Machine Sumo"]},
   ],
+  // === HAMSTRINGS ===
   hamstrings:[
-    {slot:"Leg Curl",    img:"leg_curl",    col:"#4d79ff",v:["Lying Leg Curl Machine","Seated Leg Curl Machine","Standing Leg Curl","Nordic Hamstring Curl"]},
-    {slot:"RDL",         img:"rdl",         col:"#4d79ff",v:["Romanian Deadlift Machine","Dumbbell RDL","Cable Pull Through","Good Morning Machine"]},
-    {slot:"Hip Extension",img:"hip_extension",col:"#4d79ff",v:["Glute Ham Raise","Cable Hamstring Curl","Reverse Hyper Machine","Stability Ball Curl"]},
+    {slot:"Leg Curl",          img:"leg_curl",    col:"#4d79ff",v:["Leg Curl Machine","Lying Leg Curl","Seated Leg Curl","Standing Leg Curl"]},
+    {slot:"RDL",               img:"rdl",         col:"#4d79ff",v:["Romanian Deadlift","Smith Machine RDL","Dumbbell RDL","Cable Pull Through"]},
   ],
+  // === GLUTES ===
   glutes:[
-    {slot:"Hip Thrust",  img:"hip_thrust",  col:"#ff5c9d",v:["Hip Thrust Machine","Smith Machine Hip Thrust","Dumbbell Hip Thrust","Single Leg Hip Thrust"]},
-    {slot:"Kickback",    img:"kickback",    col:"#ff5c9d",v:["Cable Glute Kickback","Glute Kickback Machine","Hip Abductor Machine","Donkey Kick Machine"]},
-    {slot:"Glute Squat", img:"glute_squat", col:"#ff5c9d",v:["Sumo Squat Dumbbell","Hip Adductor Machine","Reverse Lunge Dumbbell","Curtsy Lunge"]},
+    {slot:"Hip Thrust",        img:"hip_thrust",  col:"#ff5c9d",v:["Hip Thrust Machine","Smith Machine Hip Thrust","Barbell Hip Thrust","Glute Bridge"]},
+    {slot:"Glute Bridge",      img:"hip_thrust",  col:"#ff5c9d",v:["Glute Bridges","Single Leg Glute Bridge","Weighted Bridge","Hip Thrust Variation"]},
   ],
+  // === CALVES ===
   calves:[
-    {slot:"Standing Raise",img:"standing_calf",col:"#ff6535",v:["Standing Calf Raise Machine","Smith Machine Calf Raise","Leg Press Calf Raise","Dumbbell Calf Raise"]},
-    {slot:"Seated Raise",  img:"seated_calf",  col:"#ff6535",v:["Seated Calf Raise Machine","Donkey Calf Raise","Seated DB Calf Raise","Hack Machine Calf Raise"]},
+    {slot:"Calf Raise",        img:"calf_raise",  col:"#ff6535",v:["Calf Raise Machine","Standing Calf Raise","Seated Calf Raise","Smith Machine Calf Raise"]},
   ],
+  // === ABS ===
+  abs:[
+    {slot:"Crunches",          img:"squat",       col:"#ffd700",v:["Crunches","Cable Crunches","Crunch Kicks","Bicycle Crunches"]},
+    {slot:"Leg Raises",        img:"squat",       col:"#ffd700",v:["Leg Raises","Hanging Leg Raise","Flutter Kicks","Lying Leg Raise"]},
+    {slot:"Russian Twist",     img:"squat",       col:"#ffd700",v:["Russian Twist","Weighted Russian Twist","Cable Woodchop","Oblique Crunch"]},
+    {slot:"Hanging Knee Raise",img:"pull_up",     col:"#ffd700",v:["Hanging Knee Raise","Captain's Chair Raise","Hanging Leg Raise","Toes to Bar"]},
+    {slot:"Plank",             img:"flat_press",  col:"#ffd700",v:["Plank","Side Plank","Plank Shoulder Taps","RKC Plank"]},
+    {slot:"Sit Ups",           img:"squat",       col:"#ffd700",v:["Sit Ups","Weighted Sit Ups","V-Ups","Crunch Kicks"]},
+  ],
+  // === CARDIO ===
   cardio:[
-    {slot:"Cardio",img:"flat_press",col:"#ff3d5a",v:["Rowing Machine","Ski Erg Machine","Stairmaster","Treadmill Incline Walk","HIIT Stationary Bike","Elliptical"]},
+    {slot:"Cardio",img:"cardio_rowing",col:"#ff3d5a",v:["Rowing Machine","Ski Erg Machine","Stairmaster","Treadmill Incline Walk","HIIT Stationary Bike","Elliptical"]},
+  ],
+  // === STRETCHING ===
+  stretch:[
+    {slot:"Stretching",img:"squat",col:"#00e5a0",v:["Foam Rolling + Stretching","Static Stretching","Dynamic Stretching","Yoga Cool Down"]},
   ],
 };
 
-const DAY_CFG = {
+// ── DAY CONFIGS ──────────────────────────────────────────────────────────────
+// W1-W3: Original PPL split
+const DAY_CFG_PPL = {
   push:[
-    {m:"chest",    label:"Chest",    col:"#4d79ff",sc:{1:2,2:2,3:3,4:3,5:3,6:4,7:4,8:2}},
-    {m:"shoulders",label:"Shoulders",col:"#9966ff",sc:{1:2,2:2,3:2,4:3,5:3,6:3,7:3,8:2}},
-    {m:"triceps",  label:"Triceps",  col:"#ff5c9d",sc:{1:2,2:2,3:2,4:2,5:3,6:3,7:3,8:2}},
-    {m:"cardio",   label:"Cardio",   col:"#ff3d5a",sc:{1:1,2:1,3:1,4:1,5:1,6:1,7:1,8:1},isCardio:true},
+    {m:"chest",    label:"Chest",    col:"#4d79ff",sc:{1:2,2:2,3:3}},
+    {m:"shoulders",label:"Shoulders",col:"#9966ff",sc:{1:2,2:2,3:2}},
+    {m:"triceps",  label:"Triceps",  col:"#ff5c9d",sc:{1:2,2:2,3:2}},
+    {m:"cardio",   label:"Cardio",   col:"#ff3d5a",sc:{1:1,2:1,3:1},isCardio:true},
   ],
   pull:[
-    {m:"back",     label:"Back",     col:"#00c4bf",sc:{1:2,2:2,3:3,4:3,5:3,6:4,7:4,8:2}},
-    {m:"biceps",   label:"Biceps",   col:"#00b8ff",sc:{1:2,2:2,3:2,4:2,5:3,6:3,7:3,8:2}},
-    {m:"shoulders",label:"Rear Delt",col:"#9966ff",sc:{1:1,2:1,3:1,4:2,5:2,6:2,7:2,8:1},ss:3},
-    {m:"cardio",   label:"Cardio",   col:"#ff3d5a",sc:{1:1,2:1,3:1,4:1,5:1,6:1,7:1,8:1},isCardio:true},
+    {m:"back",     label:"Back",     col:"#00c4bf",sc:{1:2,2:2,3:3}},
+    {m:"biceps",   label:"Biceps",   col:"#00b8ff",sc:{1:2,2:2,3:2}},
+    {m:"shoulders",label:"Rear Delt",col:"#9966ff",sc:{1:1,2:1,3:1},ss:3},
+    {m:"cardio",   label:"Cardio",   col:"#ff3d5a",sc:{1:1,2:1,3:1},isCardio:true},
   ],
   legs:[
-    {m:"quads",    label:"Quads",    col:"#00e5a0",sc:{1:2,2:2,3:3,4:3,5:3,6:4,7:4,8:2}},
-    {m:"hamstrings",label:"Hamstrings",col:"#4d79ff",sc:{1:2,2:2,3:2,4:3,5:3,6:3,7:3,8:2}},
-    {m:"glutes",   label:"Glutes",   col:"#ff5c9d",sc:{1:2,2:2,3:2,4:2,5:3,6:3,7:3,8:2}},
-    {m:"calves",   label:"Calves",   col:"#ff6535",sc:{1:1,2:1,3:1,4:2,5:2,6:2,7:2,8:1}},
-    {m:"cardio",   label:"Cardio",   col:"#ff3d5a",sc:{1:1,2:1,3:1,4:1,5:1,6:1,7:1,8:1},isCardio:true},
+    {m:"quads",    label:"Quads",    col:"#00e5a0",sc:{1:2,2:2,3:3}},
+    {m:"hamstrings",label:"Hamstrings",col:"#4d79ff",sc:{1:2,2:2,3:2}},
+    {m:"glutes",   label:"Glutes",   col:"#ff5c9d",sc:{1:2,2:2,3:2}},
+    {m:"calves",   label:"Calves",   col:"#ff6535",sc:{1:1,2:1,3:1}},
+    {m:"cardio",   label:"Cardio",   col:"#ff3d5a",sc:{1:1,2:1,3:1},isCardio:true},
   ],
 };
-const DAYS = [{k:"push",l:"Mon",s:"M"},{k:"pull",l:"Tue",s:"T"},{k:"legs",l:"Wed",s:"W"},
-              {k:"push",l:"Thu",s:"T"},{k:"pull",l:"Fri",s:"F"},{k:"legs",l:"Sat",s:"S"}];
+
+// W4+ WEEK A: Trainer plan — explicit exercise lists per day
+const WEEK_A_DAYS = {
+  // Mon: Back & Biceps
+  0:[
+    {m:"cardio",label:"Cardio",col:"#ff3d5a",isCardio:true},
+    {label:"Lat Pulldown",        img:"lat_pulldown",col:"#00c4bf",sets:3,reps:"10–12"},
+    {label:"Inward Lat Pulldown", img:"lat_pulldown",col:"#00c4bf",sets:3,reps:"10–12"},
+    {label:"Deadlifts / Bent Over Rows",img:"rdl",   col:"#00c4bf",sets:3,reps:"10–12"},
+    {label:"One Arm Row",         img:"barbell_row", col:"#00c4bf",sets:3,reps:"10–12"},
+    {label:"Weighted DB Shrugs",  img:"rdl",         col:"#9966ff",sets:3,reps:"12–15"},
+    {label:"Incline DB Curl",     img:"bicep_curl",  col:"#00b8ff",sets:3,reps:"10–12"},
+    {label:"Incline DB Hammer",   img:"hammer_curl", col:"#00b8ff",sets:3,reps:"10–12"},
+  ],
+  // Tue: Legs
+  1:[
+    {m:"cardio",label:"Cardio",col:"#ff3d5a",isCardio:true},
+    {label:"Walking Lunges (weighted)",img:"squat",  col:"#00e5a0",sets:4,reps:"across gym"},
+    {label:"Bulgarian Squats",    img:"squat",       col:"#00e5a0",sets:4,reps:"10–12"},
+    {label:"Weighted Sumo Squats",img:"squat",       col:"#00e5a0",sets:4,reps:"10–12"},
+    {label:"Leg Extensions",      img:"leg_press",   col:"#00e5a0",sets:4,reps:"12–15"},
+    {label:"Leg Curls",           img:"leg_curl",    col:"#4d79ff",sets:4,reps:"12–15"},
+    {label:"Calf Raise Machine",  img:"calf_raise",  col:"#ff6535",sets:3,reps:"15–20"},
+  ],
+  // Wed: Chest, Shoulder, Triceps
+  2:[
+    {m:"cardio",label:"Cardio",col:"#ff3d5a",isCardio:true},
+    {label:"Pushups",             img:"flat_press",  col:"#4d79ff",sets:3,reps:"to failure"},
+    {label:"Incline DB Press",    img:"incline_press",col:"#4d79ff",sets:3,reps:"10–12"},
+    {label:"Decline DB Press",    img:"flat_press",  col:"#4d79ff",sets:3,reps:"10–12"},
+    {label:"Fly Machine",         img:"fly_cable",   col:"#4d79ff",sets:3,reps:"12–15"},
+    {label:"OH DB Press (elbows in)",img:"overhead_press",col:"#9966ff",sets:3,reps:"10–12"},
+    {label:"Lateral DB Raise",    img:"lateral_raise",col:"#9966ff",sets:3,reps:"12–15"},
+    {label:"Cable Row for Triceps",img:"pushdown",   col:"#ff5c9d",sets:3,reps:"12–15"},
+    {label:"OH DB/Plate Triceps", img:"overhead_press",col:"#ff5c9d",sets:3,reps:"10–12"},
+    {label:"Abs: Crunches/Leg Raise/Russian Twist",img:"squat",col:"#ffd700",sets:3,reps:"15–20",isAbs:true},
+  ],
+  // Thu: Back & Biceps
+  3:[
+    {m:"cardio",label:"Cardio",col:"#ff3d5a",isCardio:true},
+    {label:"Reverse Fly",        img:"face_pull",   col:"#00c4bf",sets:3,reps:"12–15"},
+    {label:"Lat Pulldown",       img:"lat_pulldown", col:"#00c4bf",sets:3,reps:"10–12"},
+    {label:"One Arm Row",        img:"barbell_row",  col:"#00c4bf",sets:3,reps:"10–12"},
+    {label:"Bent Over Rows",     img:"barbell_row",  col:"#00c4bf",sets:3,reps:"10–12"},
+    {label:"Hand Inward Bent Rows",img:"barbell_row",col:"#00c4bf",sets:3,reps:"10–12"},
+    {label:"Shrugs",             img:"rdl",          col:"#9966ff",sets:3,reps:"12–15"},
+    {label:"Arnold Bicep Curls", img:"bicep_curl",   col:"#00b8ff",sets:3,reps:"10–12"},
+    {label:"Hammer Curl",        img:"hammer_curl",  col:"#00b8ff",sets:3,reps:"10–12"},
+    {label:"Abs: Leg Raise/Russian Twist/Crunches/Hanging Knee Raise",img:"squat",col:"#ffd700",sets:3,reps:"15–20",isAbs:true},
+  ],
+  // Fri: Chest, Shoulder, Triceps
+  4:[
+    {m:"cardio",label:"Cardio",col:"#ff3d5a",isCardio:true},
+    {label:"Pushups",            img:"flat_press",   col:"#4d79ff",sets:4,reps:"to failure"},
+    {label:"Incline Barbell Press",img:"incline_press",col:"#4d79ff",sets:4,reps:"8–10"},
+    {label:"Incline DB Press",   img:"incline_press", col:"#4d79ff",sets:4,reps:"10–12"},
+    {label:"Lying DB Press",     img:"flat_press",    col:"#4d79ff",sets:4,reps:"10–12"},
+    {label:"OH DB Press",        img:"overhead_press", col:"#9966ff",sets:4,reps:"10–12"},
+    {label:"Lateral DB Raise",   img:"lateral_raise",  col:"#9966ff",sets:4,reps:"12–15"},
+    {label:"Cable Pull Down Triceps",img:"pushdown",   col:"#ff5c9d",sets:4,reps:"12–15"},
+    {label:"Abs: Leg Raises/Crunches",img:"squat",     col:"#ffd700",sets:3,reps:"15–20",isAbs:true},
+  ],
+  // Sat: Legs
+  5:[
+    {m:"cardio",label:"Cardio",col:"#ff3d5a",isCardio:true},
+    {label:"Squats",             img:"squat",       col:"#00e5a0",sets:3,reps:"10–12"},
+    {label:"Lunges",             img:"squat",       col:"#00e5a0",sets:3,reps:"10–12"},
+    {label:"Leg Press",          img:"leg_press",   col:"#00e5a0",sets:3,reps:"10–12"},
+    {label:"Hip Thrusts",        img:"hip_thrust",  col:"#ff5c9d",sets:3,reps:"12–15"},
+    {label:"Leg Extensions",     img:"leg_press",   col:"#00e5a0",sets:3,reps:"12–15"},
+    {label:"Leg Curls",          img:"leg_curl",    col:"#4d79ff",sets:3,reps:"12–15"},
+    {label:"Stretching",         img:"squat",       col:"#00e5a0",sets:1,reps:"10 min",isStretch:true},
+  ],
+};
+
+// W5,W7 WEEK B: Alternate plan
+const WEEK_B_DAYS = {
+  // Mon: Back & Biceps (B)
+  0:[
+    {m:"cardio",label:"Cardio",col:"#ff3d5a",isCardio:true},
+    {label:"Lat Pulldown",        img:"lat_pulldown",col:"#00c4bf",sets:3,reps:"10–12"},
+    {label:"Inward Lat Pulldown", img:"lat_pulldown",col:"#00c4bf",sets:3,reps:"10–12"},
+    {label:"One Arm Row (19.5kg)",img:"barbell_row", col:"#00c4bf",sets:3,reps:"10–12"},
+    {label:"Both Arm Row (19.5kg)",img:"barbell_row",col:"#00c4bf",sets:3,reps:"10–12"},
+    {label:"Reverse Fly",        img:"face_pull",   col:"#00c4bf",sets:3,reps:"12–15"},
+    {label:"Arnold Bicep Curls", img:"bicep_curl",   col:"#00b8ff",sets:3,reps:"10–12"},
+    {label:"Hammer Curl",        img:"hammer_curl",  col:"#00b8ff",sets:3,reps:"10–12"},
+    {label:"Abs: Crunches/Leg Raises/Hanging Knee Raise",img:"squat",col:"#ffd700",sets:3,reps:"15–20",isAbs:true},
+  ],
+  // Tue: Legs (B)
+  1:[
+    {m:"cardio",label:"Cardio",col:"#ff3d5a",isCardio:true},
+    {label:"Bodyweight Squats",   img:"squat",      col:"#00e5a0",sets:3,reps:"10"},
+    {label:"Hip Thrusts",         img:"hip_thrust", col:"#ff5c9d",sets:4,reps:"20"},
+    {label:"Walking Lunges (weighted)",img:"squat",  col:"#00e5a0",sets:3,reps:"across gym"},
+    {label:"Leg Extensions",      img:"leg_press",  col:"#00e5a0",sets:4,reps:"12–15"},
+    {label:"Leg Curls",           img:"leg_curl",   col:"#4d79ff",sets:4,reps:"12–15"},
+    {label:"Weighted Sumo Squats",img:"squat",      col:"#00e5a0",sets:4,reps:"12–15"},
+    {label:"Calves",              img:"calf_raise",  col:"#ff6535",sets:4,reps:"20"},
+    {label:"Foam Rolling + Stretching",img:"squat", col:"#00e5a0",sets:1,reps:"10 min",isStretch:true},
+  ],
+  // Wed: Shoulder, Chest, Triceps (B)
+  2:[
+    {m:"cardio",label:"Cardio",col:"#ff3d5a",isCardio:true},
+    {label:"OH DB Press",         img:"overhead_press",col:"#9966ff",sets:3,reps:"10–12"},
+    {label:"Lateral DB Raise",    img:"lateral_raise", col:"#9966ff",sets:3,reps:"12–15"},
+    {label:"Cable Face Pull (D-handle)",img:"face_pull",col:"#9966ff",sets:3,reps:"12–15"},
+    {label:"Plate Lateral with Twist",img:"lateral_raise",col:"#9966ff",sets:3,reps:"12–15"},
+    {label:"Fly Machine",         img:"fly_cable",    col:"#4d79ff",sets:3,reps:"12–15"},
+    {label:"Incline DB Press",    img:"incline_press", col:"#4d79ff",sets:3,reps:"10–12"},
+    {label:"OH DB/Plate Triceps", img:"overhead_press",col:"#ff5c9d",sets:3,reps:"10–12"},
+    {label:"Cable Pull Down Triceps",img:"pushdown",  col:"#ff5c9d",sets:3,reps:"12–15"},
+  ],
+  // Thu-Sat: same as Week A
+  3: null, 4: null, 5: null,
+};
+// Week B Thu/Fri/Sat fallback to Week A
+WEEK_B_DAYS[3] = WEEK_A_DAYS[3];
+WEEK_B_DAYS[4] = WEEK_A_DAYS[4];
+WEEK_B_DAYS[5] = WEEK_A_DAYS[5];
+
+// Day labels for each split mode
+const DAYS_PPL = [{k:"push",l:"Mon",s:"M",tag:"Push"},{k:"pull",l:"Tue",s:"T",tag:"Pull"},{k:"legs",l:"Wed",s:"W",tag:"Legs"},
+              {k:"push",l:"Thu",s:"T",tag:"Push"},{k:"pull",l:"Fri",s:"F",tag:"Pull"},{k:"legs",l:"Sat",s:"S",tag:"Legs"}];
+const DAYS_TRAINER = [{k:"backbi",l:"Mon",s:"M",tag:"Back+Bi"},{k:"legs",l:"Tue",s:"T",tag:"Legs"},{k:"cst",l:"Wed",s:"W",tag:"Chest+Sh+Tri"},
+              {k:"backbi",l:"Thu",s:"T",tag:"Back+Bi"},{k:"cst",l:"Fri",s:"F",tag:"Chest+Sh+Tri"},{k:"legs",l:"Sat",s:"S",tag:"Legs"}];
+
+// Dynamic DAYS getter
+function getDays(){ return PROG[Math.min(CW-1,7)].split==="ppl" ? DAYS_PPL : DAYS_TRAINER; }
+// Compat: keep DAYS reference updated
+let DAYS = getDays();
 
 // ── SUPABASE + CLOUDINARY CONFIG ──────────────────────────────────────────────
 const SB_URL = "https://mvvupwbvvfsgdgkdzjxf.supabase.co";
@@ -1659,14 +1826,16 @@ function buildWeekStrip(){
     const a=p.w===CW;
     const btn=document.createElement("button");
     btn.className="flex-shrink-0 px-4 py-1.5 rounded-2xl font-black text-[9px] uppercase tracking-widest transition-all active:scale-95";
+    const abLabel = p.ab ? ` ${p.ab}` : "";
     btn.style.cssText=a?`background:${p.col};color:#0a0c12`:`background:#13151f;color:#6870a0;border:1px solid rgba(255,255,255,0.06)`;
-    btn.textContent=`W${p.w}`;
-    btn.onclick=()=>{CW=p.w;lsSet(SK.week,CW);dayData=lsGet(SK.day(CD,CW),{chk:{},wts:{}});buildWeekStrip();buildDayStrip();renderWorkout();};
+    btn.textContent=`W${p.w}${abLabel}`;
+    btn.onclick=()=>{CW=p.w;lsSet(SK.week,CW);DAYS=getDays();dayData=lsGet(SK.day(CD,CW),{chk:{},wts:{}});buildWeekStrip();buildDayStrip();renderWorkout();};
     el.appendChild(btn);
   });
 }
 
 function buildDayStrip(){
+  DAYS = getDays();
   const el=document.getElementById("day-strip");
   const today=(new Date().getDay()+6)%7;
   el.innerHTML="";
@@ -1674,10 +1843,11 @@ function buildDayStrip(){
     const a=i===CD; const isT=i===today;
     const btn=document.createElement("button");
     btn.className="py-2 rounded-xl flex flex-col items-center gap-0.5 transition-all active:scale-95 relative";
-    const dk=d.k==="push"?"#4d79ff":d.k==="pull"?"#00c4bf":"#00e5a0";
+    const colMap={push:"#4d79ff",pull:"#00c4bf",legs:"#00e5a0",backbi:"#00c4bf",cst:"#9966ff"};
+    const dk=colMap[d.k]||"#c8ff00";
     btn.style.cssText=a?`background:${dk};`:`background:#13151f;border:1px solid rgba(255,255,255,0.05)`;
     btn.innerHTML=`
-      <span style="font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.05em;color:${a?"#0a0c12":"#6870a0"}">${d.s}</span>
+      <span style="font-size:7px;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;color:${a?"#0a0c12":"#353860"}">${d.tag||d.k}</span>
       <span style="font-size:13px;font-weight:900;font-family:'Space Grotesk',sans-serif;color:${a?"#0a0c12":"#f2f4ff"}">${d.l}</span>
       ${isT&&!a?`<span style="width:4px;height:4px;border-radius:50%;background:#c8ff00;position:absolute;top:3px;right:3px"></span>`:""}
     `;
@@ -1688,12 +1858,12 @@ function buildDayStrip(){
 
 function buildExercises(){
   const p=PROG[Math.min(CW-1,7)];
+  DAYS = getDays();
   const dk=DAYS[CD].k;
-  const plan=DAY_CFG[dk]||[];
 
-  // Warmup
+  // Warmup (same for all)
   const warmups=[
-    {name:"Rowing Machine – Light",detail:"5 min · 40% effort",slot:"Warm Up",img:"horizontal_row",col:"#00e5a0"},
+    {name:"Rowing Machine – Light",detail:"5 min · 40% effort",slot:"Warm Up",img:"cardio_rowing",col:"#00e5a0"},
     {name:"Arm Circles + Shoulder Rolls",detail:"10 each direction",slot:"Mobility",img:"overhead_press",col:"#00e5a0"},
     {name:"Bodyweight Squats",detail:"10 reps · activate hips",slot:"Activation",img:"squat",col:"#00e5a0"},
   ];
@@ -1706,7 +1876,64 @@ function buildExercises(){
     col:w.col,isWarm:true,isCardio:false,pool:[],vi:0,vk:`wu${i}`,
   }))});
 
-  // Main groups
+  // === TRAINER PLAN (W4+) — explicit exercise list per day ===
+  if(p.split==="trainer"){
+    const weekPlan = p.ab==="B" ? WEEK_B_DAYS : WEEK_A_DAYS;
+    const dayExercises = weekPlan[CD] || [];
+
+    // Group exercises by muscle color for visual headers
+    let currentGroup = null;
+    dayExercises.forEach((ex,i) => {
+      if(ex.isCardio){
+        // Cardio entry
+        const pool=LIB.cardio[0].v;
+        const vk="cardio_0";
+        const vi=Math.min(VARS[vk]||0,pool.length-1);
+        groups.push({label:"Cardio",col:ex.col,items:[{
+          id:"c0",name:pool[vi],detail:`${p.cardio} min · ${p.tMin}–${p.tMax} kcal target`,
+          slot:"Cardio Machine",img:"cardio_rowing",col:ex.col,
+          isCardio:true,isWarm:false,pool,vi,vk,
+        }]});
+        return;
+      }
+
+      // Determine group label based on color
+      let groupLabel="";
+      if(ex.col==="#00c4bf") groupLabel="Back";
+      else if(ex.col==="#00b8ff") groupLabel="Biceps";
+      else if(ex.col==="#4d79ff"&&!ex.isAbs) groupLabel=dk==="legs"?"Hamstrings":"Chest";
+      else if(ex.col==="#9966ff") groupLabel="Shoulders";
+      else if(ex.col==="#ff5c9d") groupLabel=dk==="legs"?"Glutes":"Triceps";
+      else if(ex.col==="#00e5a0") groupLabel=dk==="legs"?"Legs":"Quads";
+      else if(ex.col==="#ff6535") groupLabel="Calves";
+      else if(ex.col==="#ffd700"||ex.isAbs) groupLabel="Abs";
+
+      // Create new group or add to existing
+      if(!currentGroup || currentGroup.label !== groupLabel){
+        currentGroup = {label:groupLabel,col:ex.col,items:[]};
+        groups.push(currentGroup);
+      }
+
+      const exId = `t${CD}_${i}`;
+      currentGroup.items.push({
+        id:exId,
+        name:ex.label,
+        detail:`${ex.sets} sets · ${ex.reps} · ${p.rest}s rest`,
+        slot:ex.label,
+        img:ex.img,
+        col:ex.col,
+        isCardio:false,isWarm:false,
+        isAbs:ex.isAbs||false,
+        isStretch:ex.isStretch||false,
+        pool:[],vi:0,vk:exId,
+      });
+    });
+
+    return groups;
+  }
+
+  // === ORIGINAL PPL (W1-W3) ===
+  const plan=DAY_CFG_PPL[dk]||[];
   plan.forEach(grp=>{
     const slots=LIB[grp.m]||[];
     if(grp.isCardio){
@@ -1755,12 +1982,12 @@ function renderWorkout(){
   const phaseStyles={
     1:{grad:"linear-gradient(135deg,#0d1a00 0%,#1a3300 40%,#0a0c12 100%)",blob:"rgba(200,255,0,0.12)",img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=85"},
     2:{grad:"linear-gradient(135deg,#0d1a00 0%,#1a3300 40%,#0a0c12 100%)",blob:"rgba(200,255,0,0.12)",img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=85"},
-    3:{grad:"linear-gradient(135deg,#001233 0%,#002366 40%,#0a0c12 100%)",blob:"rgba(77,121,255,0.15)",img:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=900&q=85"},
-    4:{grad:"linear-gradient(135deg,#001233 0%,#002366 40%,#0a0c12 100%)",blob:"rgba(77,121,255,0.15)",img:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=900&q=85"},
-    5:{grad:"linear-gradient(135deg,#1a0800 0%,#3d1500 40%,#0a0c12 100%)",blob:"rgba(255,101,53,0.15)",img:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=900&q=85"},
-    6:{grad:"linear-gradient(135deg,#1a0800 0%,#3d1500 40%,#0a0c12 100%)",blob:"rgba(255,101,53,0.15)",img:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=900&q=85"},
-    7:{grad:"linear-gradient(135deg,#1a0010 0%,#3d0025 40%,#0a0c12 100%)",blob:"rgba(255,61,90,0.15)",img:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=900&q=85"},
-    8:{grad:"linear-gradient(135deg,#1a0010 0%,#3d0025 40%,#0a0c12 100%)",blob:"rgba(255,61,90,0.15)",img:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=900&q=85"},
+    3:{grad:"linear-gradient(135deg,#1a0800 0%,#3d1500 40%,#0a0c12 100%)",blob:"rgba(255,101,53,0.15)",img:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=900&q=85"},
+    4:{grad:"linear-gradient(135deg,#001a1a 0%,#003333 40%,#0a0c12 100%)",blob:"rgba(0,196,191,0.15)",img:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=900&q=85"},
+    5:{grad:"linear-gradient(135deg,#0d0033 0%,#1a0066 40%,#0a0c12 100%)",blob:"rgba(153,102,255,0.15)",img:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=900&q=85"},
+    6:{grad:"linear-gradient(135deg,#001a1a 0%,#003333 40%,#0a0c12 100%)",blob:"rgba(0,196,191,0.15)",img:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=900&q=85"},
+    7:{grad:"linear-gradient(135deg,#0d0033 0%,#1a0066 40%,#0a0c12 100%)",blob:"rgba(153,102,255,0.15)",img:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=900&q=85"},
+    8:{grad:"linear-gradient(135deg,#001a0d 0%,#00331a 40%,#0a0c12 100%)",blob:"rgba(0,229,160,0.15)",img:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=900&q=85"},
   };
   const ps=phaseStyles[CW]||phaseStyles[1];
   const bgGrad=document.getElementById("hero-bg-gradient");
@@ -2823,6 +3050,10 @@ async function afterAuth(){
   renderProgress();
   renderBurnHistory();
   updateWeekBurnBadge();
+  // Re-render photo grid with synced data
+  renderPhotoWeekStrip();
+  renderProgressPhotosGrid();
+  renderComparePills();
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
