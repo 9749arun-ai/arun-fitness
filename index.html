@@ -488,6 +488,11 @@ body{background:#0a0c12;color:#f2f4ff;font-family:Manrope,sans-serif;-webkit-fon
       </div>
       <div id="compare-result" class="space-y-4 mt-2" style="display:none"></div>
     </div>
+    <!-- Push local photos to Supabase -->
+    <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:14px;margin-top:14px">
+      <button onclick="pushPhotosToCloud()" class="w-full py-3 rounded-xl text-[10px] font-black uppercase tracking-wider" style="background:rgba(77,121,255,0.1);border:1px solid rgba(77,121,255,0.25);color:#4d79ff">☁ Push Local Photos to Cloud</button>
+      <p class="text-[8px] text-dim text-center mt-2">Use this on the device where your photos are visible to sync them to the cloud</p>
+    </div>
   </div>
 </div>
 
@@ -2798,6 +2803,45 @@ function deleteProgressPhoto(week, angle){
   renderPhotoWeekStrip();
   renderProgressPhotosGrid();
   showToast(`W${week} ${angle} deleted`);
+}
+
+async function pushPhotosToCloud(){
+  if(!sb.uid){ showToast("Not logged in"); return; }
+  const photos = lsGet("af6_progress_photos", {});
+  const weeks = Object.keys(photos);
+  if(!weeks.length){ showToast("No local photos found to push"); return; }
+
+  // Refresh token first
+  try { await sb.refreshSession(); } catch(e){}
+
+  let pushed = 0;
+  let failed = 0;
+  showToast("☁ Pushing photos to cloud...", 15000);
+
+  for(const week of weeks){
+    const angles = photos[week];
+    if(!angles || typeof angles !== "object") continue;
+    for(const [angle, url] of Object.entries(angles)){
+      if(!url) continue;
+      try {
+        // Check if already exists
+        const existing = await (await sb.from("progress_photos")).eq("user_id",sb.uid).eq("week",parseInt(week)).eq("exercise_key",angle).select();
+        if(existing && existing.length){
+          pushed++; // already there
+          continue;
+        }
+        // Insert
+        const tbl = await sb.from("progress_photos");
+        const result = await tbl.insert({user_id:sb.uid, week:parseInt(week), photo_url:url, exercise_key:angle});
+        if(result) pushed++;
+        else failed++;
+      } catch(e){
+        console.warn(`Failed to push W${week} ${angle}:`, e);
+        failed++;
+      }
+    }
+  }
+  showToast(`☁ Done! ${pushed} photos pushed, ${failed} failed`, 5000);
 }
 
 function openLightbox(url, label){
