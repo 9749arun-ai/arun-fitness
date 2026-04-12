@@ -1604,20 +1604,28 @@ let foodEaten=0, foodProtein=0;
 // ── SUPABASE DATA SYNC ────────────────────────────────────────────────────────
 async function syncFromCloud() {
   if (!sb.uid) return;
+  let syncOk = true;
+
+  // Weight logs
   try {
-    // Weight logs
     const wt = await (await sb.from("weight_logs")).eq("user_id", sb.uid).order("logged_at", {ascending:true}).select();
     if (wt && wt.length) {
       WLOG = wt.map(r => ({ d: new Date(r.logged_at).toLocaleDateString("en-IN",{day:"numeric",month:"short"}), w: parseFloat(r.weight), id: r.id }));
       lsSet(SK.weight, WLOG);
     }
-    // Food logs
+  } catch(e) { console.warn("Weight sync error:", e); syncOk = false; }
+
+  // Food logs
+  try {
     const fl = await (await sb.from("food_logs")).eq("user_id", sb.uid).order("created_at", {ascending:false}).select();
     if (fl && fl.length) {
       FLOG = fl.map(r => ({ date: new Date(r.logged_date).toLocaleDateString("en-IN",{day:"numeric",month:"short"}), desc: r.description, kcal: r.calories, protein: r.protein, time: new Date(r.created_at).toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"}), id: r.id, photo_url: r.photo_url }));
       lsSet(SK.food, FLOG);
     }
-    // Calorie snaps
+  } catch(e) { console.warn("Food sync error:", e); syncOk = false; }
+
+  // Calorie snaps
+  try {
     for (let w = 1; w <= 8; w++) {
       const snaps = await (await sb.from("calorie_snaps")).eq("user_id", sb.uid).eq("week", w).select();
       if (snaps && snaps.length) {
@@ -1625,31 +1633,35 @@ async function syncFromCloud() {
         lsSet(SK.snaps(w), SNAPS[w]);
       }
     }
-    // Workout progress
+  } catch(e) { console.warn("Snaps sync error:", e); syncOk = false; }
+
+  // Workout progress
+  try {
     const wp = await (await sb.from("workout_progress")).eq("user_id", sb.uid).select();
     if (wp && wp.length) {
       const merged = {};
       wp.forEach(r => { merged[`af6_d${r.day}w${r.week}`] = JSON.parse(r.exercise_key || "{}"); });
       Object.entries(merged).forEach(([k,v]) => lsSet(k, v));
-      // reload dayData
       dayData = lsGet(SK.day(CD,CW),{chk:{},wts:{}});
     }
-    // Progress photos — sync from Supabase → localStorage → PROGRESS_PHOTOS
-    try {
-      const pp = await (await sb.from("progress_photos")).eq("user_id", sb.uid).select();
-      if (pp && pp.length) {
-        const merged = {};
-        pp.forEach(r => {
-          if(!merged[r.week]) merged[r.week] = {};
-          const angle = r.exercise_key || "Front";
-          if(r.photo_url) merged[r.week][angle] = r.photo_url;
-        });
-        PROGRESS_PHOTOS = merged;
-        lsSet("af6_progress_photos", PROGRESS_PHOTOS);
-      }
-    } catch(e) {}
-    updateSyncBadge(true);
-  } catch(e) { console.warn("Sync error:", e); updateSyncBadge(false); }
+  } catch(e) { console.warn("Workout sync error:", e); syncOk = false; }
+
+  // Progress photos
+  try {
+    const pp = await (await sb.from("progress_photos")).eq("user_id", sb.uid).select();
+    if (pp && pp.length) {
+      const merged = {};
+      pp.forEach(r => {
+        if(!merged[r.week]) merged[r.week] = {};
+        const angle = r.exercise_key || "Front";
+        if(r.photo_url) merged[r.week][angle] = r.photo_url;
+      });
+      PROGRESS_PHOTOS = merged;
+      lsSet("af6_progress_photos", PROGRESS_PHOTOS);
+    }
+  } catch(e) { console.warn("Photos sync error:", e); syncOk = false; }
+
+  updateSyncBadge(syncOk);
 }
 
 async function saveWeightToCloud(entry) {
