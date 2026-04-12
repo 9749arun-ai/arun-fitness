@@ -3051,10 +3051,16 @@ async function afterAuth(){
   renderProgress();
   renderBurnHistory();
   updateWeekBurnBadge();
-  // Re-render photo grid with synced data
+  renderWorkout();
+  // Always re-render photos after cloud sync
   renderPhotoWeekStrip();
   renderProgressPhotosGrid();
   renderComparePills();
+  // If user is already on progress tab, force re-render
+  const progTab = document.getElementById("tab-progress");
+  if(progTab && progTab.classList.contains("active")){
+    renderProgress(); renderWeight(); renderPhotoWeekStrip(); renderProgressPhotosGrid(); renderComparePills();
+  }
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
