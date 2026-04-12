@@ -1531,7 +1531,7 @@ const sb = {
       _order: null,
       eq(col, val) { this._filters.push(`${col}=eq.${val}`); return this; },
       gte(col, val) { this._filters.push(`${col}=gte.${val}`); return this; },
-      order(col, opts = {}) { this._order = `${col}=${opts.ascending === false ? "desc" : "asc"}`; return this; },
+      order(col, opts = {}) { this._order = `${col}.${opts.ascending === false ? "desc" : "asc"}`; return this; },
       async select(cols = "*") {
         let url = `${SB_URL}/rest/v1/${this._table}?select=${cols}`;
         if (this._filters.length) url += "&" + this._filters.join("&");
