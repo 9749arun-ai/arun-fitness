@@ -1448,8 +1448,8 @@ const DAYS_TRAINER = [{k:"backbi",l:"Mon",s:"M",tag:"Back+Bi"},{k:"legs",l:"Tue"
 
 // Dynamic DAYS getter
 function getDays(){ return PROG[Math.min(CW-1,7)].split==="ppl" ? DAYS_PPL : DAYS_TRAINER; }
-// Compat: keep DAYS reference updated
-let DAYS = getDays();
+// DAYS will be initialized in the state section after CW is set
+let DAYS = DAYS_PPL; // default, overridden in state init
 
 // ── SUPABASE + CLOUDINARY CONFIG ──────────────────────────────────────────────
 const SB_URL = "https://mvvupwbvvfsgdgkdzjxf.supabase.co";
@@ -1588,6 +1588,7 @@ function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
 
 // ── STATE ─────────────────────────────────────────────────────────────────────
 let CW = lsGet(SK.week,1);
+DAYS = getDays(); // set DAYS based on current week's split
 let CD = (()=>{const d=new Date().getDay();return d===0?0:d-1;})();
 let VARS = lsGet(SK.vars,{});
 let SNAPS = {};
